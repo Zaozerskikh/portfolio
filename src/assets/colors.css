@@ -5,6 +5,11 @@
     --gray-light: #EFEFEF;
     --gray-descriptions: #8A8A8A;
 
+    --dark-theme-burger: #252525;
+    --dark-theme-bg: #1E1E1E;
+    --dark-theme-light-gray: #2F2F2F;
+    --dark-theme-descriptions: #AEAEAE;
+
     --buttons-violet-default: #EEC9FF;
     --buttons-violet-on-hover: #D886FF;
     --buttons-violet-on-click: #C176E5;

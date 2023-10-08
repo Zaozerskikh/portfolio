@@ -3,9 +3,9 @@ import DefaultButton from "../../components/default_button/DefaultButton";
 import {DefaultButtonColor} from "../../components/default_button/DefaultButtonColor";
 import Tag from "../../components/tag/Tag";
 import {TagType} from "../../components/tag/TagType";
-import BurgerButton from "../../components/burger_button/BurgerButton";
 
 const HomePage: React.FC = () => {
+
   return(
     <div style={{margin: '50px', display: 'flex', flexDirection: 'column', gap: '12px'}}>
       <DefaultButton color={DefaultButtonColor.VIOLET} text="text" onClickAction={() => true}/>

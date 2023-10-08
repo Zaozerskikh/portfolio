@@ -5,9 +5,6 @@
 
 .burger-btn-wrapper .mobile-menu-text-wrapper {
     max-width: 10px;
-    transition: all .3s ease-in-out;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
 }
 
 .burger-btn-wrapper .mobile-menu-text-wrapper.hidden {

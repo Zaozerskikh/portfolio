@@ -1,5 +1,6 @@
 import './DefaultButton.css'
 import './../../assets/fonts.css'
+import './../../assets/animation_durations.css'
 import React, {useState} from "react";
 import {useMediaQuery} from "react-responsive";
 import {DefaultButtonColor} from "./DefaultButtonColor";
@@ -17,7 +18,7 @@ const DefaultButton: React.FC<DefaultButtonProps> = ({ color, text, onClickActio
 
   return(
     <div
-      className={`default-btn-wrapper ${color} ${isHovered && 'hovered'} ${isClicked && 'clicked'}`}
+      className={`default-btn-wrapper animation-02s-all ${color} ${isHovered && 'hovered'} ${isClicked && 'clicked'}`}
       onClick={onClickAction}
       onMouseEnter={() => {
         if (!isTouchable) {
@@ -31,8 +32,8 @@ const DefaultButton: React.FC<DefaultButtonProps> = ({ color, text, onClickActio
         }
       }}
       onTouchStart={() => setClicked(true)}
-      onTouchEnd={() => setClicked(false)}
-      onTouchCancel={() => setClicked(false)}
+      onTouchEnd={() => setTimeout(() => setClicked(false), 4000)}
+      onTouchCancel={() => setTimeout(() => setClicked(false), 4000)}
       onMouseDown={() => {
         if (!isTouchable) {
           setClicked(true)
@@ -44,7 +45,7 @@ const DefaultButton: React.FC<DefaultButtonProps> = ({ color, text, onClickActio
         }
       }}
     >
-      <div className="mobile-button-text">{text}</div>
+      <div className={`mobile-button-text`}>{text}</div>
     </div>
   )
 }

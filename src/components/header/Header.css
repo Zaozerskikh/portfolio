@@ -12,3 +12,7 @@
     z-index: 10;
     background-color: var(--main-white, #FFF);
 }
+
+.header.dark {
+    background-color: var(--dark-theme-bg, #1E1E1E);
+}

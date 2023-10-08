@@ -14,10 +14,7 @@ enum ColorThemeActionTypes {
 }
 
 const storedColorTheme = localStorage.getItem(LocalStorageColorThemeFields.COLOR_THEME_STATE);
-
-const initialState: ColorThemeState = {
-  colorTheme: (storedColorTheme as ColorTheme) || ColorTheme.WHITE
-};
+const initialState: ColorThemeState = JSON.parse(storedColorTheme || JSON.stringify({colorTheme: ColorTheme.WHITE }))
 
 export const toggleColorTheme = () => ({
   type: ColorThemeActionTypes.TOGGLE_THEME
@@ -27,7 +24,7 @@ export const setWhiteTheme = () => ({
   type: ColorThemeActionTypes.SET_WHITE_THEME
 });
 
-export const setBlackTheme = () => ({
+export const setDarkTheme = () => ({
   type: ColorThemeActionTypes.SET_BLACK_THEME
 });
 
@@ -35,7 +32,7 @@ const colorThemeReducer = (
   state = initialState,
   action:
     ReturnType<typeof toggleColorTheme> |
-    ReturnType<typeof setBlackTheme> |
+    ReturnType<typeof setDarkTheme> |
     ReturnType<typeof setWhiteTheme>
 ): ColorThemeState => {
   let newState: ColorThemeState;
@@ -43,7 +40,7 @@ const colorThemeReducer = (
   switch (action.type) {
     case ColorThemeActionTypes.TOGGLE_THEME:
       if (state.colorTheme === ColorTheme.WHITE) {
-        newState = { colorTheme: ColorTheme.BLACK }
+        newState = { colorTheme: ColorTheme.DARK }
       } else {
         newState = newState = { colorTheme: ColorTheme.WHITE }
       }
@@ -52,7 +49,7 @@ const colorThemeReducer = (
       newState = newState = { colorTheme: ColorTheme.WHITE }
       break
     case ColorThemeActionTypes.SET_BLACK_THEME:
-      newState = { colorTheme: ColorTheme.BLACK }
+      newState = { colorTheme: ColorTheme.DARK }
       break
     default:
       return state;
