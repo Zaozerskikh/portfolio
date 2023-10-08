@@ -1,0 +1,39 @@
+.tag-wrapper {
+    display: inline-flex;
+    height: 24px;
+    padding: 2px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.tag-wrapper.react {
+    background-color: var(--tools-tags-react-native-blue, #86E8FF);
+}
+
+.tag-wrapper.react_native {
+    background-color: var(--tools-tags-react-native-blue, #86E8FF);
+}
+
+.tag-wrapper.spring_boot {
+    background-color: var(--tools-tags-spring-boot-green, #A5EB7D);
+}
+
+.tag-wrapper.cms {
+    background-color: var(--tools-tags-cms-yellow, #FFFA74);
+}
+
+.tag-wrapper.docker {
+    background-color: var(--tools-tags-docker-blue, #90B6F3);
+}
+
+.tag-wrapper.git {
+    background-color: var(--tools-tags-git-red, #F98B78);
+}
+
+.tag-wrapper.postgresql {
+    background-color: var(--tools-tags-postgres-gray, #AFCBE1);
+}

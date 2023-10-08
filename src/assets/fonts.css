@@ -1,0 +1,50 @@
+.mobile-h1-text {
+    font-size: 38px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+}
+
+.mobile-h2-text {
+
+}
+
+.mobile-main-text-text {
+
+}
+
+.mobile-description-text {
+    font-family: Consolas, serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 19.2px */
+}
+
+.mobile-menu-text {
+    color: var(--main-black, #000);
+    font-family: Consolas, serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 19.2px */
+}
+
+.mobile-tag-text {
+    font-family: Consolas, serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 19.2px */
+}
+
+.mobile-button-text {
+    font-family: Consolas, serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 18px */
+    user-select: none;
+}
+
+

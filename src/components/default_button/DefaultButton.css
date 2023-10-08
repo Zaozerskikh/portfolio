@@ -1,0 +1,112 @@
+.default-btn-wrapper {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.default-btn-wrapper.hovered {
+    border: 1px solid #000;
+    height: 50px;
+    box-shadow: 4px 4px 0 0 #000;
+    transform: translate(-4px, -4px);
+}
+
+.default-btn-wrapper.clicked {
+    border: 1px solid #000;
+    height: 50px;
+    box-shadow: 4px 4px 0 0 #000;
+    transform: translate(-4px, -4px);
+}
+
+.default-btn-wrapper.white {
+    background-color: var(--buttons-white-default, #FFF);
+}
+
+.default-btn-wrapper.white.hovered {
+    background-color: var(--buttons-white-on-hover, #F4F4F4);
+}
+
+.default-btn-wrapper.white.clicked {
+    background-color: var(--buttons-white-on-click, #CBCBCB);
+}
+
+.default-btn-wrapper.violet {
+    background-color: var(--buttons-violet-default, #EEC9FF);
+}
+
+.default-btn-wrapper.violet.hovered {
+    background-color: var(--buttons-violet-on-hover, #D886FF);
+}
+
+.default-btn-wrapper.violet.clicked {
+    background-color: var(--buttons-violet-on-click, #C176E5);
+}
+
+.default-btn-wrapper.gray {
+    background-color: var(--buttons-gray-default, #EFEFEF);
+}
+
+.default-btn-wrapper.gray.hovered {
+    background-color: var(--buttons-gray-on-hover, #DEDEDE);
+}
+
+.default-btn-wrapper.gray.clicked {
+    background-color: var(--buttons-gray-on-click, #CBCBCB);
+}
+
+.default-btn-wrapper.mint {
+    background-color: var(--buttons-mint-default, #B1FFE3);
+}
+
+.default-btn-wrapper.mint.hovered {
+    background-color: var(--buttons-mint-on-hover, #82FFD2);
+}
+
+.default-btn-wrapper.mint.clicked {
+    background-color: var(--buttons-mint-on-click, #5CFFC5);
+}
+
+.default-btn-wrapper.yellow {
+    background-color: var(--buttons-yellow-default, #FFFB90);
+}
+
+.default-btn-wrapper.yellow.hovered {
+    background-color: var(--buttons-yellow-on-hover, #FFF94D);
+}
+
+.default-btn-wrapper.yellow.clicked {
+    background-color: var(--buttons-yellow-on-click, #F1EC49);
+}
+
+.default-btn-wrapper.orange {
+    background-color: var(--buttons-orange-default, #FFB178);
+}
+
+.default-btn-wrapper.orange.hovered {
+    background-color: var(--buttons-orange-on-hover, #FF9E57);
+}
+
+.default-btn-wrapper.orange.clicked {
+    background-color: var(--buttons-orange-on-click, #FE8C39);
+}
+
+.default-btn-wrapper.blue {
+    background-color: var(--buttons-blue-default, #81C7F8);
+}
+
+.default-btn-wrapper.blue.hovered {
+    background-color: var(--buttons-blue-on-hover, #55B5F9);
+}
+
+.default-btn-wrapper.blue.clicked {
+    background-color: var(--buttons-blue-on-click, #47A2E2);
+}
