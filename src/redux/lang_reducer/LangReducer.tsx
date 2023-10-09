@@ -9,6 +9,7 @@ export interface LangState {
 
 enum LangActionTypes {
   SET_LANG = 'SET_LANG',
+  TOGGLE_LANG = 'TOGGLE_LANG'
 }
 
 const storedState = localStorage.getItem(LocalStorageLangFields.LANG_STATE);
@@ -19,14 +20,23 @@ export const setLang = (lang: Lang) => ({
   lang: lang
 });
 
+export const toggleLang = () => ({
+  type: LangActionTypes.TOGGLE_LANG
+})
+
 
 const langReducer = (
   state = initialState,
-  action: ReturnType<typeof setLang>
+  action: ReturnType<typeof setLang> | ReturnType<typeof toggleLang>
 ): LangState => {
+  let newState;
   switch (action.type) {
     case LangActionTypes.SET_LANG:
-      const newState = { lang: action.lang}
+      newState = { lang: (action as ReturnType<typeof setLang>).lang}
+      localStorage.setItem(LocalStorageLangFields.LANG_STATE, JSON.stringify(newState));
+      return newState;
+    case LangActionTypes.TOGGLE_LANG:
+      newState = { lang: state.lang === Lang.ENG ? Lang.RUS : Lang.ENG }
       localStorage.setItem(LocalStorageLangFields.LANG_STATE, JSON.stringify(newState));
       return newState;
     default:

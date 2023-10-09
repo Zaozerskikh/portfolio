@@ -3,6 +3,11 @@
     font-style: normal;
     font-weight: 500;
     line-height: 100%;
+    font-family: Grotesque-500, serif;
+}
+
+.mobile-h1-text.white {
+    color: var(--main-white, #FFFFFF);
 }
 
 .mobile-h2-text {
@@ -21,7 +26,7 @@
 }
 
 .mobile-description-text {
-    font-family: Consolas, serif;
+    font-family: ConsolasCustom, serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -30,7 +35,7 @@
 
 .mobile-menu-text {
     color: var(--main-black, #000);
-    font-family: Consolas, serif;
+    font-family: ConsolasCustom, serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -42,15 +47,27 @@
 }
 
 .mobile-tag-text {
-    font-family: Consolas, serif;
+    font-family: ConsolasCustom, serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 120%; /* 19.2px */
 }
 
+.mobile-main-text {
+    font-family: ConsolasCustom, serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 19.2px */
+}
+
+.mobile-main-text.white {
+    color: var(--main-white, #FFF);
+}
+
 .mobile-button-text {
-    font-family: Consolas, serif;
+    font-family: ConsolasCustom, serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;

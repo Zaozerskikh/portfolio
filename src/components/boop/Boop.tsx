@@ -1,31 +1,33 @@
 import {animated, useSpring} from 'react-spring';
 import React, {useEffect, useState} from "react";
-import {useDrag} from "@use-gesture/react";
-import {ReactDOMAttributes} from "@use-gesture/react/dist/declarations/src/types";
+import {useMediaQuery} from "react-responsive";
 
 interface BoopProps {
   rotation: number;
+  tension: number;
+  friction: number;
   children: any;
-  isMobile ? : boolean;
   externalTrigger ? : boolean;
+  boopOnHover ? : boolean;
+  boopOnClick ? : boolean;
 }
-const Boop: React.FC<BoopProps> = ({ rotation , children, isMobile , externalTrigger}) => {
+const Boop: React.FC<BoopProps> = ({ rotation , children , externalTrigger,
+                                     boopOnClick, boopOnHover, tension, friction}) => {
   const [isBooped, setIsBooped] = useState(false);
-  const [isHovered,setHovered] = useState(false);
+  const isTouchable = useMediaQuery({ query: '(pointer: coarse)' });
 
-  const s = useSpring({
+  const style = useSpring({
     display: 'inline-block',
     transform: isBooped
       ? `rotate(${-rotation}deg)`
       : `rotate(0deg)`,
     config: {
-      tension: 400,
-      friction: 5,
+      tension: tension,
+      friction: friction,
     },
   });
 
   const trigger = () => {
-    setHovered(true)
     setIsBooped(true)
     setTimeout(() => {
       setIsBooped(false)
@@ -38,23 +40,24 @@ const Boop: React.FC<BoopProps> = ({ rotation , children, isMobile , externalTri
     }
   }, [externalTrigger]);
 
-  const bind = useDrag(({ down, movement: [mx, my] }) => {
-    if (mx > 5 && isMobile) {
-      trigger()
-    }
-  }) as unknown as (...args: any[]) => ReactDOMAttributes;
-
   return (
-    <animated.div {...bind()}
-      onMouseEnter={trigger}
-      onMouseLeave={() => setHovered(false)}
-      onTouchStart={() => {
-        if (isMobile) {
+    <animated.div
+      onMouseEnter={() => {
+        if (boopOnHover) {
           trigger()
         }
       }}
-      onTouchEnd={() => setHovered(false)}
-      style={s}
+      onTouchStart={() => {
+        if (isTouchable && boopOnClick) {
+          trigger()
+        }
+      }}
+      onClick={() => {
+        if (!isTouchable && boopOnClick) {
+          trigger()
+        }
+      }}
+      style={style}
     >
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
         {children}

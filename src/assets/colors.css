@@ -10,6 +10,9 @@
     --dark-theme-light-gray: #2F2F2F;
     --dark-theme-descriptions: #AEAEAE;
 
+    --layers-dark-layer: rgba(0, 0, 0, 0.50);
+    --layers-light-layer: rgba(255, 255, 255, 0.50);
+
     --buttons-violet-default: #EEC9FF;
     --buttons-violet-on-hover: #D886FF;
     --buttons-violet-on-click: #C176E5;
@@ -28,7 +31,7 @@
 
     --buttons-yellow-default: #FFFB90;
     --buttons-yellow-on-hover: #FFF94D;
-    --buttons-yellow-on-click: #F1EC49;
+    --buttons-yellow-on-click: #E9E10B;
 
     --buttons-orange-default: #FFB178;
     --buttons-orange-on-hover: #FF9E57;

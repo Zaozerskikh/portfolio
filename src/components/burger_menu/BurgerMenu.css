@@ -1,11 +1,11 @@
 .burger_menu {
     position: fixed;
     top: 48px;
-    right: -100%;
+    right: -280px;
     width: 280px;
     height: calc(100% - 48px);
     background: var(--gray-ultralight, #F5F5F5);
-    z-index: 10;
+    z-index: 10 !important;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -16,6 +16,30 @@
 
 .burger_menu.opened {
     right: 0;
+}
+
+.blurring_div {
+    position: fixed;
+    top: 48px;
+    right: -100%;
+    z-index: 9 !important;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    height: calc(100% - 48px);
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.blurring_div.opened {
+    right: 0;
+}
+
+.blurring_div.opened.dark {
+    background: var(--layers-dark-layer, rgba(0, 0, 0, 0.50));
+}
+
+.blurring_div.opened.white {
+    background: var(--layers-light-layer, rgba(255, 255, 255, 0.50));
 }
 
 .burger_menu.dark {

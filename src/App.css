@@ -2,11 +2,15 @@
     position: relative;
 }
 
+.app.dark {
+    background-color: var(--dark-theme-bg, #1E1E1E);
+}
+
 .main-content-wrapper {
-    padding-top: 48px;
-    padding-right: 16px;
-    padding-left: 16px;
     display: flex;
     width: 100%;
     box-sizing: border-box;
+    margin-bottom: -1px;
+    margin-top: 47px;
+    padding: 17px 16px 129px;
 }

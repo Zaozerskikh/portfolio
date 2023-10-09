@@ -65,11 +65,11 @@ const ColorThemeSwitcher: React.FC<ColorThemeSwitcherProps> = ({ assignedTheme})
         )
       ) : (
         currTheme === ColorTheme.DARK ? (
-          <Boop rotation={20} externalTrigger={isBooped}>
+          <Boop tension={400} friction={5} rotation={20} externalTrigger={isBooped}>
             <SelectedMoon/>
           </Boop>
         ) : (
-          <Boop rotation={20} externalTrigger={isBooped}>
+          <Boop tension={400} friction={5} rotation={20} externalTrigger={isBooped}>
             <InactiveMoon/>
           </Boop>
         )

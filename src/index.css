@@ -20,6 +20,13 @@ code {
     font-weight: normal;
 }
 
+@font-face {
+    font-family: "ConsolasCustom";
+    src: local("ConsolasCustom"),
+    url('./assets/custom_fonts/CONSOLA.TTF') format("truetype");
+    font-weight: normal;
+}
+
 .hidden {
     overflow-y: hidden !important;
 }

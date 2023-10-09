@@ -29,53 +29,47 @@ const BurgerMenu: React.FC = () => {
   }, [dispatch, location]);
 
   return(
-    <div className={`burger_menu animation-02s-all ${isBurgerOpened && 'opened'} ${currTheme === ColorTheme.DARK ? 'dark' : 'white'}`}>
-      <div className="switchers">
-        <ColorThemePicker/>
-        <LangPicker/>
+    <>
+      <div className={`blurring_div ${isBurgerOpened && 'opened'} ${currTheme === ColorTheme.DARK ? 'dark' : 'white'}`}/>
+      <div className={`burger_menu animation-02s-all ${isBurgerOpened && 'opened'} ${currTheme === ColorTheme.DARK ? 'dark' : 'white'}`}>
+        <div className="switchers">
+          <ColorThemePicker/>
+          <LangPicker/>
+        </div>
+        <div className="buttons">
+          <DefaultButton
+            color={DefaultButtonColor.MINT}
+            text={currLang === Lang.ENG ? 'Projects' : 'Проекты'}
+            onClickAction={() => navigate(RoutePaths.HOME)}
+          />
+          <DefaultButton
+            color={DefaultButtonColor.YELLOW}
+            text={currLang === Lang.ENG ? 'Services' : 'Услуги'}
+            onClickAction={() => navigate(RoutePaths.SERVICES)}
+          />
+          <DefaultButton
+            color={DefaultButtonColor.ORANGE}
+            text={currLang === Lang.ENG ? 'About' : 'Обо мне'}
+            onClickAction={() => navigate(RoutePaths.ABOUT)}
+          />
+          <DefaultButton
+            color={DefaultButtonColor.BLUE}
+            text={currLang === Lang.ENG ? 'Telegram' : 'Телеграм'}
+            onClickAction={() => window.open(ExternalLinks.TELEGRAM, '_blank')}
+          />
+          <DefaultButton
+            color={DefaultButtonColor.WHITE}
+            text={currLang === Lang.ENG ? 'Github' : 'Гитхаб'}
+            onClickAction={() => window.open(ExternalLinks.GITHUB, '_blank')}
+          />
+          <DefaultButton
+            color={DefaultButtonColor.VIOLET}
+            text={currLang === Lang.ENG ? 'Email' : 'Эл. Почта'}
+            onClickAction={() => window.open(`mailto:${ExternalLinks.EMAIL}`, '_blank')}
+          />
+        </div>
       </div>
-      <div className="buttons">
-        <DefaultButton
-          color={DefaultButtonColor.MINT}
-          text={currLang === Lang.ENG ? 'Projects' : 'Проекты'}
-          onClickAction={() => {
-            window.scroll({top: 0})
-            navigate(RoutePaths.HOME)
-          }}
-        />
-        <DefaultButton
-          color={DefaultButtonColor.YELLOW}
-          text={currLang === Lang.ENG ? 'Services' : 'Услуги'}
-          onClickAction={() => {
-            window.scroll({top: 0})
-            navigate(RoutePaths.SERVICES)
-          }}
-        />
-        <DefaultButton
-          color={DefaultButtonColor.ORANGE}
-          text={currLang === Lang.ENG ? 'About' : 'Обо мне'}
-          onClickAction={() => {
-            window.scroll({top: 0})
-            navigate(RoutePaths.ABOUT)
-          }}
-        />
-        <DefaultButton
-          color={DefaultButtonColor.BLUE}
-          text={currLang === Lang.ENG ? 'Telegram' : 'Телеграм'}
-          onClickAction={() => window.open(ExternalLinks.TELEGRAM, '_blank')}
-        />
-        <DefaultButton
-          color={DefaultButtonColor.WHITE}
-          text={currLang === Lang.ENG ? 'Github' : 'Гитхаб'}
-          onClickAction={() => window.open(ExternalLinks.GITHUB, '_blank')}
-        />
-        <DefaultButton
-          color={DefaultButtonColor.VIOLET}
-          text={currLang === Lang.ENG ? 'Email' : 'Эл. Почта'}
-          onClickAction={() => window.open(`mailto:${ExternalLinks.EMAIL}`, '_blank')}
-        />
-      </div>
-    </div>
+    </>
   )
 }
 

@@ -17,10 +17,7 @@ const Header: React.FC = () => {
   return(
     <div className={`header animation-02s-all ${currTheme === ColorTheme.DARK ? 'dark' : 'white'}`}>
       <div
-        onClick={() => {
-          window.scroll({top: 0})
-          navigate(RoutePaths.HOME)
-        }}
+        onClick={() => navigate(RoutePaths.HOME)}
         className={`mobile-menu-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
       >
         Serg Zaozerskikh

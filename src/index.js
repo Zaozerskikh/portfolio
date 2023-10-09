@@ -7,6 +7,7 @@ import {Provider} from "react-redux";
 import reduxStore from "./redux/ReduxStore";
 import {BrowserRouter as Router} from 'react-router-dom';
 import './assets/custom_fonts/RG-StandardMedium-500.ttf'
+import './assets/custom_fonts/CONSOLA.TTF'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

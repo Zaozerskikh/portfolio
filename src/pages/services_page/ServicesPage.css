@@ -1,0 +1,22 @@
+.services-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.services-page-wrapper .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.services-page-wrapper .services {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 32px;
+}

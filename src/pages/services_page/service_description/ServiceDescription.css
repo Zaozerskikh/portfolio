@@ -1,0 +1,12 @@
+.service-description {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 12px;
+}
+
+.service-description .text-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
