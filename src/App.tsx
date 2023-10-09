@@ -4,6 +4,7 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import HomePage from "./pages/home_page/HomePage";
 import './assets/colors.css'
 import './index.css'
+import './App.css'
 import Header from "./components/header/Header";
 import BurgerMenu from "./components/burger_menu/BurgerMenu";
 import Footer from "./components/footer/Footer";
@@ -25,12 +26,14 @@ const App: React.FC = () => {
     <div className="app">
       <Header/>
       <BurgerMenu/>
-      <Routes>
-        <Route path="/" element={<Navigate to={RoutePaths.HOME} />} />
-        <Route path="/zaozerskikh" element={<Navigate to={RoutePaths.HOME} />} />
-        <Route path={RoutePaths.HOME} element={<HomePage/>} />
-        <Route path="*" element={<Navigate to={RoutePaths.NOT_FOUND} />} />
-      </Routes>
+      <div className="main-content-wrapper">
+        <Routes>
+          <Route path="/" element={<Navigate to={RoutePaths.HOME} />} />
+          <Route path="/zaozerskikh" element={<Navigate to={RoutePaths.HOME} />} />
+          <Route path={RoutePaths.HOME} element={<HomePage/>} />
+          <Route path="*" element={<Navigate to={RoutePaths.NOT_FOUND} />} />
+        </Routes>
+      </div>
       <Footer/>
     </div>
   );

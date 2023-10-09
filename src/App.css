@@ -1,3 +1,12 @@
 .app {
     position: relative;
 }
+
+.main-content-wrapper {
+    padding-top: 48px;
+    padding-right: 16px;
+    padding-left: 16px;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+}

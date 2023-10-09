@@ -1,0 +1,10 @@
+.sun-rotator-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sun-rotator-wrapper.rotated {
+    transform: rotate(360deg);
+    transition: transform 1s;
+}
