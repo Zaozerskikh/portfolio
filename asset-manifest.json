@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/zaozerskikh/static/css/main.da5f1975.css",
+    "main.js": "/zaozerskikh/static/js/main.bcc50d7e.js",
+    "static/js/787.a57e5c2e.chunk.js": "/zaozerskikh/static/js/787.a57e5c2e.chunk.js",
+    "static/media/whiteHookahDetailed_3.png": "/zaozerskikh/static/media/whiteHookahDetailed_3.176151b038e57ae125af.png",
+    "static/media/whiteHookahDetailed_2.png": "/zaozerskikh/static/media/whiteHookahDetailed_2.4b6c8b89f440593bca25.png",
+    "static/media/whiteHookahDetailed_1.png": "/zaozerskikh/static/media/whiteHookahDetailed_1.0439452c0542fe5b1ad0.png",
+    "static/media/whiteHookahDetailed_4.png": "/zaozerskikh/static/media/whiteHookahDetailed_4.9e4bfd70a0b2d8c611e3.png",
+    "static/media/whiteHookahPt.png": "/zaozerskikh/static/media/whiteHookahPt.11550e2363a4bae437ff.png",
+    "static/media/darkHookahPt.png": "/zaozerskikh/static/media/darkHookahPt.dd744f0122941a793e26.png",
+    "static/media/CONSOLA.TTF": "/zaozerskikh/static/media/CONSOLA.252a062087ec8913016e.TTF",
+    "static/media/RG-StandardMedium-500.ttf": "/zaozerskikh/static/media/RG-StandardMedium-500.7357f7039a1689d158b1.ttf",
+    "static/media/avatar.png": "/zaozerskikh/static/media/avatar.5f4a58d809cf4e354082.png",
+    "index.html": "/zaozerskikh/index.html",
+    "main.da5f1975.css.map": "/zaozerskikh/static/css/main.da5f1975.css.map",
+    "main.bcc50d7e.js.map": "/zaozerskikh/static/js/main.bcc50d7e.js.map",
+    "787.a57e5c2e.chunk.js.map": "/zaozerskikh/static/js/787.a57e5c2e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.da5f1975.css",
+    "static/js/main.bcc50d7e.js"
+  ]
+}
