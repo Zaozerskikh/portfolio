@@ -39,7 +39,7 @@ const ProjectDetailedPage: React.FC = () => {
         navigate(RoutePaths.NOT_FOUND)
       }
     }
-  }, [id, projectArr]);
+  }, [id, projectArr, navigate]);
 
   return(
     <div className="project-detailed-wrapper">

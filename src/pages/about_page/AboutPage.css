@@ -1,0 +1,77 @@
+.about-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    width: 100%;
+}
+
+.about-page-wrapper .buttons {
+    display: flex;
+    width: 100%;
+    gap: 12px;
+    flex-direction: column;
+}
+
+.about-page-wrapper .main-about-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+}
+
+.about-page-wrapper .main-about-wrapper .text-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.about-page-wrapper .mt13 {
+    margin-top: 13px;
+}
+
+.about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 86px;
+    width: 100%;
+}
+
+.about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper .avatar-wrapper {
+    width: 86px;
+    height: 86px;
+    position: relative;
+}
+
+.about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper .avatar-wrapper .avatar {
+    height: 82px;
+    width: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+.about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper .avatar-wrapper .avatar-shadow {
+    height: 82px;
+    width: 82px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 4px;
+    background-color: black;
+    z-index: 2;
+}
+
+.about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper .code-wrapper {
+    position: absolute;
+    z-index: 1;
+    left: 27px;
+    top: 14px;
+    display: flex;
+    width: calc(100% - 11px);
+    box-sizing: border-box;
+    flex-shrink: 0;
+    overflow: hidden;
+    margin-right: -16px;
+}
