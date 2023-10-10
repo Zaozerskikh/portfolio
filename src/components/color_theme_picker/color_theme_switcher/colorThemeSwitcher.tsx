@@ -1,7 +1,7 @@
 import './colorThemeSwitcher.css'
-import './../../../assets/animation_durations.css'
+import '../../../assets/styles/animation_durations.css'
 import React, {useEffect, useState} from "react";
-import {ColorTheme} from "../../../redux/color_theme_reducer/ColorTheme";
+import {ColorTheme} from "../../../constants/ColorTheme";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/ReduxStore";
 import SelectedSun from "../assets/SelectedSun";

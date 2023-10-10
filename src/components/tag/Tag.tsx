@@ -1,7 +1,7 @@
-import {TagType} from "./TagType";
+import {TagType} from "../../constants/TagType";
 import React from "react";
 import './Tag.css'
-import './../../assets/fonts.css'
+import '../../assets/styles/fonts.css'
 
 export interface TagProps {
   type: TagType;

@@ -1,9 +1,9 @@
 import React from "react";
 import './ServiceDescription.css'
-import './../../../assets/fonts.css'
-import './../../../assets/animation_durations.css'
+import '../../../assets/styles/fonts.css'
+import '../../../assets/styles/animation_durations.css'
 import Boop from "../../../components/boop/Boop";
-import {ColorTheme} from "../../../redux/color_theme_reducer/ColorTheme";
+import {ColorTheme} from "../../../constants/ColorTheme";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/ReduxStore";
 
@@ -22,7 +22,7 @@ const ServiceDescription: React.FC<ServiceDescriptionProps> = ({ boopTrigger, te
       </Boop>
       <div className="text-wrapper">
         <div
-          className={`mobile-main-text ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
+          className={`mobile-main-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
           dangerouslySetInnerHTML={{ __html: text}}
         />
       </div>

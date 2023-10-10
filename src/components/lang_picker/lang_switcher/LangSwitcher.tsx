@@ -1,11 +1,11 @@
 import './LangSwitcher.css'
-import './../../../assets/animation_durations.css'
-import './../../../assets/fonts.css'
-import React, {useEffect} from "react";
+import '../../../assets/styles/animation_durations.css'
+import '../../../assets/styles/fonts.css'
+import React from "react";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/ReduxStore";
-import {Lang} from "../../../redux/lang_reducer/Lang";
-import {ColorTheme} from "../../../redux/color_theme_reducer/ColorTheme";
+import {Lang} from "../../../constants/Lang";
+import {ColorTheme} from "../../../constants/ColorTheme";
 
 interface LangSwitcherProps {
   lang: Lang;
@@ -14,14 +14,6 @@ interface LangSwitcherProps {
 const LangSwitcher: React.FC<LangSwitcherProps> = ({ lang, onClickAction}) => {
   const selectedColorTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
   const selectedLang = useSelector((state: RootState) => state.lang.lang)
-
-  useEffect(() => {
-    console.log(selectedColorTheme)
-  }, [selectedColorTheme]);
-
-  useEffect(() => {
-    console.log(selectedLang)
-  }, [selectedLang]);
 
   return(
     <div

@@ -1,7 +1,7 @@
 import './LangPicker.css'
 import React from "react";
 import {useDispatch} from "react-redux";
-import {Lang} from "../../redux/lang_reducer/Lang";
+import {Lang} from "../../constants/Lang";
 import {toggleLang} from "../../redux/lang_reducer/LangReducer";
 import LangSwitcher from "./lang_switcher/LangSwitcher";
 

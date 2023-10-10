@@ -1,4 +1,4 @@
-import {ColorTheme} from "./ColorTheme";
+import {ColorTheme} from "../../constants/ColorTheme";
 
 export enum LocalStorageColorThemeFields {
   COLOR_THEME_STATE = 'COLOR_THEME_STATE'

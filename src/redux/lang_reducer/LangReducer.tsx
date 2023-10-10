@@ -1,4 +1,4 @@
-import {Lang} from "./Lang";
+import {Lang} from "../../constants/Lang";
 
 export enum LocalStorageLangFields {
   LANG_STATE = 'LANG_STATE'
@@ -33,15 +33,16 @@ const langReducer = (
   switch (action.type) {
     case LangActionTypes.SET_LANG:
       newState = { lang: (action as ReturnType<typeof setLang>).lang}
-      localStorage.setItem(LocalStorageLangFields.LANG_STATE, JSON.stringify(newState));
-      return newState;
+      break
     case LangActionTypes.TOGGLE_LANG:
       newState = { lang: state.lang === Lang.ENG ? Lang.RUS : Lang.ENG }
-      localStorage.setItem(LocalStorageLangFields.LANG_STATE, JSON.stringify(newState));
-      return newState;
+      break
     default:
       return state;
   }
+
+  localStorage.setItem(LocalStorageLangFields.LANG_STATE, JSON.stringify(newState));
+  return newState;
 };
 
 export default langReducer

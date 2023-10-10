@@ -1,20 +1,22 @@
 import React from "react";
 import './HomePage.css'
-import './../../assets/animation_durations.css'
+import '../../assets/styles/animation_durations.css'
 import DefaultButton from "../../components/default_button/DefaultButton";
-import {DefaultButtonColor} from "../../components/default_button/DefaultButtonColor";
-import ExternalLinks from "../../routes/ExternalLinks";
+import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
+import ExternalLinks from "../../constants/ExternalLinks";
 import {RootState} from "../../redux/ReduxStore";
 import {useSelector} from "react-redux";
-import {Lang} from "../../redux/lang_reducer/Lang";
+import {Lang} from "../../constants/Lang";
 import {useNavigate} from "react-router-dom";
-import {RoutePaths} from "../../routes/RoutePaths";
-import {ColorTheme} from "../../redux/color_theme_reducer/ColorTheme";
+import {RoutePaths} from "../../constants/RoutePaths";
+import {ColorTheme} from "../../constants/ColorTheme";
+import ProjectCard from "./project_card/ProjectCard";
+
 
 const HomePage: React.FC = () => {
   const currLang = useSelector((state: RootState) => state.lang.lang)
   const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
-
+  const projectArr = useSelector((state: RootState) => state.projects.projects)
   const navigate = useNavigate()
 
   return(
@@ -26,7 +28,24 @@ const HomePage: React.FC = () => {
             : 'Разрабатываю</br> сайты, мобильные</br> и веб-приложения.'}`
         }}
       />
-      {/* cards here */}
+      <div className="projects-wrapper">
+        {projectArr ? (
+          projectArr.map((project, idx) => (
+            <ProjectCard
+              key={idx}
+              id={project.id}
+              name={project.name}
+              previewWhiteImage={project.previewWhiteImage}
+              previewDarkImage={project.previewDarkImage}
+              shortDescriptionRUS={project.shortDescriptionRUS}
+              shortDescriptionENG={project.shortDescriptionENG}
+              tags={project.tags}
+            />
+          ))
+        ) : (
+          <></>
+        )}
+      </div>
       <div
         className={`mobile-h1-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
         dangerouslySetInnerHTML={{__html: `${currLang === Lang.ENG

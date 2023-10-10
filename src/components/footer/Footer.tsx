@@ -1,13 +1,13 @@
 import './Footer.css'
-import './../../assets/animation_durations.css'
-import './../../assets/fonts.css'
+import '../../assets/styles/animation_durations.css'
+import '../../assets/styles/fonts.css'
 import React from "react";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/ReduxStore";
-import {ColorTheme} from "../../redux/color_theme_reducer/ColorTheme";
+import {ColorTheme} from "../../constants/ColorTheme";
 import FooterLink from "./footer_link/FooterLink";
-import ExternalLinks from "../../routes/ExternalLinks";
-import {Lang} from "../../redux/lang_reducer/Lang";
+import ExternalLinks from "../../constants/ExternalLinks";
+import {Lang} from "../../constants/Lang";
 
 const Footer: React.FC = () => {
   const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)

@@ -1,7 +1,7 @@
 import './ColorThemePicker.css'
 import React from "react";
 import ColorThemeSwitcher from "./color_theme_switcher/colorThemeSwitcher";
-import {ColorTheme} from "../../redux/color_theme_reducer/ColorTheme";
+import {ColorTheme} from "../../constants/ColorTheme";
 
 const ColorThemePicker: React.FC = () => {
 

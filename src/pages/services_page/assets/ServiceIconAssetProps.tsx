@@ -1,4 +1,4 @@
-import {ColorTheme} from "../../../redux/color_theme_reducer/ColorTheme";
+import {ColorTheme} from "../../../constants/ColorTheme";
 
 export interface ServiceIconAssetProps {
   colorTheme: ColorTheme;

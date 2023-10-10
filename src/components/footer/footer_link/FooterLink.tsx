@@ -1,10 +1,10 @@
 import './FooterLink.css'
-import './../../../assets/animation_durations.css'
-import './../../../assets/fonts.css'
+import '../../../assets/styles/animation_durations.css'
+import '../../../assets/styles/fonts.css'
 import React from "react";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/ReduxStore";
-import {ColorTheme} from "../../../redux/color_theme_reducer/ColorTheme";
+import {ColorTheme} from "../../../constants/ColorTheme";
 
 interface FooterLinkProps {
   link: string,

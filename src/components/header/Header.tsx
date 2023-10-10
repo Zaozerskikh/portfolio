@@ -1,12 +1,12 @@
 import './Header.css'
-import './../../assets/fonts.css'
+import '../../assets/styles/fonts.css'
 import React from "react";
-import './../../assets/animation_durations.css'
+import '../../assets/styles/animation_durations.css'
 import BurgerButton from "../burger_button/BurgerButton";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/ReduxStore";
-import {ColorTheme} from "../../redux/color_theme_reducer/ColorTheme";
-import {RoutePaths} from "../../routes/RoutePaths";
+import {ColorTheme} from "../../constants/ColorTheme";
+import {RoutePaths} from "../../constants/RoutePaths";
 import {useNavigate} from "react-router-dom";
 
 const Header: React.FC = () => {

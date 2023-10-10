@@ -1,18 +1,18 @@
 import './BurgerMenu.css'
-import './../../assets/animation_durations.css'
+import '../../assets/styles/animation_durations.css'
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/ReduxStore";
 import DefaultButton from "../default_button/DefaultButton";
-import {DefaultButtonColor} from "../default_button/DefaultButtonColor";
+import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
 import LangPicker from "../lang_picker/LangPicker";
 import {useLocation, useNavigate} from "react-router-dom";
 import {setIsBurgerShown} from "../../redux/burger_menu_reducer/BurgerMenuReducer";
 import ColorThemePicker from "../color_theme_picker/ColorThemePicker";
-import {ColorTheme} from "../../redux/color_theme_reducer/ColorTheme";
-import {Lang} from "../../redux/lang_reducer/Lang";
-import {RoutePaths} from "../../routes/RoutePaths";
-import ExternalLinks from "../../routes/ExternalLinks";
+import {ColorTheme} from "../../constants/ColorTheme";
+import {Lang} from "../../constants/Lang";
+import {RoutePaths} from "../../constants/RoutePaths";
+import ExternalLinks from "../../constants/ExternalLinks";
 
 const BurgerMenu: React.FC = () => {
   const isBurgerOpened = useSelector((state: RootState) => state.burgerMenu.isOpened)
@@ -25,7 +25,6 @@ const BurgerMenu: React.FC = () => {
 
   useEffect(() => {
     dispatch(setIsBurgerShown(false))
-    console.log('called loc')
   }, [dispatch, location]);
 
   return(

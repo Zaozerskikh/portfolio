@@ -1,15 +1,15 @@
 import './ServicesPage.css'
-import './../../assets/animation_durations.css'
-import './../../assets/fonts.css'
+import '../../assets/styles/animation_durations.css'
+import '../../assets/styles/fonts.css'
 import React, {useEffect, useState} from "react";
-import {ColorTheme} from "../../redux/color_theme_reducer/ColorTheme";
-import {Lang} from "../../redux/lang_reducer/Lang";
+import {ColorTheme} from "../../constants/ColorTheme";
+import {Lang} from "../../constants/Lang";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/ReduxStore";
 import DefaultButton from "../../components/default_button/DefaultButton";
-import {DefaultButtonColor} from "../../components/default_button/DefaultButtonColor";
-import {RoutePaths} from "../../routes/RoutePaths";
-import ExternalLinks from "../../routes/ExternalLinks";
+import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
+import {RoutePaths} from "../../constants/RoutePaths";
+import ExternalLinks from "../../constants/ExternalLinks";
 import {useNavigate} from "react-router-dom";
 import BackendSvg from "./assets/BackendSvg";
 import WebsitesFromScratchSvg from "./assets/WebsitesFromScratchSvg";

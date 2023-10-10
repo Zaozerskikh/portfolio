@@ -1,6 +1,6 @@
 import React from "react";
 import {ServiceIconAssetProps} from "./ServiceIconAssetProps";
-import {ColorTheme} from "../../../redux/color_theme_reducer/ColorTheme";
+import {ColorTheme} from "../../../constants/ColorTheme";
 
 const FullstackSvg: React.FC<ServiceIconAssetProps> = ({ colorTheme }) => {
   return(

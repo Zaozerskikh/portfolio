@@ -1,0 +1,14 @@
+.page-404-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    gap: 64px;
+}
+
+.page-404-wrapper .text-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: flex-start;
+}

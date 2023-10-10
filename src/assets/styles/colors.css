@@ -1,0 +1,54 @@
+:root {
+    --main-black: black;
+    --main-white: white;
+    --gray-ultralight: #F5F5F5;
+    --gray-light: #EFEFEF;
+    --gray-descriptions: #8A8A8A;
+
+    --dark-theme-burger: #252525;
+    --dark-theme-bg: #1E1E1E;
+    --dark-theme-light-gray: #2F2F2F;
+    --dark-theme-descriptions: #AEAEAE;
+
+    --layers-dark-layer: rgba(0, 0, 0, 0.50);
+    --layers-light-layer: rgba(255, 255, 255, 0.50);
+
+    --buttons-violet-default: #EEC9FF;
+    --buttons-violet-on-hover: #D886FF;
+    --buttons-violet-on-click: #C176E5;
+
+    --buttons-gray-default: #EFEFEF;
+    --buttons-gray-on-hover: #DEDEDE;
+    --buttons-gray-on-click: #CBCBCB;
+
+    --buttons-white-default: #FFF;
+    --buttons-white-on-hover: #F4F4F4;
+    --buttons-white-on-click: #CBCBCB;
+
+    --buttons-mint-default: #B1FFE3;
+    --buttons-mint-on-hover: #82FFD2;
+    --buttons-mint-on-click: #5CFFC5;
+
+    --buttons-yellow-default: #FFFB90;
+    --buttons-yellow-on-hover: #FFF94D;
+    --buttons-yellow-on-click: #E9E10B;
+
+    --buttons-orange-default: #FFB178;
+    --buttons-orange-on-hover: #FF9E57;
+    --buttons-orange-on-click: #FE8C39;
+
+    --buttons-blue-default: #81C7F8;
+    --buttons-blue-on-hover: #55B5F9;
+    --buttons-blue-on-click: #47A2E2;
+
+    --buttons-black-default: #353535;
+    --buttons-black-on-hover: #737373;
+    --buttons-black-on-click: #939393;
+
+    --tools-tags-react-native-blue: #86E8FF;
+    --tools-tags-spring-boot-green: #A5EB7D;
+    --tools-tags-docker-blue: #90B6F3;
+    --tools-tags-postgres-gray: #AFCBE1;
+    --tools-tags-git-red: #F98B78;
+    --tools-tags-cms-yellow: #FFFA74;
+}

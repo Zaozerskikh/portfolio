@@ -1,0 +1,44 @@
+.project-detailed-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+}
+
+.project-detailed-wrapper .info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.project-detailed-wrapper .info-wrapper .tags-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.project-detailed-wrapper .images-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.project-detailed-wrapper .buttons-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-top: 24px;
+}
+
+.project-detailed-wrapper .maxwidth {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+

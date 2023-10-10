@@ -1,9 +1,9 @@
 import './DefaultButton.css'
-import './../../assets/fonts.css'
-import './../../assets/animation_durations.css'
+import '../../assets/styles/fonts.css'
+import '../../assets/styles/animation_durations.css'
 import React, {useState} from "react";
 import {useMediaQuery} from "react-responsive";
-import {DefaultButtonColor} from "./DefaultButtonColor";
+import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
 
 export interface DefaultButtonProps {
   color: DefaultButtonColor,
