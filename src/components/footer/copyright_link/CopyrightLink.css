@@ -1,0 +1,9 @@
+.footer-wrapper .hovered-white {
+    color: var(--main-white) !important;
+    cursor: pointer;
+}
+
+.footer-wrapper .hovered-dark {
+    color: var(--buttons-black-on-hover) !important;
+    cursor: pointer;
+}
