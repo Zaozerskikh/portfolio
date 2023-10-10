@@ -32,8 +32,8 @@ const DefaultButton: React.FC<DefaultButtonProps> = ({ color, text, onClickActio
         }
       }}
       onTouchStart={() => setClicked(true)}
-      onTouchEnd={() => setTimeout(() => setClicked(false), 4000)}
-      onTouchCancel={() => setTimeout(() => setClicked(false), 4000)}
+      onTouchEnd={() => setTimeout(() => setClicked(false), 1000)}
+      onTouchCancel={() => setTimeout(() => setClicked(false), 1000)}
       onMouseDown={() => {
         if (!isTouchable) {
           setClicked(true)

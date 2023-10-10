@@ -31,6 +31,7 @@ const ProjectCard: React.FC<ShortProjectInfo> = ({ previewDarkImage, previewWhit
       <img
         src={currTheme === ColorTheme.DARK ? previewDarkImage : previewWhiteImage}
         alt="img"
+        className="project-img-preview"
       />
       <div className="project-info">
         <div

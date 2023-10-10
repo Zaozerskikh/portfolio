@@ -1,7 +1,9 @@
 .tag-wrapper {
     display: inline-flex;
     height: 24px;
-    padding: 2px 16px;
+    padding-top: 2px;
+    padding-left: 16px;
+    padding-right: 16px;
     justify-content: center;
     align-items: center;
     gap: 10px;

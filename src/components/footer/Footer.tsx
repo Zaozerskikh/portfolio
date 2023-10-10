@@ -8,6 +8,7 @@ import {ColorTheme} from "../../constants/ColorTheme";
 import FooterLink from "./footer_link/FooterLink";
 import ExternalLinks from "../../constants/ExternalLinks";
 import {Lang} from "../../constants/Lang";
+import CopyrightLink from "./copyright_link/CopyrightLink";
 
 const Footer: React.FC = () => {
   const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
@@ -19,26 +20,24 @@ const Footer: React.FC = () => {
         <FooterLink
           link={ExternalLinks.TELEGRAM}
           text={currLang === Lang.ENG ? 'telegram' : 'телеграм'}
+          styleOnHover={'blue-text'}
         />
         <FooterLink
           link={ExternalLinks.GITHUB}
           text={currLang === Lang.ENG ? 'github' : 'гитхаб'}
+          styleOnHover={'grey-text'}
         />
         <FooterLink
           link={`mailto:${ExternalLinks.EMAIL}`}
           text={ExternalLinks.EMAIL}
+          styleOnHover={'violet-text'}
         />
       </div>
       <div className="bottom-links">
         <div className={`mobile-description-text ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
           {currLang === Lang.ENG ? '© 2023 Sergey Zaozerskikh' : '© 2023 Сергей Заозерских'}
         </div>
-        <div
-          onClick={() => window.open(ExternalLinks.GLEB_KOSSOV_COPYRIGHT, '_blank')}
-          className={`mobile-description-text ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
-        >
-          {currLang === Lang.ENG ? 'designed by Gleb Kossov' : 'задизайнил Глеб Коссов'}
-        </div>
+        <CopyrightLink/>
       </div>
     </div>
   )

@@ -17,6 +17,7 @@ import NotFoundPage from "./pages/not_found_page/NotFoundPage";
 import AboutPage from "./pages/about_page/AboutPage";
 import DataFetcher from "./components/data_fetcher/dataFetcher";
 import ProjectDetailedPage from "./pages/project_detailed_page/ProjectDetailedPage";
+import {GithubPagesRoutePaths} from "./constants/GithubPagesRoutePaths";
 
 const App: React.FC = () => {
   const isBurgerOpened = useSelector((state: RootState) => state.burgerMenu.isOpened)
@@ -43,7 +44,8 @@ const App: React.FC = () => {
       <div className="main-content-wrapper">
         <Routes>
           <Route path="/" element={<Navigate to={RoutePaths.HOME} />} />
-          <Route path="/zaozerskikh" element={<Navigate to={RoutePaths.HOME} />} />
+          <Route path={GithubPagesRoutePaths.GH_PAGES_HOME_1} element={<Navigate to={RoutePaths.HOME} />} />
+          <Route path={GithubPagesRoutePaths.GH_PAGES_HOME_2} element={<Navigate to={RoutePaths.HOME} />} />
           <Route path={RoutePaths.HOME} element={<HomePage />} />
           <Route path={RoutePaths.PROJECT_DETAILED} element={<ProjectDetailedPage />} />
           <Route path={RoutePaths.SERVICES} element={<ServicesPage />} />

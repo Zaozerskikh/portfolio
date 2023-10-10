@@ -38,3 +38,7 @@
     width: 100%;
     align-items: flex-start;
 }
+
+.project-card-wrapper .project-img-preview {
+    border-radius: 4px;
+}
