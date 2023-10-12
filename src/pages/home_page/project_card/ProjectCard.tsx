@@ -13,7 +13,6 @@ import TextFormatterComponent from "../../../components/text_formatter/TextForma
 import {Lang} from "../../../constants/Lang";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../constants/MediaQueries";
-import ReactParallaxTilt from "react-parallax-tilt";
 
 const ProjectCard: React.FC<ShortProjectInfo> = ({ previewDarkImage, previewWhiteImage, name, id,
                                               shortDescriptionENG, shortDescriptionRUS, tags}) => {
@@ -26,59 +25,59 @@ const ProjectCard: React.FC<ShortProjectInfo> = ({ previewDarkImage, previewWhit
   const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
 
   return(
-    <ReactParallaxTilt
-      tiltMaxAngleX={8}
-      tiltMaxAngleY={8}
+    <div
+      className={`project-card-wrapper ${isHovered && 'hovered'} animation-02s-all`}
+      onClick={() => navigate(RoutePaths.PROJECT_DETAILED.replace(':id', id))}
+      onMouseEnter={() => {
+        if (!isTouchable) {
+          setHovered(true)
+        }
+      }}
+      onMouseLeave={() => {
+        if (!isTouchable) {
+          setHovered(false)
+        }
+      }}
+      onTouchStart={() => setHovered(true)}
+      onTouchEnd={() => setHovered(false)}
+      onTouchCancel={() => setHovered(false)}
+      onMouseDown={() => {
+        if (!isTouchable) {
+        }
+      }}
+      onMouseUp={() => {
+        if (!isTouchable) {
+        }
+      }}
     >
-      <div
-        className={`project-card-wrapper ${isHovered && 'hovered'} animation-02s-all`}
-        onClick={() => navigate(RoutePaths.PROJECT_DETAILED.replace(':id', id))}
-        onMouseEnter={() => {
-          if (!isTouchable) {
-            setHovered(true)
-          }
-        }}
-        onMouseLeave={() => {
-          if (!isTouchable) {
-            setHovered(false)
-          }
-        }}
-        onTouchStart={() => setHovered(true)}
-        onTouchEnd={() => setHovered(false)}
-        onTouchCancel={() => setHovered(false)}
-        onMouseDown={() => {
-          if (!isTouchable) {
-          }
-        }}
-        onMouseUp={() => {
-          if (!isTouchable) {
-          }
-        }}
-      >
-        <div className="tags-wrapper">
-          {tags.map((tag, idx) => (
-            <Tag type={tag} key={idx}/>
-          ))}
-        </div>
+      <div className={`tags-wrapper ${isHovered && 'hovered'} animation-02s-all`}>
+        {tags.map((tag, idx) => (
+          <Tag type={tag} key={idx}/>
+        ))}
+      </div>
+      <div className={`project-img-preview-wrapper ${isHovered && (currTheme === ColorTheme.DARK ? 'hovered-gray' : 'hovered-black')} animation-02s-all`}>
         <img
           src={currTheme === ColorTheme.DARK ? previewDarkImage : previewWhiteImage}
           alt="img"
-          className="project-img-preview"
+          className={`
+          project-img-preview ${isHovered && 'hovered'} 
+          animation-02s-all
+        `}
         />
-        <div className="project-info">
-          <div
-            className={`h2-text animation-02s-all ${isDesktop && 'desktop'} ${currTheme === ColorTheme.WHITE ? 'dark' : 'white'}`}
-          >
-            {name}
-          </div>
-          <TextFormatterComponent
-            text={currLang === Lang.ENG ? shortDescriptionENG: shortDescriptionRUS}
-            additionalStyles={`description-text ${isDesktop && 'desktop'} maxwidth animation-02s-all ${currTheme === ColorTheme.WHITE ? isHovered ? 'black' : 'dark' : isHovered ? 'white' : 'dark-theme-gray'}`}
-            letterWidth={isDesktop ? 9.9 : 8.8}
-          />
-        </div>
       </div>
-    </ReactParallaxTilt>
+      <div className="project-info">
+        <div
+          className={`h2-text animation-02s-all ${isDesktop && 'desktop'} ${currTheme === ColorTheme.WHITE ? 'dark' : 'white'}`}
+        >
+          {name}
+        </div>
+        <TextFormatterComponent
+          text={currLang === Lang.ENG ? shortDescriptionENG: shortDescriptionRUS}
+          additionalStyles={`description-text ${isDesktop && 'desktop'} maxwidth animation-02s-all ${currTheme === ColorTheme.WHITE ? isHovered ? 'black' : 'dark' : isHovered ? 'white' : 'dark-theme-gray'}`}
+          letterWidth={isDesktop ? 9.9 : 8.8}
+        />
+      </div>
+    </div>
   )
 }
 

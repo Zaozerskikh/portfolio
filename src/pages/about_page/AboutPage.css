@@ -63,44 +63,6 @@
     height: 142px !important;
 }
 
-.about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper .avatar-wrapper {
-    width: 86px;
-    height: 86px;
-    position: relative;
-}
-
-.about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper .avatar-wrapper .avatar {
-    height: 82px;
-    width: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 3;
-}
-
-.about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper .avatar-wrapper .avatar-shadow {
-    height: 82px;
-    width: 82px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    border-radius: 4px;
-    background-color: black;
-    z-index: 2;
-}
-
-.about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper .avatar-wrapper .avatar.desktop {
-    width: 138px !important;
-    height: 138px !important;
-}
-
-.about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper .avatar-wrapper .avatar-shadow.desktop {
-    width: 138px !important;
-    height: 138px !important;
-    bottom: -56px;
-    left: 4px;
-}
-
 .about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper .code-wrapper {
     position: absolute;
     z-index: 1;

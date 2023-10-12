@@ -7,3 +7,18 @@
     color: var(--buttons-black-on-hover) !important;
     cursor: pointer;
 }
+
+.footer-wrapper .copyright-link-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-wrapper .link-bracket {
+    opacity: 0;
+}
+
+.footer-wrapper .link-bracket.hovered {
+    opacity: 1;
+}

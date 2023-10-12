@@ -12,16 +12,16 @@ import {RoutePaths} from "../../constants/RoutePaths";
 import ExternalLinks from "../../constants/ExternalLinks";
 import {ColorTheme} from "../../constants/ColorTheme";
 import TextFormatterComponent from "../../components/text_formatter/TextFormatterComponent";
-import avatar from './avatar.png'
 import DecorativeCodelines from "./DecorativeCodelines";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
+import Avatar from "./avatar/Avatar";
 
 const AboutPage: React.FC = () => {
   const currLang = useSelector((state: RootState) => state.lang.lang)
   const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
-  const navigate = useNavigate()
 
+  const navigate = useNavigate()
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
 
   return(
@@ -61,10 +61,7 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
         <div className={`avatar-and-code-wrapper ${isDesktop && 'desktop'}`}>
-          <div className={`avatar-wrapper ${isDesktop && 'desktop'}`}>
-            <img src={avatar} className={`avatar ${isDesktop && 'desktop'}`} alt="avatar"/>
-            <div className={`avatar-shadow ${isDesktop && 'desktop'}`}/>
-          </div>
+          <Avatar/>
           <div className={`code-wrapper ${isDesktop && 'desktop'}`}>
             <DecorativeCodelines/>
           </div>

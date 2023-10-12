@@ -10,14 +10,27 @@
     margin: 0;
 }
 
-.default-btn-wrapper.hovered {
+.default-btn-wrapper.hovered.black {
     border: 1px solid #000;
     box-shadow: 4px 4px 0 0 #000;
     transform: translate(-4px, -4px);
     cursor: pointer;
 }
 
-.default-btn-wrapper.clicked {
+.default-btn-wrapper.hovered.white {
+    border: 1px solid #000;
+    box-shadow: 4px 4px 0 0 var(--buttons-gray-default);
+    transform: translate(-4px, -4px);
+    cursor: pointer;
+}
+
+.default-btn-wrapper.clicked.white {
+    border: 1px solid #000;
+    box-shadow: 4px 4px 0 0 var(--buttons-gray-default);
+    transform: translate(-4px, -4px);
+}
+
+.default-btn-wrapper.clicked.black {
     border: 1px solid #000;
     box-shadow: 4px 4px 0 0 #000;
     transform: translate(-4px, -4px);

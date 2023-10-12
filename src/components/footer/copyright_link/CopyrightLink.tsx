@@ -20,11 +20,7 @@ const CopyrightLink: React.FC = () => {
   return(
     <div
       onClick={() => window.open(ExternalLinks.GLEB_KOSSOV_COPYRIGHT, '_blank')}
-      className={`
-        description-text ${isDesktop && 'desktop'} animation-02s-all
-        ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}
-        ${isHovered && (currTheme === ColorTheme.DARK ? 'hovered-white' : 'hovered-dark')}
-      `}
+      className="copyright-link-wrapper"
       onMouseEnter={() => {
         if (!isTouchable) {
           setHovered(true)
@@ -39,7 +35,35 @@ const CopyrightLink: React.FC = () => {
       onTouchEnd={() => setHovered(false)}
       onTouchCancel={() => setHovered(false)}
     >
-      {currLang === Lang.ENG ? 'designed by Gleb Kossov' : 'задизайнил Глеб Коссов'}
+      <div
+        className={`
+          link-bracket ${isHovered && 'hovered'}
+          description-text ${isDesktop && 'desktop'} animation-02s-all
+          ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}
+          ${isHovered && (currTheme === ColorTheme.DARK ? 'hovered-white' : 'hovered-dark')}
+        `}
+      >
+        {'<'}
+      </div>
+      <div
+        className={`
+          description-text ${isDesktop && 'desktop'} animation-02s-all
+          ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}
+          ${isHovered && (currTheme === ColorTheme.DARK ? 'hovered-white' : 'hovered-dark')}
+        `}
+      >
+        {currLang === Lang.ENG ? 'designed by Gleb Kossov' : 'задизайнил Глеб Коссов'}
+      </div>
+      <div
+        className={`
+          link-bracket ${isHovered && 'hovered'}
+          description-text ${isDesktop && 'desktop'} animation-02s-all
+          ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}
+          ${isHovered && (currTheme === ColorTheme.DARK ? 'hovered-white' : 'hovered-dark')}
+        `}
+      >
+        {'>'}
+      </div>
     </div>
   )
 }
