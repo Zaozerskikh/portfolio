@@ -1,12 +1,12 @@
 import {ProjectInfo} from "../redux/projects_reducer/ProjectInfo";
-import {TagType} from "../constants/TagType";
+import {TagType} from "../constants/TagType"
 
-import whiteHookahPreview from './hookah_pt/whiteHookahPt.png'
-import blackHookahPreview from './hookah_pt/darkHookahPt.png'
-import whiteHookahDetailed1 from './hookah_pt/whiteHookahDetailed_1.png'
-import whiteHookahDetailed2 from './hookah_pt/whiteHookahDetailed_2.png'
-import whiteHookahDetailed3 from './hookah_pt/whiteHookahDetailed_3.png'
-import whiteHookahDetailed4 from './hookah_pt/whiteHookahDetailed_4.png'
+const whiteHookahPreview = 'https://i.imgur.com/ZexQo1c.png'
+const blackHookahPreview = 'https://i.imgur.com/Xn97hXD.png'
+const whiteHookahDetailed1 = 'https://i.imgur.com/mguGHTp.png'
+const whiteHookahDetailed2 = 'https://i.imgur.com/Nmco1o5.png'
+const whiteHookahDetailed3 = 'https://i.imgur.com/Nmco1o5.png'
+const whiteHookahDetailed4 = 'https://i.imgur.com/iPUtklZ.jpg'
 
 export const MockProjectArr: ProjectInfo[] = [
   {

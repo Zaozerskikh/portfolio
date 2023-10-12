@@ -51,13 +51,13 @@ const HeaderDesktopLink: React.FC<HeaderDesktopLinkProps> = ({ text, color, onCl
         }
       }}
     >
-      <div className={`link-bracket ${isClicked && color} animation-02s-all mobile-button-text ${isHovered && 'hovered'} ${currTheme === ColorTheme.DARK && 'white'}`}>
+      <div className={`link-bracket ${(isClicked || isSelected) && color} animation-02s-all mobile-button-text ${isHovered && 'hovered'} ${currTheme === ColorTheme.DARK && 'white'}`}>
         {'<'}
       </div>
       <div className={`desktop-header-wrapper animation-02s-all ${(isClicked || isSelected) && color} mobile-button-text ${isHovered && 'hovered'} ${currTheme === ColorTheme.DARK && 'white'}`}>
         {text}
       </div>
-      <div className={`link-bracket ${isClicked && color} animation-02s-all mobile-button-text ${isHovered && 'hovered'} ${currTheme === ColorTheme.DARK && 'white'}`}>
+      <div className={`link-bracket ${(isClicked || isSelected) && color} animation-02s-all mobile-button-text ${isHovered && 'hovered'} ${currTheme === ColorTheme.DARK && 'white'}`}>
         {'>'}
       </div>
     </div>
