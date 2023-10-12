@@ -6,25 +6,29 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/ReduxStore";
 import {ColorTheme} from "../../../constants/ColorTheme";
 import {useMediaQuery} from "react-responsive";
+import {MediaQueries} from "../../../constants/MediaQueries";
 
 interface FooterLinkProps {
   link: string,
   text: string,
-  styleOnHover ? : string;
+  styleOnHover: string;
+  styleOnClick: string;
 }
 
-const FooterLink: React.FC<FooterLinkProps> = ({ link, text, styleOnHover }) => {
+const FooterLink: React.FC<FooterLinkProps> = ({ link, text, styleOnHover, styleOnClick }) => {
   const [isHovered, setHovered] = useState(false);
   const [isClicked, setClicked] = useState(false);
   const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme);
-  const isTouchable = useMediaQuery({ query: '(pointer: coarse)' });
+
+  const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
+  const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
 
   return(
     <div
       className={`
-        mobile-h2-text animation-02s-all noselect
+        h2-text ${isDesktop && 'desktop'} animation-02s-all noselect
         ${currTheme === ColorTheme.WHITE ? 'dark' : 'white'}
-        ${isHovered && styleOnHover}
+        ${isHovered && styleOnHover} ${isClicked && styleOnClick}
       `}
       onClick={() => window.open(link, '_blank')}
       onMouseEnter={() => {

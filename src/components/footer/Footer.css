@@ -30,26 +30,42 @@
     gap: 8px;
 }
 
-.footer-wrapper .mobile-description-text.white {
+.footer-wrapper .description-text.white {
     color: var(--dark-theme-descriptions, #AEAEAE);
 }
 
-.footer-wrapper .mobile-description-text.dark {
+.footer-wrapper .description-text.dark {
     color: var(--gray-descriptions, #8A8A8A);
 }
 
-.footer-wrapper .blue-text {
+.footer-wrapper .blue-text-hover {
     color: var(--buttons-blue-on-hover);
     cursor: pointer;
 }
 
-.footer-wrapper .grey-text {
+.footer-wrapper .blue-text-click {
+    color: var(--buttons-blue-on-click);
+    cursor: pointer;
+}
+
+.footer-wrapper .grey-text-hover {
     color: var(--gray-descriptions);
     cursor: pointer;
 }
 
-.footer-wrapper .violet-text {
+.footer-wrapper .grey-text-click {
+    color: #646464;
+    cursor: pointer;
+}
+
+.footer-wrapper .violet-text-hover {
+    color: var(--buttons-violet-on-hover);
+    cursor: pointer;
+}
+
+.footer-wrapper .violet-text-click {
     color: var(--buttons-violet-on-click);
     cursor: pointer;
 }
+
 

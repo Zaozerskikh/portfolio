@@ -9,10 +9,13 @@ import FooterLink from "./footer_link/FooterLink";
 import ExternalLinks from "../../constants/ExternalLinks";
 import {Lang} from "../../constants/Lang";
 import CopyrightLink from "./copyright_link/CopyrightLink";
+import {useMediaQuery} from "react-responsive";
+import {MediaQueries} from "../../constants/MediaQueries";
 
 const Footer: React.FC = () => {
   const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
   const currLang = useSelector((state: RootState) => state.lang.lang)
+  const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
 
   return(
     <div className={`footer-wrapper animation-02s-all ${currTheme === ColorTheme.DARK ? 'dark' : 'white'}`}>
@@ -20,21 +23,24 @@ const Footer: React.FC = () => {
         <FooterLink
           link={ExternalLinks.TELEGRAM}
           text={currLang === Lang.ENG ? 'telegram' : 'телеграм'}
-          styleOnHover={'blue-text'}
+          styleOnHover={'blue-text-hover'}
+          styleOnClick={'blue-text-click'}
         />
         <FooterLink
           link={ExternalLinks.GITHUB}
           text={currLang === Lang.ENG ? 'github' : 'гитхаб'}
-          styleOnHover={'grey-text'}
+          styleOnHover={'grey-text-hover'}
+          styleOnClick={'grey-text-click'}
         />
         <FooterLink
           link={`mailto:${ExternalLinks.EMAIL}`}
           text={ExternalLinks.EMAIL}
-          styleOnHover={'violet-text'}
+          styleOnHover={'violet-text-hover'}
+          styleOnClick={'violet-text-click'}
         />
       </div>
       <div className="bottom-links">
-        <div className={`mobile-description-text ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
+        <div className={`description-text ${isDesktop && 'desktop'} ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
           {currLang === Lang.ENG ? '© 2023 Sergey Zaozerskikh' : '© 2023 Сергей Заозерских'}
         </div>
         <CopyrightLink/>

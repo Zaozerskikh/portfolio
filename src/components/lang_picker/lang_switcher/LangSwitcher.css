@@ -9,6 +9,10 @@
     border-radius: 4px;
 }
 
+.lang-switcher-wrapper:hover {
+    cursor: pointer;
+}
+
 .lang-switcher-wrapper.white-selected {
     border: 1px solid var(--main-black, #000);
 }

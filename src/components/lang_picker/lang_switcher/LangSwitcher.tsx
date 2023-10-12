@@ -23,7 +23,7 @@ const LangSwitcher: React.FC<LangSwitcherProps> = ({ lang, onClickAction}) => {
       `}
       onClick={onClickAction}
     >
-      <div className={`mobile-button-text ${selectedColorTheme === ColorTheme.DARK ? 'dark' : 'white'}`}>{lang}</div>
+      <div className={`mobile-button-text ${selectedColorTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>{lang}</div>
     </div>
   )
 }

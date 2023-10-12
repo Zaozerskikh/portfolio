@@ -1,6 +1,7 @@
 import {animated, useSpring} from 'react-spring';
 import React, {useEffect, useState} from "react";
 import {useMediaQuery} from "react-responsive";
+import {MediaQueries} from "../../constants/MediaQueries";
 
 interface BoopProps {
   rotation: number;
@@ -14,7 +15,7 @@ interface BoopProps {
 const Boop: React.FC<BoopProps> = ({ rotation , children , externalTrigger,
                                      boopOnClick, boopOnHover, tension, friction}) => {
   const [isBooped, setIsBooped] = useState(false);
-  const isTouchable = useMediaQuery({ query: '(pointer: coarse)' });
+  const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
 
   const style = useSpring({
     display: 'inline-block',
@@ -43,7 +44,7 @@ const Boop: React.FC<BoopProps> = ({ rotation , children , externalTrigger,
   return (
     <animated.div
       onMouseEnter={() => {
-        if (boopOnHover) {
+        if (!isTouchable && boopOnHover) {
           trigger()
         }
       }}

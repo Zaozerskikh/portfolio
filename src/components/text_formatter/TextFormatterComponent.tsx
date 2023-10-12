@@ -14,11 +14,13 @@ const TextFormatterComponent: React.FC<TextFormatterComponentProps> = ({ text, a
 
   useEffect(() => {
     const handleResize = () => {
+      console.log('resize')
       if (textContainerRef.current) {
         setTextWidthInPixels(textContainerRef.current.clientWidth);
       }
     };
 
+    handleResize()
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);

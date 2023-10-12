@@ -1,4 +1,5 @@
-.mobile-h1-text {
+/* h1 */
+.h1-text {
     font-size: 38px;
     font-style: normal;
     font-weight: 500;
@@ -6,24 +7,34 @@
     font-family: Grotesque-500, serif;
 }
 
-.mobile-h1-text.white {
+.h1-text.desktop {
+    font-size: 56px;
+}
+
+.h1-text.white {
     color: var(--main-white, #FFFFFF);
 }
 
 
-.mobile-h2-text {
+/* h2 */
+.h2-text {
     font-family: Grotesque-500, serif;
     font-size: 32px;
     font-weight: 500;
     line-height: 100%; /* 32px */
 }
 
-.mobile-h2-text.white {
+.h2-text.desktop {
+    font-size: 48px;
+}
+
+.h2-text.white {
     color: var(--main-white, #FFFFFF);
 }
 
 
-.mobile-description-text {
+/* descriptions */
+.description-text {
     font-family: ConsolasCustom, serif;
     font-size: 16px;
     font-style: normal;
@@ -31,13 +42,26 @@
     line-height: 120%; /* 19.2px */
 }
 
-.mobile-description-text.white {
+.description-text.desktop {
+    font-size: 18px;
+}
+
+.description-text.white {
+    color: var(--main-white, #FFFFFF);
+}
+
+.description-text.black {
+    color: var(--main-black, #000000);
+}
+
+.description-text.dark {
+    color: var(--gray-descriptions, #8A8A8A);
+}
+
+.description-text.dark-theme-gray {
     color: var(--dark-theme-descriptions, #AEAEAE);
 }
 
-.mobile-description-text.dark {
-    color: var(--gray-descriptions, #8A8A8A);
-}
 
 
 .mobile-menu-text {
@@ -53,6 +77,10 @@
     color: var(--main-white, #FFFFFF);
 }
 
+.mobile-menu-text.desktop {
+    font-size: 18px;
+}
+
 
 .mobile-tag-text {
     font-family: ConsolasCustom, serif;
@@ -63,7 +91,7 @@
 }
 
 
-.mobile-main-text {
+.main-text {
     font-family: ConsolasCustom, serif;
     font-size: 18px;
     font-style: normal;
@@ -71,8 +99,16 @@
     line-height: 120%; /* 19.2px */
 }
 
-.mobile-main-text.white {
+.main-text.desktop {
+    font-size: 20px;
+}
+
+.main-text.white {
     color: var(--main-white, #FFF);
+}
+
+.main-text.centered {
+    text-align: center;
 }
 
 
@@ -85,8 +121,12 @@
     user-select: none;
 }
 
-.mobile-button-text.dark {
+.mobile-button-text.white {
     color: var(--main-white, #FFFFFF);
+}
+
+.mobile-button-text.dark {
+    color: var(--main-black, #000000);
 }
 
 

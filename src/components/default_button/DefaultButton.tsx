@@ -4,6 +4,7 @@ import '../../assets/styles/animation_durations.css'
 import React, {useState} from "react";
 import {useMediaQuery} from "react-responsive";
 import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
+import {MediaQueries} from "../../constants/MediaQueries";
 
 export interface DefaultButtonProps {
   color: DefaultButtonColor,
@@ -14,7 +15,7 @@ export interface DefaultButtonProps {
 const DefaultButton: React.FC<DefaultButtonProps> = ({ color, text, onClickAction}) => {
   const [isHovered, setHovered] = useState(false);
   const [isClicked, setClicked] = useState(false);
-  const isTouchable = useMediaQuery({ query: '(pointer: coarse)' });
+  const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
 
   return(
     <div

@@ -11,9 +11,11 @@ import InactiveMoon from "../assets/InactiveMoon";
 import {toggleColorTheme} from "../../../redux/color_theme_reducer/ColorThemeReducer";
 import Boop from "../../boop/Boop";
 import SunRotator from "./sun_rotator/SunRotator";
+import {useMediaQuery} from "react-responsive";
+import {MediaQueries} from "../../../constants/MediaQueries";
 
 interface ColorThemeSwitcherProps {
-  assignedTheme: ColorTheme
+  assignedTheme ? : ColorTheme
 }
 
 const ColorThemeSwitcher: React.FC<ColorThemeSwitcherProps> = ({ assignedTheme}) => {
@@ -22,6 +24,8 @@ const ColorThemeSwitcher: React.FC<ColorThemeSwitcherProps> = ({ assignedTheme})
 
   const [isBooped, setIsBooped] = useState(false)
   const [isRotated, setRotated] = useState(false)
+  const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
+  const [isHovered, setHovered] = useState(false)
 
   useEffect(() => {
     if (isBooped) {
@@ -44,7 +48,7 @@ const ColorThemeSwitcher: React.FC<ColorThemeSwitcherProps> = ({ assignedTheme})
       className={`
         color-theme-switcher-wrapper 
         animation-02s-all
-        ${currTheme === ColorTheme.WHITE ? 'white' : 'dark'}
+        ${assignedTheme ? (currTheme === ColorTheme.WHITE ? 'white' : 'dark') : 'transparent'}
         ${currTheme === assignedTheme && (currTheme === ColorTheme.DARK ? 'dark-selected' : 'white-selected')}
       `}
       onClick={() => {
@@ -52,25 +56,55 @@ const ColorThemeSwitcher: React.FC<ColorThemeSwitcherProps> = ({ assignedTheme})
         setRotated(true)
         dispatch(toggleColorTheme())
       }}
+      onMouseEnter={() => {
+        if (!isTouchable) {
+          setHovered(true)
+        }
+      }}
+      onMouseLeave={() => {
+        if (!isTouchable) {
+          setHovered(false)
+        }
+      }}
     >
-      {assignedTheme === ColorTheme.WHITE ? (
-        currTheme === ColorTheme.WHITE ? (
-          <SunRotator trigger={isRotated}>
-            <SelectedSun/>
-          </SunRotator>
+      {assignedTheme ? (
+        assignedTheme === ColorTheme.WHITE ? (
+          currTheme === ColorTheme.WHITE ? (
+            <SunRotator trigger={isRotated}>
+              <SelectedSun/>
+            </SunRotator>
+          ) : (
+            <SunRotator trigger={isRotated}>
+              <InactiveSun/>
+            </SunRotator>
+          )
         ) : (
-          <SunRotator trigger={isRotated}>
-            <InactiveSun/>
-          </SunRotator>
+          currTheme === ColorTheme.DARK ? (
+            <Boop tension={400} friction={5} rotation={20} externalTrigger={isBooped}>
+              <SelectedMoon/>
+            </Boop>
+          ) : (
+            <Boop tension={400} friction={5} rotation={20} externalTrigger={isBooped}>
+              <InactiveMoon/>
+            </Boop>
+          )
         )
       ) : (
-        currTheme === ColorTheme.DARK ? (
-          <Boop tension={400} friction={5} rotation={20} externalTrigger={isBooped}>
-            <SelectedMoon/>
-          </Boop>
+        currTheme === ColorTheme.WHITE ? (
+          <SunRotator trigger={isRotated}>
+            {isHovered ? (
+              <SelectedSun/>
+            ) : (
+              <InactiveSun blackOutline={true}/>
+            )}
+          </SunRotator>
         ) : (
           <Boop tension={400} friction={5} rotation={20} externalTrigger={isBooped}>
-            <InactiveMoon/>
+            {isHovered ? (
+              <SelectedMoon/>
+            ) : (
+              <InactiveMoon whiteOutline={true}/>
+            )}
           </Boop>
         )
       )}

@@ -9,6 +9,10 @@
     border-radius: 4px;
 }
 
+.color-theme-switcher-wrapper:hover {
+    cursor: pointer;
+}
+
 .color-theme-switcher-wrapper.white-selected {
     border: 1px solid var(--main-black, #000);
 }
@@ -22,5 +26,9 @@
 }
 
 .color-theme-switcher-wrapper.dark {
+    background-color: transparent;
+}
+
+.color-theme-switcher-wrapper.transparent {
     background-color: transparent;
 }

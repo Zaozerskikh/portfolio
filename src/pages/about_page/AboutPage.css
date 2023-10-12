@@ -5,6 +5,10 @@
     width: 100%;
 }
 
+.about-page-wrapper.desktop {
+    max-width: 1264px;
+}
+
 .about-page-wrapper .buttons {
     display: flex;
     width: 100%;
@@ -14,12 +18,30 @@
 
 .about-page-wrapper .main-about-wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 32px;
     width: 100%;
 }
 
-.about-page-wrapper .main-about-wrapper .text-wrapper {
+.about-page-wrapper .main-about-wrapper.desktop {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    width: 100%;
+}
+
+.about-page-wrapper .main-about-wrapper .text-block-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    flex-shrink: 0;
+}
+
+.about-page-wrapper .main-about-wrapper .text-block-wrapper.desktop {
+    width: 616px;
+}
+
+.about-page-wrapper .main-about-wrapper .text-block-wrapper .text-wrapper {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -35,6 +57,10 @@
     flex-direction: row;
     height: 86px;
     width: 100%;
+}
+
+.about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper.desktop {
+    height: 142px !important;
 }
 
 .about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper .avatar-wrapper {
@@ -63,15 +89,32 @@
     z-index: 2;
 }
 
+.about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper .avatar-wrapper .avatar.desktop {
+    width: 138px !important;
+    height: 138px !important;
+}
+
+.about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper .avatar-wrapper .avatar-shadow.desktop {
+    width: 138px !important;
+    height: 138px !important;
+    bottom: -56px;
+    left: 4px;
+}
+
 .about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper .code-wrapper {
     position: absolute;
     z-index: 1;
     left: 27px;
     top: 14px;
     display: flex;
-    width: calc(100% - 11px);
+    width: 1000px;
     box-sizing: border-box;
     flex-shrink: 0;
     overflow: hidden;
     margin-right: -16px;
+}
+
+.about-page-wrapper .main-about-wrapper .avatar-and-code-wrapper .code-wrapper.desktop {
+    top: 32px;
+    left: 60px;
 }

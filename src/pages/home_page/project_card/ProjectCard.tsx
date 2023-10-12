@@ -1,7 +1,7 @@
 import './ProjectCard.css'
 import '../../../assets/styles/fonts.css'
 import '../../../assets/styles/animation_durations.css'
-import React from "react";
+import React, {useState} from "react";
 import {ColorTheme} from "../../../constants/ColorTheme";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/ReduxStore";
@@ -11,6 +11,9 @@ import {useNavigate} from "react-router-dom";
 import {RoutePaths} from "../../../constants/RoutePaths";
 import TextFormatterComponent from "../../../components/text_formatter/TextFormatterComponent";
 import {Lang} from "../../../constants/Lang";
+import {useMediaQuery} from "react-responsive";
+import {MediaQueries} from "../../../constants/MediaQueries";
+import ReactParallaxTilt from "react-parallax-tilt";
 
 const ProjectCard: React.FC<ShortProjectInfo> = ({ previewDarkImage, previewWhiteImage, name, id,
                                               shortDescriptionENG, shortDescriptionRUS, tags}) => {
@@ -18,34 +21,64 @@ const ProjectCard: React.FC<ShortProjectInfo> = ({ previewDarkImage, previewWhit
   const currLang = useSelector((state: RootState) => state.lang.lang)
   const navigate = useNavigate()
 
+  const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
+  const [isHovered, setHovered] = useState(false);
+  const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
+
   return(
-    <div
-      className="project-card-wrapper"
-      onClick={() => navigate(RoutePaths.PROJECT_DETAILED.replace(':id', id))}
+    <ReactParallaxTilt
+      tiltMaxAngleX={8}
+      tiltMaxAngleY={8}
     >
-      <div className="tags-wrapper">
-        {tags.map((tag, idx) => (
-          <Tag type={tag} key={idx}/>
-        ))}
-      </div>
-      <img
-        src={currTheme === ColorTheme.DARK ? previewDarkImage : previewWhiteImage}
-        alt="img"
-        className="project-img-preview"
-      />
-      <div className="project-info">
-        <div
-          className={`mobile-h2-text animation-02s-all ${currTheme === ColorTheme.WHITE ? 'dark' : 'white'}`}
-        >
-          {name}
+      <div
+        className={`project-card-wrapper ${isHovered && 'hovered'} animation-02s-all`}
+        onClick={() => navigate(RoutePaths.PROJECT_DETAILED.replace(':id', id))}
+        onMouseEnter={() => {
+          if (!isTouchable) {
+            setHovered(true)
+          }
+        }}
+        onMouseLeave={() => {
+          if (!isTouchable) {
+            setHovered(false)
+          }
+        }}
+        onTouchStart={() => setHovered(true)}
+        onTouchEnd={() => setHovered(false)}
+        onTouchCancel={() => setHovered(false)}
+        onMouseDown={() => {
+          if (!isTouchable) {
+          }
+        }}
+        onMouseUp={() => {
+          if (!isTouchable) {
+          }
+        }}
+      >
+        <div className="tags-wrapper">
+          {tags.map((tag, idx) => (
+            <Tag type={tag} key={idx}/>
+          ))}
         </div>
-        <TextFormatterComponent
-          text={currLang === Lang.ENG ? shortDescriptionENG: shortDescriptionRUS}
-          additionalStyles={`mobile-description-text maxwidth animation-02s-all ${currTheme === ColorTheme.WHITE ? 'dark' : 'white'}`}
-          letterWidth={8.8}
+        <img
+          src={currTheme === ColorTheme.DARK ? previewDarkImage : previewWhiteImage}
+          alt="img"
+          className="project-img-preview"
         />
+        <div className="project-info">
+          <div
+            className={`h2-text animation-02s-all ${isDesktop && 'desktop'} ${currTheme === ColorTheme.WHITE ? 'dark' : 'white'}`}
+          >
+            {name}
+          </div>
+          <TextFormatterComponent
+            text={currLang === Lang.ENG ? shortDescriptionENG: shortDescriptionRUS}
+            additionalStyles={`description-text ${isDesktop && 'desktop'} maxwidth animation-02s-all ${currTheme === ColorTheme.WHITE ? isHovered ? 'black' : 'dark' : isHovered ? 'white' : 'dark-theme-gray'}`}
+            letterWidth={isDesktop ? 9.9 : 8.8}
+          />
+        </div>
       </div>
-    </div>
+    </ReactParallaxTilt>
   )
 }
 

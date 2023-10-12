@@ -19,11 +19,17 @@ const BurgerButton: React.FC = () => {
       className="burger-btn-wrapper"
       onClick={() => dispatch(toggleBurger())}
     >
-      <div className={`mobile-menu-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>{'<'}</div>
-      <div className={`mobile-menu-text-wrapper animation-02s-all ${!isOpened && 'hidden'}`}>
-        <div className={`mobile-menu-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>/</div>
+      <div className={`onhover mobile-menu-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
+        {'<'}
       </div>
-      <div className={`mobile-menu-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>{currLang === Lang.ENG ? 'menu>' : 'меню>'}</div>
+      <div className={`mobile-menu-text-wrapper animation-02s-all ${!isOpened && 'hidden'}`}>
+        <div className={`mobile-menu-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
+          /
+        </div>
+      </div>
+      <div className={`mobile-menu-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
+        {currLang === Lang.ENG ? 'menu>' : 'меню>'}
+      </div>
     </div>
   )
 }

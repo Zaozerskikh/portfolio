@@ -1,3 +1,10 @@
+.header-wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
 .header {
     display: flex;
     flex-direction: row;
@@ -11,8 +18,36 @@
     top: 0;
     z-index: 10;
     background-color: var(--main-white, #FFF);
+    align-self: center;
+}
+
+.header.tablet {
+    padding: 8px 44px;
+}
+
+.header.desktop {
+    padding: 8px 88px;
+    position: relative;
+    max-width: 1440px;
+    height: 74px;
 }
 
 .header.dark {
     background-color: var(--dark-theme-bg, #1E1E1E);
+}
+
+.header .logo:hover {
+    cursor: pointer;
+}
+
+.header .header-links-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+}
+
+.header .header-left-section {
+    display: flex;
+    flex-direction: row;
+    gap: 16px
 }

@@ -13,4 +13,19 @@
     margin-bottom: -1px;
     margin-top: 47px;
     padding: 17px 16px 129px;
+    justify-content: center;
+    overflow: hidden;
+    min-height: calc(100vh - 350px);
 }
+
+.main-content-wrapper.desktop {
+    padding: 17px 88px 129px;
+    margin-top: 0;
+    min-height: calc(100vh - 478px);
+}
+
+.main-content-wrapper.tablet {
+    padding: 17px 44px 129px
+}
+
+

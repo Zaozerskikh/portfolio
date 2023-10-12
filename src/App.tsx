@@ -18,11 +18,16 @@ import AboutPage from "./pages/about_page/AboutPage";
 import DataFetcher from "./components/data_fetcher/dataFetcher";
 import ProjectDetailedPage from "./pages/project_detailed_page/ProjectDetailedPage";
 import {GithubPagesRoutePaths} from "./constants/GithubPagesRoutePaths";
+import {useMediaQuery} from "react-responsive";
+import {MediaQueries} from "./constants/MediaQueries";
 
 const App: React.FC = () => {
   const isBurgerOpened = useSelector((state: RootState) => state.burgerMenu.isOpened)
   const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
   const location = useLocation()
+
+  const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
+  const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
 
   useEffect(() => {
     window.scroll({top: 0})
@@ -41,7 +46,7 @@ const App: React.FC = () => {
       <DataFetcher/>
       <Header/>
       <BurgerMenu/>
-      <div className="main-content-wrapper">
+      <div className={`main-content-wrapper ${isDesktop ? 'desktop' : isTablet ? 'tablet' : 'mobile'}`}>
         <Routes>
           <Route path="/" element={<Navigate to={RoutePaths.HOME} />} />
           <Route path={GithubPagesRoutePaths.GH_PAGES_HOME_1} element={<Navigate to={RoutePaths.HOME} />} />

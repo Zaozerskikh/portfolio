@@ -6,6 +6,14 @@
     box-sizing: border-box;
 }
 
+.homepage-wrapper.tablet {
+
+}
+
+.homepage-wrapper.desktop {
+    max-width: 1264px;
+}
+
 .homepage-wrapper .buttons {
     display: flex;
     flex-direction: column;
@@ -14,8 +22,26 @@
 }
 
 .homepage-wrapper .projects-wrapper {
+    align-self: center;
+}
+
+.homepage-wrapper .projects-wrapper.mobile {
     display: flex;
     flex-direction: column;
     gap: 32px;
     width: 100%;
+}
+
+.homepage-wrapper .projects-wrapper.tablet {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+    row-gap: 32px;
+}
+
+.homepage-wrapper .projects-wrapper.desktop {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1264px;
 }

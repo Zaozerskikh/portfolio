@@ -7,6 +7,11 @@
     position: relative;
 }
 
+.project-card-wrapper.hovered {
+    cursor: pointer;
+    transform: translate(0px, -8px);
+}
+
 .project-card-wrapper .tags-wrapper {
     position: absolute;
     top: 16px;
@@ -17,6 +22,7 @@
     max-height: 24px;
     overflow-y: hidden;
     gap: 4px;
+    width: calc(100% - 32px);
 }
 
 .project-card-wrapper .project-img {
@@ -40,5 +46,7 @@
 }
 
 .project-card-wrapper .project-img-preview {
+    width: 100%;
+    height: auto;
     border-radius: 4px;
 }

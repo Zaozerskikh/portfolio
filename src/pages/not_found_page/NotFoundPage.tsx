@@ -21,11 +21,11 @@ const NotFoundPage: React.FC = () => {
     <div className="page-404-wrapper">
       <NotFoundPageSvg theme={currTheme}/>
       <div className="text-wrapper">
-        <div className={`mobile-h1-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
+        <div className={`h1-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
           404
         </div>
         <div
-          className={`mobile-main-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
+          className={`main-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
           dangerouslySetInnerHTML={{ __html: `${currLang === Lang.ENG ? (
               'It means that the page has been deleted, or there is an error </br>in the link. But it doesn’t </br>matter, because all my projects </br> are available on the main page :)'
             ) : (

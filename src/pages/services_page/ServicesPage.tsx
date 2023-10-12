@@ -18,6 +18,8 @@ import FullstackSvg from "./assets/FullstackSvg";
 import MobileAppsByDesignSvg from "./assets/MobileAppsByDesignSvg";
 import MobileAppsFromScratchSvg from "./assets/MobileAppsFromScratchSvg";
 import ServiceDescription from "./service_description/ServiceDescription";
+import {useMediaQuery} from "react-responsive";
+import {MediaQueries} from "../../constants/MediaQueries";
 
 const ServicesPage: React.FC = () => {
   const currLang = useSelector((state: RootState) => state.lang.lang)
@@ -31,59 +33,66 @@ const ServicesPage: React.FC = () => {
   const [boopB, setBoopB] = useState(false)
   const [boopF, setBoopF] = useState(false)
 
+  const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
+  const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE})
+  const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
+  const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
+
   useEffect(() => {
-    setTimeout(() => {
-      setBoopWFS(true)
+    if (isTouchable) {
       setTimeout(() => {
-        setBoopWFS(false)
-      }, 1000)
-    }, 2000)
-    setTimeout(() => {
-      setBoopWBD(true)
+        setBoopWFS(true)
+        setTimeout(() => {
+          setBoopWFS(false)
+        }, 1000)
+      }, 2000)
       setTimeout(() => {
-        setBoopWBD(false)
-      }, 1000)
-    }, 2500)
-    setTimeout(() => {
-      setBoopAFS(true)
+        setBoopWBD(true)
+        setTimeout(() => {
+          setBoopWBD(false)
+        }, 1000)
+      }, 2500)
       setTimeout(() => {
-        setBoopAFS(false)
-      }, 1000)
-    }, 3000)
-    setTimeout(() => {
-      setBoopABD(true)
+        setBoopAFS(true)
+        setTimeout(() => {
+          setBoopAFS(false)
+        }, 1000)
+      }, 3000)
       setTimeout(() => {
-        setBoopABD(false)
-      }, 1000)
-    }, 3500)
-    setTimeout(() => {
-      setBoopB(true)
+        setBoopABD(true)
+        setTimeout(() => {
+          setBoopABD(false)
+        }, 1000)
+      }, 3500)
       setTimeout(() => {
-        setBoopB(false)
-      }, 1000)
-    }, 4000)
-    setTimeout(() => {
-      setBoopF(true)
+        setBoopB(true)
+        setTimeout(() => {
+          setBoopB(false)
+        }, 1000)
+      }, 4000)
       setTimeout(() => {
-        setBoopF(false)
-      }, 1000)
-    }, 4500)
-  }, [currTheme, currLang]);
+        setBoopF(true)
+        setTimeout(() => {
+          setBoopF(false)
+        }, 1000)
+      }, 4500)
+    }
+  }, [currTheme, currLang, isTouchable]);
 
 
   return(
     <div className="services-page-wrapper">
       <div
-        className={`mobile-h1-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
+        className={`h1-text ${isDesktop && 'desktop'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
         dangerouslySetInnerHTML={{__html: `${currLang === Lang.ENG
-            ? 'Made with love</br>for each button ;)'
-            : 'Делаю с любовью</br>к каждой кнопке ;)'}`
-        }}
+            ? `Made with love ${isMobile ? '</br>' : ''} for each button ;)`
+            : `Делаю с любовью ${isMobile ? '</br>' : ''} к каждой кнопке ;)`
+        }`}}
       />
-      <div className="services">
+      <div className={`services ${(isTablet || isDesktop) && 'desktop'}`}>
         <ServiceDescription
           boopTrigger={boopWFS}
-          text={currLang === Lang.ENG ? 'Websites from scratch' : 'Веб-сайты с нуля'}
+          text={currLang === Lang.ENG ? 'Websites from scratch' : `Веб-сайты ${isTablet ? '<br>' : ''} с нуля`}
           icon={<WebsitesFromScratchSvg colorTheme={currTheme}/>}
         />
         <ServiceDescription
@@ -98,7 +107,7 @@ const ServicesPage: React.FC = () => {
         />
         <ServiceDescription
           boopTrigger={boopABD}
-          text={currLang === Lang.ENG ? 'Mobile apps for iOS</br>and Android by design' : 'Мобильные приложения для</br>iOS и Android по дизайну'}
+          text={currLang === Lang.ENG ? 'Mobile apps for iOS</br>and Android by design' : `Мобильные приложения ${(isTablet || isDesktop) ? '</br>' : ''} для ${isMobile ? '</br>' : ''}iOS и Android по дизайну`}
           icon={<MobileAppsByDesignSvg colorTheme={currTheme} />}
         />
         <ServiceDescription

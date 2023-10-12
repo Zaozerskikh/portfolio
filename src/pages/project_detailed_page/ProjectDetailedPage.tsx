@@ -14,6 +14,8 @@ import {ColorTheme} from "../../constants/ColorTheme";
 import Tag from "../../components/tag/Tag";
 import ExternalLinks from "../../constants/ExternalLinks";
 import TextFormatterComponent from "../../components/text_formatter/TextFormatterComponent";
+import {useMediaQuery} from "react-responsive";
+import {MediaQueries} from "../../constants/MediaQueries";
 
 
 const ProjectDetailedPage: React.FC = () => {
@@ -24,6 +26,8 @@ const ProjectDetailedPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const [project, setProject] = useState<ProjectInfo | undefined>(undefined)
   const navigate = useNavigate()
+
+  const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
 
   useEffect(() => {
     if (!id) {
@@ -45,7 +49,7 @@ const ProjectDetailedPage: React.FC = () => {
     <div className="project-detailed-wrapper">
       <div className="info-wrapper">
         <div
-          className={`mobile-h1-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
+          className={`h1-text ${isDesktop && 'desktop'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
         >
           {project?.name}
         </div>
@@ -55,9 +59,9 @@ const ProjectDetailedPage: React.FC = () => {
           ))}
         </div>
         <TextFormatterComponent
-          text={(currLang === Lang.ENG ? project?.fullDescriptionENG : project?.fullDescriptionRUS) || ''}
-          additionalStyles={`mobile-main-text animation-02s-all maxwidth ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
-          letterWidth={9.9}
+          text={(currLang === Lang.ENG ? project?.fullDescriptionENG : project?.fullDescriptionRUS) || 'h'}
+          additionalStyles={`main-text ${isDesktop && 'desktop'} animation-02s-all maxwidth ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
+          letterWidth={isDesktop ? 11 : 9.9}
         />
       </div>
       <DefaultButton

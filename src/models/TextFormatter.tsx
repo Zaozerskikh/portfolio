@@ -11,6 +11,7 @@ const wordsToCheckRus = [
 const wordsToCheck = new Set([...wordsToCheckRus, ...wordsToCheckEng])
 
 export const formatText = (text: string | undefined, containerWidth: number, letterWidth: number): string => {
+  console.log(containerWidth)
   if (!text) return '';
 
   const words = text.split(' ');

@@ -7,19 +7,21 @@ import {Lang} from "../../../constants/Lang";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/ReduxStore";
 import {useMediaQuery} from "react-responsive";
+import {MediaQueries} from "../../../constants/MediaQueries";
 
 const CopyrightLink: React.FC = () => {
   const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
   const currLang = useSelector((state: RootState) => state.lang.lang)
 
   const [isHovered, setHovered] = useState(false)
-  const isTouchable = useMediaQuery({ query: '(pointer: coarse)' });
+  const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
+  const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
 
   return(
     <div
       onClick={() => window.open(ExternalLinks.GLEB_KOSSOV_COPYRIGHT, '_blank')}
       className={`
-        mobile-description-text animation-02s-all
+        description-text ${isDesktop && 'desktop'} animation-02s-all
         ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}
         ${isHovered && (currTheme === ColorTheme.DARK ? 'hovered-white' : 'hovered-dark')}
       `}
