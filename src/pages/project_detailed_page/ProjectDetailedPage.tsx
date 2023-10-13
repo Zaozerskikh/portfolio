@@ -16,6 +16,7 @@ import ExternalLinks from "../../constants/ExternalLinks";
 import TextFormatterComponent from "../../components/text_formatter/TextFormatterComponent";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
+import {ProjectType} from "../../constants/ProjectType";
 
 
 const ProjectDetailedPage: React.FC = () => {
@@ -65,11 +66,13 @@ const ProjectDetailedPage: React.FC = () => {
           letterWidth={(isDesktop || isTablet) ? 11 : 9.9}
         />
       </div>
-      <DefaultButton
-        color={DefaultButtonColor.VIOLET}
-        text={currLang === Lang.ENG ? 'Open website' : 'Открыть сайт'}
-        onClickAction={() => window.open(project?.link, '_blank')}
-      />
+      {project?.projectType === ProjectType.WEBSITE && (
+        <DefaultButton
+          color={DefaultButtonColor.VIOLET}
+          text={currLang === Lang.ENG ? 'Open website' : 'Открыть сайт'}
+          onClickAction={() => window.open(project?.link, '_blank')}
+        />
+      )}
       <div className="images-wrapper">
         {(currTheme === ColorTheme.DARK ? project?.detailedDarkImages : project?.detailedWhiteImages)
           ?.map((image, idx) => (

@@ -1,4 +1,5 @@
 import {TagType} from "../../constants/TagType";
+import {ProjectType} from "../../constants/ProjectType";
 
 export interface ShortProjectInfo {
   id: string;
@@ -11,6 +12,7 @@ export interface ShortProjectInfo {
 }
 
 export interface ProjectInfo extends ShortProjectInfo {
+  projectType: ProjectType;
   fullDescriptionRUS: string;
   fullDescriptionENG: string;
   detailedWhiteImages: string[];
