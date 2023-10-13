@@ -11,6 +11,10 @@
     font-size: 44px;
 }
 
+.h1-text.tablet-smaller {
+    font-size: 42px;
+}
+
 .h1-text.desktop {
     font-size: 56px;
 }

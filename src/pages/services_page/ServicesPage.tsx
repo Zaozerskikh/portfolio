@@ -85,8 +85,8 @@ const ServicesPage: React.FC = () => {
       <div
         className={`h1-text ${isDesktop && 'desktop'} ${isTablet && 'tablet'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
         dangerouslySetInnerHTML={{__html: `${currLang === Lang.ENG
-            ? `Made with love ${isMobile ? '</br>' : ''} for each button ;)`
-            : `Делаю с любовью ${isMobile ? '</br>' : ''} к каждой кнопке ;)`
+            ? `Made with love for&nbsp;each button&ensp;;)`
+            : `Делаю с любовью к&nbsp;каждой кнопке&ensp;;)`
         }`}}
       />
       <div className={`services ${(isTablet || isDesktop) && 'desktop'}`}>

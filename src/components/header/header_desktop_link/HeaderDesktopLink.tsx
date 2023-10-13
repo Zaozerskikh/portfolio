@@ -37,9 +37,18 @@ const HeaderDesktopLink: React.FC<HeaderDesktopLinkProps> = ({ text, color, onCl
           setIsClicked(false)
         }
       }}
-      onTouchStart={() => setIsClicked(true)}
-      onTouchEnd={() => setTimeout(() => setIsClicked(false), 1000)}
-      onTouchCancel={() => setTimeout(() => setIsClicked(false), 1000)}
+      onTouchStart={() => {
+        setHovered(true)
+        setIsClicked(true)
+      }}
+      onTouchEnd={() => {
+        setHovered(false)
+        setIsClicked(false)
+      }}
+      onTouchCancel={() => {
+        setHovered(false)
+        setIsClicked(false)
+      }}
       onMouseDown={() => {
         if (!isTouchable) {
           setIsClicked(true)

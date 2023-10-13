@@ -17,7 +17,7 @@ const Logo: React.FC = ()=> {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const [readyToAnimate, setReadyToAnimate] = useState(false)
+  const [readyToAnimate, setReadyToAnimate] = useState(true)
   const [isAnimated, setAnimated] = useState(false)
   const [is1Animated, set1Animated] = useState(false)
   const [is2Animated, set2Animated] = useState(false)
@@ -70,9 +70,9 @@ const Logo: React.FC = ()=> {
         setTimeout(() => {
           setReadyToAnimate(true)
         }, 400)
-      }, isDesktop ? 500 : 3000)
+      }, !isTouchable ? 0 : 3000)
     }
-  }, [isAnimated, isDesktop]);
+  }, [isAnimated, isTouchable]);
 
   return(
     <div
@@ -89,7 +89,11 @@ const Logo: React.FC = ()=> {
           setAnimated(false)
         }
       }}
-      onTouchStart={() => setAnimated(true)}
+      onTouchStart={() => {
+        if (readyToAnimate) {
+          setAnimated(true)
+        }
+      }}
       onTouchEnd={() => setAnimated(false)}
       onTouchCancel={() => setAnimated(false)}
       className={`logo-wrapper logo mobile-menu-text ${isDesktop && 'desktop'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}

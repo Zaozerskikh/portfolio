@@ -24,7 +24,6 @@ const HomePage: React.FC = () => {
   const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
   const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE})
-  const isMobileText = useMediaQuery({ query: '(max-width: 450px'})
 
   return(
     <div className={`homepage-wrapper ${isDesktop ? 'desktop' : isTablet ? 'tablet' : 'mobile'}`}>
@@ -56,8 +55,8 @@ const HomePage: React.FC = () => {
       <div
         className={`h1-text animation-02s-all ${isDesktop && 'desktop'} ${isTablet && 'tablet'} ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
         dangerouslySetInnerHTML={{__html: `${currLang === Lang.ENG
-            ? `I create products ${isMobileText ? '</br>' : ''} from scratch ${isMobileText ? '</br>' : ''} or based on a ready ${isMobileText ? '</br>' : ''} design, as well as ${isMobileText ? '</br>' : ''} execute front-end ${isMobileText ? '</br>' : ''} and back-end development.`
-            : `Создаю продукты ${isMobileText ? '</br>' : ''} с нуля ${isMobileText ? '</br>' : ''} или по готовому дизайну, берусь ${isMobileText ? '</br>' : ''} за фронтенд ${isMobileText ? '</br>' : ''} и бэкенд.`}`
+            ? `I create products from&nbsp;scratch or&nbsp;based on&nbsp;a&nbsp;ready design, as&nbsp;well as&nbsp;execute front&#8209;end and&nbsp;back&#8209;end development.`
+            : `Создаю продукты с&nbsp;нуля или по&nbsp;готовому дизайну, берусь за&nbsp;фронтенд и&nbsp;бэкенд.`}`
         }}
       />
       <div className="buttons">

@@ -40,8 +40,8 @@ const ProjectCard: React.FC<ShortProjectInfo> = ({ previewDarkImage, previewWhit
         }
       }}
       onTouchStart={() => setHovered(true)}
-      onTouchEnd={() => setHovered(false)}
-      onTouchCancel={() => setHovered(false)}
+      onTouchEnd={() => {setTimeout(() => setHovered(false), 1000)}}
+      onTouchCancel={() => {setTimeout(() => setHovered(false), 1000)}}
       onMouseDown={() => {
         if (!isTouchable) {
         }
