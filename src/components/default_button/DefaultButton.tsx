@@ -26,7 +26,7 @@ const DefaultButton: React.FC<DefaultButtonProps> = ({ color, text, onClickActio
       className={`
         default-btn-wrapper animation-02s-all 
         ${color} ${isHovered && (currTheme === ColorTheme.DARK ? 'white' : 'black')} 
-        ${isHovered && 'hovered'} ${isClicked && 'clicked'}
+        ${isHovered && 'hovered'} ${isClicked && 'clicked'} ${isTouchable && 'touchable'}
         ${isClicked && (currTheme === ColorTheme.DARK ? 'white' : 'black')}
       `}
       onClick={onClickAction}

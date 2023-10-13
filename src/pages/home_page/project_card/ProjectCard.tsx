@@ -21,13 +21,14 @@ const ProjectCard: React.FC<ShortProjectInfo> = ({ previewDarkImage, previewWhit
   const navigate = useNavigate()
 
   const [isHovered, setHovered] = useState(false);
+  const [isClicked, setClicked] = useState(false);
   const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
   const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
 
   return(
     <div
-      className={`project-card-wrapper ${isHovered && 'hovered'} animation-02s-all`}
+      className={`project-card-wrapper ${isHovered && 'hovered'} ${isClicked && 'clicked'} animation-02s-all`}
       onClick={() => navigate(RoutePaths.PROJECT_DETAILED.replace(':id', id))}
       onMouseEnter={() => {
         if (!isTouchable) {
@@ -37,6 +38,7 @@ const ProjectCard: React.FC<ShortProjectInfo> = ({ previewDarkImage, previewWhit
       onMouseLeave={() => {
         if (!isTouchable) {
           setHovered(false)
+          setClicked(false)
         }
       }}
       onTouchStart={() => setHovered(true)}
@@ -44,19 +46,27 @@ const ProjectCard: React.FC<ShortProjectInfo> = ({ previewDarkImage, previewWhit
       onTouchCancel={() => {setTimeout(() => setHovered(false), 1000)}}
       onMouseDown={() => {
         if (!isTouchable) {
+          setClicked(true)
         }
       }}
       onMouseUp={() => {
         if (!isTouchable) {
+          setClicked(false)
         }
       }}
     >
-      <div className={`tags-wrapper ${isHovered && 'hovered'} animation-02s-all`}>
+      <div className={`tags-wrapper ${isHovered && 'hovered'}  ${isClicked && 'clicked'} animation-02s-all`}>
         {tags.map((tag, idx) => (
           <Tag type={tag} key={idx}/>
         ))}
       </div>
-      <div className={`project-img-preview-wrapper ${isHovered && (currTheme === ColorTheme.DARK ? 'hovered-gray' : 'hovered-black')} animation-02s-all`}>
+      <div
+        className={`
+          project-img-preview-wrapper 
+          ${isClicked && (currTheme === ColorTheme.DARK ? 'clicked-gray' : 'clicked-black')}
+          ${isHovered && (currTheme === ColorTheme.DARK ? 'hovered-gray' : 'hovered-black')} animation-02s-all
+        `}
+      >
         <img
           src={currTheme === ColorTheme.DARK ? previewDarkImage : previewWhiteImage}
           alt="img"
