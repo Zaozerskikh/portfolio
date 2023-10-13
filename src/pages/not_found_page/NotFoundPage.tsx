@@ -21,13 +21,14 @@ const NotFoundPage: React.FC = () => {
   const navigate = useNavigate()
 
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
+  const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
 
   return(
     <div className="page-404-wrapper">
       <div className={`svg-and-text-wrapper ${isDesktop && 'desktop'}`}>
         <NotFoundPageSvg theme={currTheme}/>
         <div className="text-wrapper">
-          <div className={`h1-text ${isDesktop && 'desktop'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
+          <div className={`h1-text ${isDesktop && 'desktop'} ${isTablet && 'tablet'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
             404
           </div>
           <TextFormatterComponent
@@ -36,8 +37,8 @@ const NotFoundPage: React.FC = () => {
             ) : (
               'Это значит, что страница устарела и была удалена, либо в ссылке ошибка. Но это не важно, потому что все мои проекты доступны на главной странице :)'
             )}`}
-            additionalStyles={`${isDesktop && 'mw616'} main-text ${isDesktop && 'desktop'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
-            letterWidth={isDesktop ? 11 : 9.9}
+            additionalStyles={`${isDesktop && 'mw616'} main-text ${isDesktop && 'desktop'} ${isTablet && 'tablet'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
+            letterWidth={(isDesktop || isTablet) ? 11 : 9.9}
           />
         </div>
       </div>

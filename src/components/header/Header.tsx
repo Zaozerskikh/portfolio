@@ -16,6 +16,7 @@ import {Lang} from "../../constants/Lang";
 import ExternalLinks from "../../constants/ExternalLinks";
 import {toggleLang} from "../../redux/lang_reducer/LangReducer";
 import ColorThemeSwitcher from "../color_theme_picker/color_theme_switcher/colorThemeSwitcher";
+import Logo from "./logo/Logo";
 
 const Header: React.FC = () => {
   const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
@@ -37,12 +38,7 @@ const Header: React.FC = () => {
           ${currTheme === ColorTheme.DARK ? 'dark' : 'white'}
         `}
       >
-        <div
-          onClick={() => navigate(RoutePaths.HOME)}
-          className={`logo mobile-menu-text ${isDesktop && 'desktop'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
-        >
-          Serg Zaozerskikh
-        </div>
+        <Logo/>
         {isDesktop ? (
           <>
             <div className="header-links-wrapper">

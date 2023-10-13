@@ -20,8 +20,9 @@ const ProjectCard: React.FC<ShortProjectInfo> = ({ previewDarkImage, previewWhit
   const currLang = useSelector((state: RootState) => state.lang.lang)
   const navigate = useNavigate()
 
-  const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
   const [isHovered, setHovered] = useState(false);
+  const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
+  const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
   const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
 
   return(
@@ -67,14 +68,14 @@ const ProjectCard: React.FC<ShortProjectInfo> = ({ previewDarkImage, previewWhit
       </div>
       <div className="project-info">
         <div
-          className={`h2-text animation-02s-all ${isDesktop && 'desktop'} ${currTheme === ColorTheme.WHITE ? 'dark' : 'white'}`}
+          className={`h2-text animation-02s-all ${isDesktop && 'desktop'} ${isTablet && 'tablet'} ${currTheme === ColorTheme.WHITE ? 'dark' : 'white'}`}
         >
           {name}
         </div>
         <TextFormatterComponent
           text={currLang === Lang.ENG ? shortDescriptionENG: shortDescriptionRUS}
-          additionalStyles={`description-text ${isDesktop && 'desktop'} maxwidth animation-02s-all ${currTheme === ColorTheme.WHITE ? isHovered ? 'black' : 'dark' : isHovered ? 'white' : 'dark-theme-gray'}`}
-          letterWidth={isDesktop ? 9.9 : 8.8}
+          additionalStyles={`description-text ${isDesktop && 'desktop'} ${isTablet && 'tablet'}maxwidth animation-02s-all ${currTheme === ColorTheme.WHITE ? isHovered ? 'black' : 'dark' : isHovered ? 'white' : 'dark-theme-gray'}`}
+          letterWidth={(isDesktop || isTablet) ? 9.9 : 8.8}
         />
       </div>
     </div>

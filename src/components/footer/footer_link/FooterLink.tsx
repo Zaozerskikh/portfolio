@@ -21,12 +21,13 @@ const FooterLink: React.FC<FooterLinkProps> = ({ link, text, styleOnHover, style
   const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme);
 
   const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
+  const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
 
   return(
     <div
       className={`
-        h2-text ${isDesktop && 'desktop'} animation-02s-all noselect
+        h2-text ${isDesktop && 'desktop'} ${isTablet && 'tablet'} animation-02s-all noselect
         ${currTheme === ColorTheme.WHITE ? 'dark' : 'white'}
         ${isHovered && styleOnHover} ${isClicked && styleOnClick}
       `}

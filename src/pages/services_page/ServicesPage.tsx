@@ -83,7 +83,7 @@ const ServicesPage: React.FC = () => {
   return(
     <div className="services-page-wrapper">
       <div
-        className={`h1-text ${isDesktop && 'desktop'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
+        className={`h1-text ${isDesktop && 'desktop'} ${isTablet && 'tablet'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
         dangerouslySetInnerHTML={{__html: `${currLang === Lang.ENG
             ? `Made with love ${isMobile ? '</br>' : ''} for each button ;)`
             : `Делаю с любовью ${isMobile ? '</br>' : ''} к каждой кнопке ;)`

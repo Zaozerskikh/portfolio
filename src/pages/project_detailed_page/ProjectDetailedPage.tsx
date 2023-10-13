@@ -28,6 +28,7 @@ const ProjectDetailedPage: React.FC = () => {
   const navigate = useNavigate()
 
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
+  const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
 
   useEffect(() => {
     if (!id) {
@@ -49,7 +50,7 @@ const ProjectDetailedPage: React.FC = () => {
     <div className="project-detailed-wrapper">
       <div className="info-wrapper">
         <div
-          className={`h1-text ${isDesktop && 'desktop'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
+          className={`h1-text ${isDesktop && 'desktop'} ${isTablet && 'tablet'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
         >
           {project?.name}
         </div>
@@ -60,8 +61,8 @@ const ProjectDetailedPage: React.FC = () => {
         </div>
         <TextFormatterComponent
           text={(currLang === Lang.ENG ? project?.fullDescriptionENG : project?.fullDescriptionRUS) || 'h'}
-          additionalStyles={`main-text ${isDesktop && 'desktop'} animation-02s-all maxwidth ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
-          letterWidth={isDesktop ? 11 : 9.9}
+          additionalStyles={`main-text ${isDesktop && 'desktop'} ${isTablet && 'tablet'} animation-02s-all maxwidth ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
+          letterWidth={(isDesktop || isTablet) ? 11 : 9.9}
         />
       </div>
       <DefaultButton

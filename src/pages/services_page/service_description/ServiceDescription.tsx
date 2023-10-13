@@ -2,12 +2,12 @@ import React, {useState} from "react";
 import './ServiceDescription.css'
 import '../../../assets/styles/fonts.css'
 import '../../../assets/styles/animation_durations.css'
-import Boop from "../../../components/boop/Boop";
 import {ColorTheme} from "../../../constants/ColorTheme";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/ReduxStore";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../constants/MediaQueries";
+import InclinedBoop from "../../about_page/avatar/InclinedBoop";
 
 interface ServiceDescriptionProps {
   boopTrigger: boolean;
@@ -24,19 +24,21 @@ const ServiceDescription: React.FC<ServiceDescriptionProps> = ({ boopTrigger, te
 
   return(
     <div className={`service-description ${(isTablet || isDesktop) && 'desktop'}`}>
-      <Boop tension={400} friction={5} rotation={10} externalTrigger={boopTrigger || (hoverBoopTrigger && !isTouchable)}>
+      <div className={`boop-container ${(isDesktop || isTablet) && 'desktop'}`}>
         <div
-          className="icon-wrapper"
+          className={`boop-wrapper ${isDesktop ? 'desktop' : 'mobile'} ${hoverBoopTrigger && 'hovered'}`}
           onMouseEnter={() => {
             if (!isTouchable) {
               setHoverBoopTrigger(true)
-              setTimeout(() => setHoverBoopTrigger(false), 1000)
             }
           }}
+          onMouseLeave={() => setHoverBoopTrigger(false)}
         >
-          {icon}
+          <InclinedBoop tension={400} friction={5} rotation={15} externalTrigger={boopTrigger}>
+            {icon}
+          </InclinedBoop >
         </div>
-      </Boop>
+      </div>
       <div className="text-wrapper">
         <div
           className={`main-text ${isDesktop && 'desktop'} ${(isTablet || isDesktop) && 'centered'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}

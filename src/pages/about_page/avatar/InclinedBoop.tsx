@@ -3,25 +3,27 @@ import React, {useEffect, useState} from "react";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../constants/MediaQueries";
 
-interface InclinedBoopProps {
+interface InclinedBoopProps extends React.PropsWithChildren {
   rotation: number;
-  children: any;
+  tension: number;
+  friction: number;
+  externalTrigger ? : boolean;
 }
-const InclinedBoop: React.FC<InclinedBoopProps> = ({ rotation , children }) => {
+
+const InclinedBoop: React.FC<InclinedBoopProps> = ({ rotation , children, externalTrigger, tension, friction }) => {
   const [isBooped, setIsBooped] = useState(false);
   const [isHovered,setHovered] = useState(false);
   const [isInclined, setInclined] = useState(false)
   const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
 
-  const s = useSpring({
-    display: 'inline-block',
+  const boopStyle = useSpring({
     transform: isBooped
       ? `rotate(${-rotation}deg)`
       : isInclined ? `rotate(-10deg)`
         : `rotate(0deg)`,
     config: {
-      tension: 400,
-      friction: 10,
+      tension: tension,
+      friction: friction,
     },
   });
 
@@ -45,8 +47,14 @@ const InclinedBoop: React.FC<InclinedBoopProps> = ({ rotation , children }) => {
     }
   };
 
+  useEffect(() => {
+    if (externalTrigger) {
+      trigger()
+    }
+  }, [externalTrigger]);
+
   return (
-    <animated.span
+    <animated.div
       onMouseEnter={trigger}
       onMouseLeave={() => setHovered(false)}
       onTouchStart={() => {
@@ -55,10 +63,12 @@ const InclinedBoop: React.FC<InclinedBoopProps> = ({ rotation , children }) => {
         }
       }}
       onTouchEnd={() => setHovered(false)}
-      style={s}
+      style={boopStyle}
     >
-      {children}
-    </animated.span>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        {children}
+      </div>
+    </animated.div>
   );
 };
 

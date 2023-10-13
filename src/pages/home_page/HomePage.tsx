@@ -29,7 +29,7 @@ const HomePage: React.FC = () => {
   return(
     <div className={`homepage-wrapper ${isDesktop ? 'desktop' : isTablet ? 'tablet' : 'mobile'}`}>
       <div
-        className={`h1-text ${isDesktop && 'desktop'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
+        className={`h1-text ${isDesktop && 'desktop'} ${isTablet && 'tablet'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
         dangerouslySetInnerHTML={{__html: `${currLang === Lang.ENG 
             ? `Developing ${isMobile ? '</br>' : ''} websites, ${isTablet || isDesktop ? '</br>' : ''} mobile ${isMobile ? '</br>' : ''} and web applications.`
             : `Разрабатываю ${isMobile ? '</br>' : ''} сайты, ${isTablet || isDesktop ? '</br>' : ''} мобильные ${isMobile ? '</br>' : ''} и веб-приложения.`}`
@@ -54,7 +54,7 @@ const HomePage: React.FC = () => {
         )}
       </div>
       <div
-        className={`h1-text animation-02s-all ${isDesktop && 'desktop'} ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
+        className={`h1-text animation-02s-all ${isDesktop && 'desktop'} ${isTablet && 'tablet'} ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
         dangerouslySetInnerHTML={{__html: `${currLang === Lang.ENG
             ? `I create products ${isMobileText ? '</br>' : ''} from scratch ${isMobileText ? '</br>' : ''} or based on a ready ${isMobileText ? '</br>' : ''} design, as well as ${isMobileText ? '</br>' : ''} execute front-end ${isMobileText ? '</br>' : ''} and back-end development.`
             : `Создаю продукты ${isMobileText ? '</br>' : ''} с нуля ${isMobileText ? '</br>' : ''} или по готовому дизайну, берусь ${isMobileText ? '</br>' : ''} за фронтенд ${isMobileText ? '</br>' : ''} и бэкенд.`}`

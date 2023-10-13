@@ -2,14 +2,14 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    gap: 12px;
+    gap: 8px;
 }
 
 .service-description.desktop {
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 12px;
+    gap: 8px;
 }
 
 .service-description .text-wrapper {
@@ -18,9 +18,27 @@
     justify-content: center;
 }
 
-.service-description .icon-wrapper {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.service-description .boop-wrapper {
+    width: 48px;
+    height: 48px;
+}
+
+.service-description .boop-wrapper.hovered {
+    cursor: pointer;
+}
+
+.service-description .boop-wrapper.desktop {
+    width: 100px;
+    height: 100px;
+}
+
+.service-description .boop-container {
+    width: 48px;
+}
+
+.service-description .boop-container.desktop {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }

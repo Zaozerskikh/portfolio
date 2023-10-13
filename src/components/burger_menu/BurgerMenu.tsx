@@ -63,7 +63,7 @@ const BurgerMenu: React.FC = () => {
           />
           <DefaultButton
             color={DefaultButtonColor.VIOLET}
-            text={currLang === Lang.ENG ? 'Email' : 'Эл. Почта'}
+            text={currLang === Lang.ENG ? 'E-mail' : 'Эл. Почта'}
             onClickAction={() => window.open(`mailto:${ExternalLinks.EMAIL}`, '_blank')}
           />
         </div>
