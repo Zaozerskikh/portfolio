@@ -13,11 +13,14 @@ import {ColorTheme} from "../../constants/ColorTheme";
 import {Lang} from "../../constants/Lang";
 import {RoutePaths} from "../../constants/RoutePaths";
 import ExternalLinks from "../../constants/ExternalLinks";
+import {useMediaQuery} from "react-responsive";
+import {MediaQueries} from "../../constants/MediaQueries";
 
 const BurgerMenu: React.FC = () => {
   const isBurgerOpened = useSelector((state: RootState) => state.burgerMenu.isOpened)
   const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
   const currLang = useSelector((state: RootState) => state.lang.lang)
+  const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE})
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -25,11 +28,14 @@ const BurgerMenu: React.FC = () => {
 
   useEffect(() => {
     dispatch(setIsBurgerShown(false))
-  }, [dispatch, location]);
+  }, [dispatch, location, isMobile]);
 
   return(
     <>
-      <div className={`blurring_div ${isBurgerOpened && 'opened'} ${currTheme === ColorTheme.DARK ? 'dark' : 'white'}`}/>
+      <div
+        className={`blurring_div ${isBurgerOpened && 'opened'} ${currTheme === ColorTheme.DARK ? 'dark' : 'white'}`}
+        onTouchEnd={() => dispatch(setIsBurgerShown(false))}
+      />
       <div className={`burger_menu animation-02s-all ${isBurgerOpened && 'opened'} ${currTheme === ColorTheme.DARK ? 'dark' : 'white'}`}>
         <div className="switchers">
           <ColorThemePicker/>

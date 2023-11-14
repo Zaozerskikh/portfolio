@@ -41,8 +41,7 @@ const HomePage: React.FC = () => {
               key={idx}
               id={project.id}
               name={project.name}
-              previewWhiteImage={project.previewWhiteImage}
-              previewDarkImage={project.previewDarkImage}
+              previewImage={project.previewImage}
               shortDescriptionRUS={project.shortDescriptionRUS}
               shortDescriptionENG={project.shortDescriptionENG}
               tags={project.tags}

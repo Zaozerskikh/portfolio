@@ -14,17 +14,18 @@ import {Lang} from "../../../constants/Lang";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../constants/MediaQueries";
 
-const ProjectCard: React.FC<ShortProjectInfo> = ({ previewDarkImage, previewWhiteImage, name, id,
+const ProjectCard: React.FC<ShortProjectInfo> = ({ previewImage, name, id,
                                               shortDescriptionENG, shortDescriptionRUS, tags}) => {
   const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
   const currLang = useSelector((state: RootState) => state.lang.lang)
   const navigate = useNavigate()
 
+  const isTablet = useMediaQuery({ query: MediaQueries.TABLET })
+  const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP })
+  const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
+
   const [isHovered, setHovered] = useState(false);
   const [isClicked, setClicked] = useState(false);
-  const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
-  const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
-  const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
 
   return(
     <div
@@ -62,18 +63,19 @@ const ProjectCard: React.FC<ShortProjectInfo> = ({ previewDarkImage, previewWhit
       </div>
       <div
         className={`
-          project-img-preview-wrapper 
+          project-img-preview-wrapper animation-02s-all
+          ${currTheme === ColorTheme.DARK ? 'img-gray' : 'img-white'}
           ${isClicked && (currTheme === ColorTheme.DARK ? 'clicked-gray' : 'clicked-black')}
-          ${isHovered && (currTheme === ColorTheme.DARK ? 'hovered-gray' : 'hovered-black')} animation-02s-all
+          ${isHovered && (currTheme === ColorTheme.DARK ? 'hovered-gray' : 'hovered-black')}
         `}
       >
         <img
-          src={currTheme === ColorTheme.DARK ? previewDarkImage : previewWhiteImage}
+          src={previewImage}
           alt="img"
           className={`
-          project-img-preview ${isHovered && 'hovered'} 
-          animation-02s-all
-        `}
+            project-img-preview ${isHovered && 'hovered'} 
+            animation-02s-all
+          `}
         />
       </div>
       <div className="project-info">

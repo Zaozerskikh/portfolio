@@ -10,7 +10,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../redux/ReduxStore";
 
-const Logo: React.FC = ()=> {
+const Logo: React.FC = () => {
   const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
   const isTouchable = useMediaQuery({query: MediaQueries.TOUCHABLE})

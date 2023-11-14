@@ -30,6 +30,7 @@ const ProjectDetailedPage: React.FC = () => {
 
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
   const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
+  const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE })
 
   useEffect(() => {
     if (!id) {
@@ -66,17 +67,27 @@ const ProjectDetailedPage: React.FC = () => {
           letterWidth={(isDesktop || isTablet) ? 11 : 9.9}
         />
       </div>
-      {project?.projectType === ProjectType.WEBSITE && (
+      {project?.link && project.link.length > 0 && (
         <DefaultButton
           color={DefaultButtonColor.VIOLET}
-          text={currLang === Lang.ENG ? 'Open website' : 'Открыть сайт'}
-          onClickAction={() => window.open(project?.link, '_blank')}
+          text={currLang === Lang.ENG
+            ? project.projectType === ProjectType.WEBSITE ? 'Open website' : 'Download from Google Play'
+            : project.projectType === ProjectType.WEBSITE ? 'Открыть сайт' : 'Скачать из Google Play'
+          }
+          onClickAction={() => window.open(project?.link.split(' ')[0], '_blank')}
         />
       )}
       <div className="images-wrapper">
-        {(currTheme === ColorTheme.DARK ? project?.detailedDarkImages : project?.detailedWhiteImages)
-          ?.map((image, idx) => (
+        {project?.detailedSharedImages.map((image, idx) => (
             <img src={image} alt={idx.toString()} key={idx}/>
+          ))
+        }
+        {isMobile && project?.detailedMobileImages?.map((image, idx) => (
+            <img src={image} alt={idx.toString()} key={idx}/>
+          ))
+        }
+        {isDesktop && project?.detailedDesktopImages?.map((image, idx) => (
+           <img src={image} alt={idx.toString()} key={idx}/>
           ))
         }
       </div>

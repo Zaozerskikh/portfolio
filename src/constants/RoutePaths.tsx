@@ -1,7 +1,7 @@
 export enum RoutePaths {
-  HOME = '/home',
+  HOME = '/projects',
   SERVICES = '/services',
   ABOUT = '/about',
   NOT_FOUND = '/not-found',
-  PROJECT_DETAILED = '/project/:id',
+  PROJECT_DETAILED = '/projects/:id',
 }

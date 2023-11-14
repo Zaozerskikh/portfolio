@@ -4,8 +4,7 @@ import {ProjectType} from "../../constants/ProjectType";
 export interface ShortProjectInfo {
   id: string;
   name: string;
-  previewWhiteImage: string;
-  previewDarkImage: string;
+  previewImage: string;
   shortDescriptionRUS: string;
   shortDescriptionENG: string;
   tags: TagType[]
@@ -15,7 +14,8 @@ export interface ProjectInfo extends ShortProjectInfo {
   projectType: ProjectType;
   fullDescriptionRUS: string;
   fullDescriptionENG: string;
-  detailedWhiteImages: string[];
-  detailedDarkImages: string[];
+  detailedSharedImages: string[];
+  detailedMobileImages?: string[];
+  detailedDesktopImages?: string[]
   link: string;
 }

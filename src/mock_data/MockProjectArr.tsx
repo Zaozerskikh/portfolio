@@ -2,26 +2,38 @@ import {ProjectInfo} from "../redux/projects_reducer/ProjectInfo";
 import {TagType} from "../constants/TagType"
 import {ProjectType} from "../constants/ProjectType";
 
-const whiteHookahPreview = 'https://i.imgur.com/ZexQo1c.png'
-const blackHookahPreview = 'https://i.imgur.com/Xn97hXD.png'
-const whiteHookahDetailed1 = 'https://i.imgur.com/mguGHTp.png'
-const whiteHookahDetailed2 = 'https://i.imgur.com/Nmco1o5.png'
-const whiteHookahDetailed3 = 'https://i.imgur.com/Nmco1o5.png'
-const whiteHookahDetailed4 = 'https://i.imgur.com/qDyhBvT.png'
+const audioGuidePreview  = 'https://i.imgur.com/LM8SHy7.png'
+const audioGuide1 = 'https://i.imgur.com/HFBwQKC.png';
+const audioGuide2 = 'https://i.imgur.com/XzQNv7Z.png'
 
-const whitePuzzlesPreview = 'https://i.imgur.com/j3fzJd1.png'
-const darkPuzzlesPreview = 'https://i.imgur.com/rynG9TR.png'
+const hookahPreview = 'https://i.imgur.com/ZbLrNpz.png'
+const hookah1 = 'https://i.imgur.com/mguGHTp.png'
+const hookah2 = 'https://i.imgur.com/Nmco1o5.png'
+const hookah3 = 'https://i.imgur.com/Nmco1o5.png'
+const hookah4 = 'https://i.imgur.com/qDyhBvT.png'
 
+const puzzlesPreview = 'https://i.imgur.com/rEW11F9.png'
 
 export const MockProjectArr: ProjectInfo[] = [
+  {
+    id: '3',
+    name: 'Audio Guide Paris',
+    projectType: ProjectType.MOBILE_APP,
+    detailedSharedImages: [audioGuide1, audioGuide2],
+    previewImage: audioGuidePreview,
+    shortDescriptionRUS: 'разработал мобильное приложение- путеводитель по Парижу, подключил карты, плеер, оплату, провел интеграцию с CMS',
+    shortDescriptionENG: 'developed a mobile application for a guide to Paris, connected maps, player, payment, and integrated with CMS.',
+    fullDescriptionRUS: 'Кроссплатформенное мультиязычное приложение - путеводитель по Парижу. В рамках проекта был пройден полный цикл разработки и внедрения программного продукта: от согласования дизайна и написания кода до интеграции с CMS-системой Contentful и публикации готового приложения в магазины Google Play и App Store.',
+    fullDescriptionENG: 'Cross-platform multilingual application - a guide to Paris. The project went through a full cycle development and implementation of a software product: from design approval and coding to integration with the Contentful CMS system and publishing the finished application in the Google Play and App Store.',
+    tags: [TagType.REACT_NATIVE, TagType.CMS, TagType.GIT],
+    link: 'https://play.google.com/store/apps/details?id=com.audioguides_paris'
+  },
   {
     id: '1',
     name: 'hookah.pt',
     projectType: ProjectType.WEBSITE,
-    detailedDarkImages: [whiteHookahDetailed1, whiteHookahDetailed2, whiteHookahDetailed3, whiteHookahDetailed4],
-    detailedWhiteImages: [whiteHookahDetailed1, whiteHookahDetailed2, whiteHookahDetailed3, whiteHookahDetailed4],
-    previewWhiteImage: whiteHookahPreview,
-    previewDarkImage: blackHookahPreview,
+    detailedSharedImages: [hookah1, hookah2, hookah3, hookah4],
+    previewImage: hookahPreview,
     shortDescriptionRUS: 'разработал сайт для первого кальянного магазина в Португалии, подготовил фронтенд и интеграцию с CMS.',
     shortDescriptionENG: 'developed the website for the first hookah store in Portugal, created the frontend and CMS integration',
     fullDescriptionRUS: 'Интернет-магазин кальянной продукции в Португалии. В рамках разработки был создан сайт на React, а так же произведена интеграция с CMS Contentful. Сейчас к проекту активно пишется бэкенд, но оценить интерфейс можно уже сейчас по ссылке ниже.',
@@ -31,12 +43,10 @@ export const MockProjectArr: ProjectInfo[] = [
   },
   {
     id: '2',
-    name: 'chess puzzles',
+    name: 'Chess Puzzles',
     projectType: ProjectType.MOBILE_APP,
-    detailedDarkImages: [darkPuzzlesPreview],
-    detailedWhiteImages: [whitePuzzlesPreview],
-    previewWhiteImage: whitePuzzlesPreview,
-    previewDarkImage: darkPuzzlesPreview,
+    detailedSharedImages: [puzzlesPreview],
+    previewImage: puzzlesPreview,
     shortDescriptionRUS: 'создал мобильное приложение для обучения шахматным стратегиям',
     shortDescriptionENG: 'created a mobile application for teaching chess strategies',
     fullDescriptionRUS: 'Мобильное приложение для обучения шахматным стратегиям. Написано на React Native.',
@@ -45,5 +55,3 @@ export const MockProjectArr: ProjectInfo[] = [
     link: ''
   },
 ]
-
-//@ts-ignore
