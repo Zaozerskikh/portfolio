@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../redux/ReduxStore";
 import {RoutePaths} from "../../constants/RoutePaths";
 import {ProjectInfo} from "../../redux/projects_reducer/ProjectInfo";
-import DefaultButton from "../../components/default_button/DefaultButton";
+import DefaultButton, {ButtonIcon} from "../../components/default_button/DefaultButton";
 import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
 import {Lang} from "../../constants/Lang";
 import {ColorTheme} from "../../constants/ColorTheme";
@@ -16,7 +16,6 @@ import ExternalLinks from "../../constants/ExternalLinks";
 import TextFormatterComponent from "../../components/text_formatter/TextFormatterComponent";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
-import {ProjectType} from "../../constants/ProjectType";
 
 
 const ProjectDetailedPage: React.FC = () => {
@@ -67,16 +66,31 @@ const ProjectDetailedPage: React.FC = () => {
           letterWidth={(isDesktop || isTablet) ? 11 : 9.9}
         />
       </div>
-      {project?.link && project.link.length > 0 && (
-        <DefaultButton
-          color={DefaultButtonColor.VIOLET}
-          text={currLang === Lang.ENG
-            ? project.projectType === ProjectType.WEBSITE ? 'Open website' : 'Download from Google Play'
-            : project.projectType === ProjectType.WEBSITE ? 'Открыть сайт' : 'Скачать из Google Play'
-          }
-          onClickAction={() => window.open(project?.link.split(' ')[0], '_blank')}
-        />
-      )}
+      <div className='btns-wrapper'>
+        {project?.websiteLink && (
+          <DefaultButton
+            color={DefaultButtonColor.VIOLET}
+            text={currLang === Lang.ENG ? 'Open website' : 'Открыть cайт'}
+            onClickAction={() => window.open(project?.websiteLink, '_blank')}
+          />
+        )}
+        {project?.googlePlayLink && (
+          <DefaultButton
+            color={DefaultButtonColor.MINT}
+            text={currLang === Lang.ENG ? 'Open in Google Play' : 'Скачать в Google Play'}
+            buttonIcon={ButtonIcon.GOOGLE_PLAY}
+            onClickAction={() => window.open(project?.googlePlayLink, '_blank')}
+          />
+        )}
+        {project?.appStoreLink && (
+          <DefaultButton
+            color={DefaultButtonColor.GRAY}
+            text={currLang === Lang.ENG ? 'Open in App Store' : 'Скачать в App Store'}
+            buttonIcon={ButtonIcon.APP_STORE}
+            onClickAction={() => window.open(project?.appStoreLink, '_blank')}
+          />
+        )}
+      </div>
       <div className="images-wrapper">
         {project?.detailedSharedImages.map((image, idx) => (
             <img src={image} alt={idx.toString()} key={idx}/>

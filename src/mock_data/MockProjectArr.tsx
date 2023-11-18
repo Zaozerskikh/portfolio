@@ -12,7 +12,10 @@ const hookah2 = 'https://i.imgur.com/Nmco1o5.png'
 const hookah3 = 'https://i.imgur.com/Nmco1o5.png'
 const hookah4 = 'https://i.imgur.com/qDyhBvT.png'
 
-const puzzlesPreview = 'https://i.imgur.com/rEW11F9.png'
+// const puzzlesPreview = 'https://i.imgur.com/jXj6vUs.png'
+const puzzlesPreview = 'https://i.imgur.com/Fq3bz2N.png'
+const puzzles1 = 'https://i.imgur.com/DuxU5ml.png'
+const puzzles2 = 'https://i.imgur.com/pt8keLO.png'
 
 export const MockProjectArr: ProjectInfo[] = [
   {
@@ -26,7 +29,8 @@ export const MockProjectArr: ProjectInfo[] = [
     fullDescriptionRUS: 'Кроссплатформенное мультиязычное приложение - путеводитель по Парижу. В рамках проекта был пройден полный цикл разработки и внедрения программного продукта: от согласования дизайна и написания кода до интеграции с CMS-системой Contentful и публикации готового приложения в магазины Google Play и App Store.',
     fullDescriptionENG: 'Cross-platform multilingual application - a guide to Paris. The project went through a full cycle development and implementation of a software product: from design approval and coding to integration with the Contentful CMS system and publishing the finished application in the Google Play and App Store.',
     tags: [TagType.REACT_NATIVE, TagType.CMS, TagType.GIT],
-    link: 'https://play.google.com/store/apps/details?id=com.audioguides_paris'
+    googlePlayLink: 'https://play.google.com/store/apps/details?id=com.audioguides_paris',
+    appStoreLink: 'https://apps.apple.com/us/app/audio-guide-paris/id6471984315'
   },
   {
     id: '1',
@@ -39,19 +43,18 @@ export const MockProjectArr: ProjectInfo[] = [
     fullDescriptionRUS: 'Интернет-магазин кальянной продукции в Португалии. В рамках разработки был создан сайт на React, а так же произведена интеграция с CMS Contentful. Сейчас к проекту активно пишется бэкенд, но оценить интерфейс можно уже сейчас по ссылке ниже.',
     fullDescriptionENG: 'Online store of hookah products in Portugal. As a part of the development there was created a website on React. Integration with CMS Contentful was done to manage content for the client. Now this project is in the backend-development stage, but you can take a look on interface by click on the link below.',
     tags: [TagType.REACT, TagType.CMS, TagType.GIT],
-    link: 'https://zaozerskikh.github.io/hookah/'
+    websiteLink: 'https://zaozerskikh.github.io/hookah/'
   },
   {
     id: '2',
     name: 'Chess Puzzles',
     projectType: ProjectType.MOBILE_APP,
-    detailedSharedImages: [puzzlesPreview],
+    detailedSharedImages: [puzzles1, puzzles2],
     previewImage: puzzlesPreview,
     shortDescriptionRUS: 'создал мобильное приложение для обучения шахматным стратегиям',
     shortDescriptionENG: 'created a mobile application for teaching chess strategies',
-    fullDescriptionRUS: 'Мобильное приложение для обучения шахматным стратегиям. Написано на React Native.',
-    fullDescriptionENG: 'A mobile application for teaching chess strategies. It was written on React Native.',
+    fullDescriptionRUS: 'Мобильное приложение - cборник задач по шахматам. Все задачи разбиты по темам, присутствует возможность получения подсказок при решении. Проект некоммерческий, был реaлизован из-за личного интереса к шахматам, а так же желания разобраться в тонкостях реализации этой игры на фреймворке React Native.',
+    fullDescriptionENG: 'Mobile application - a collection of chess problems. All problems are divided into topics, and there is an opportunity to receive hints when solving them. The project is non-profit, it was written due to personal interest in chess, as well as the desire to understand how to implement the game of chess using the React Native framework.',
     tags: [TagType.REACT_NATIVE, TagType.GIT],
-    link: ''
   },
 ]
