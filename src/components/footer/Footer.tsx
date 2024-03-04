@@ -3,7 +3,6 @@ import '../../assets/styles/animation_durations.css'
 import '../../assets/styles/fonts.css'
 import React from "react";
 import {useSelector} from "react-redux";
-import {RootState} from "../../redux/ReduxStore";
 import {ColorTheme} from "../../constants/ColorTheme";
 import FooterLink from "./footer_link/FooterLink";
 import ExternalLinks from "../../constants/ExternalLinks";
@@ -11,10 +10,11 @@ import {Lang} from "../../constants/Lang";
 import CopyrightLink from "./copyright_link/CopyrightLink";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
+import {RootStoreState} from "../../redux/ReduxStore";
 
 const Footer: React.FC = () => {
-  const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
-  const currLang = useSelector((state: RootState) => state.lang.lang)
+  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currLang = useSelector((state: RootStoreState) => state.lang)
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
 
   return(
@@ -41,7 +41,10 @@ const Footer: React.FC = () => {
       </div>
       <div className="bottom-links">
         <div className={`description-text ${isDesktop && 'desktop'} ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
-          {currLang === Lang.ENG ? '© 2023 Sergey Zaozerskikh' : '© 2023 Сергей Заозерских'}
+          {currLang === Lang.ENG
+            ? `© ${new Date().getFullYear()} Sergey Zaozerskikh`
+            : `© ${new Date().getFullYear()} Сергей Заозерских`
+          }
         </div>
         <CopyrightLink/>
       </div>

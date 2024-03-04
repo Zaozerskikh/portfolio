@@ -1,3 +1,11 @@
 .noselect {
     user-select: none;
 }
+
+.footer-link.white {
+    color: black;
+}
+
+.footer-link.dark {
+    color: white;
+}

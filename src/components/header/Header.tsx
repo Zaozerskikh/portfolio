@@ -4,7 +4,6 @@ import React from "react";
 import '../../assets/styles/animation_durations.css'
 import BurgerButton from "../burger_button/BurgerButton";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../redux/ReduxStore";
 import {ColorTheme} from "../../constants/ColorTheme";
 import {RoutePaths} from "../../constants/RoutePaths";
 import {useLocation, useNavigate} from "react-router-dom";
@@ -14,13 +13,14 @@ import HeaderDesktopLink from "./header_desktop_link/HeaderDesktopLink";
 import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
 import {Lang} from "../../constants/Lang";
 import ExternalLinks from "../../constants/ExternalLinks";
-import {toggleLang} from "../../redux/lang_reducer/LangReducer";
+import {toggleLang} from "../../redux/LangReducer";
 import ColorThemeSwitcher from "../color_theme_picker/color_theme_switcher/colorThemeSwitcher";
 import Logo from "./logo/Logo";
+import {RootStoreState} from "../../redux/ReduxStore";
 
 const Header: React.FC = () => {
-  const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
-  const currLang = useSelector((state: RootState) => state.lang.lang)
+  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currLang = useSelector((state: RootStoreState) => state.lang)
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -46,37 +46,40 @@ const Header: React.FC = () => {
                 text={currLang === Lang.ENG ? 'projects' : 'проекты'}
                 color={DefaultButtonColor.VIOLET}
                 isSelected={location.pathname === RoutePaths.HOME}
-                onClickAction={() => navigate(RoutePaths.HOME)}
+                link={RoutePaths.HOME}
               />
               <HeaderDesktopLink
                 text={currLang === Lang.ENG ? 'services' : 'услуги'}
                 color={DefaultButtonColor.YELLOW}
                 isSelected={location.pathname === RoutePaths.SERVICES}
-                onClickAction={() => navigate(RoutePaths.SERVICES)}
+                link={RoutePaths.SERVICES}
               />
               <HeaderDesktopLink
                 text={currLang === Lang.ENG ? 'about' : 'обо мне'}
                 color={DefaultButtonColor.ORANGE}
                 isSelected={location.pathname === RoutePaths.ABOUT}
-                onClickAction={() => navigate(RoutePaths.ABOUT)}
+                link={RoutePaths.ABOUT}
               />
               <HeaderDesktopLink
                 text={currLang === Lang.ENG ? 'telegram' : 'телеграм'}
                 color={DefaultButtonColor.BLUE}
                 isSelected={false}
-                onClickAction={() => window.open(ExternalLinks.TELEGRAM, '_blank')}
+                link={ExternalLinks.TELEGRAM}
+                isExternal={true}
               />
               <HeaderDesktopLink
                 text={currLang === Lang.ENG ? 'github' : 'гитхаб'}
                 color={DefaultButtonColor.GRAY}
                 isSelected={false}
-                onClickAction={() => window.open(ExternalLinks.GITHUB, '_blank')}
+                link={ExternalLinks.GITHUB}
+                isExternal={true}
               />
               <HeaderDesktopLink
                 text={currLang === Lang.ENG ? 'email' : 'эл. почта'}
                 color={DefaultButtonColor.ORANGE}
                 isSelected={false}
-                onClickAction={() => window.open(`mailto:${ExternalLinks.EMAIL}`, '_blank')}
+                link={`mailto:${ExternalLinks.EMAIL}`}
+                isExternal={true}
               />
             </div>
             <div className="header-left-section">
@@ -84,7 +87,9 @@ const Header: React.FC = () => {
                 text={currLang === Lang.ENG ? 'Eng' : 'Рус'}
                 color={DefaultButtonColor.MINT}
                 isSelected={false}
-                onClickAction={() => dispatch(toggleLang())}
+                link={''}
+                asBtn={true}
+                onClickAsBtn={() => dispatch(toggleLang())}
               />
               <ColorThemeSwitcher/>
             </div>

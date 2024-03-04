@@ -1,25 +1,16 @@
-import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import burgerReducer, {BurgerState} from "./burger_menu_reducer/BurgerMenuReducer";
-import colorThemeReducer, {ColorThemeState} from "./color_theme_reducer/ColorThemeReducer";
-import langReducer, {LangState} from "./lang_reducer/LangReducer";
-import projectArrReducer, {ProjectInfoState} from "./projects_reducer/ProjectReducer";
-
-const rootReducer = combineReducers({
-  burgerMenu: burgerReducer,
-  colorTheme: colorThemeReducer,
-  lang: langReducer,
-  projects: projectArrReducer,
-});
-
-export type RootState = {
-  burgerMenu: BurgerState,
-  colorTheme: ColorThemeState,
-  lang: LangState,
-  projects: ProjectInfoState
-};
+import {configureStore} from "@reduxjs/toolkit";
+import burgerReducer from "./BurgerMenuReducer";
+import colorThemeReducer from "./ColorThemeReducer";
+import langReducer from "./LangReducer";
 
 const reduxStore = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    burger: burgerReducer,
+    colorTheme: colorThemeReducer,
+    lang: langReducer
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware()
 });
 
 export default reduxStore;
+export type RootStoreState = ReturnType<typeof reduxStore.getState>;

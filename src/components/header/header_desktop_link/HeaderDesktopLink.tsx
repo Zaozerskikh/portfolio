@@ -1,75 +1,81 @@
 import './HeaderDesktopLink.css'
 import './../../../assets/styles/fonts.css'
 import './../../../assets/styles/animation_durations.css'
-import React, {useState} from "react";
+import React from "react";
 import {DefaultButtonColor} from "../../../constants/DefaultButtonColor";
-import {useMediaQuery} from "react-responsive";
-import {MediaQueries} from "../../../constants/MediaQueries";
 import {useSelector} from "react-redux";
-import {RootState} from "../../../redux/ReduxStore";
 import {ColorTheme} from "../../../constants/ColorTheme";
+import useHoverAndClick from "../../../utils/hooks/UseHoverAndClickHook";
+import {Link} from "react-router-dom";
+import {RootStoreState} from "../../../redux/ReduxStore";
 
 interface HeaderDesktopLinkProps {
   text: string;
   color: DefaultButtonColor;
-  onClickAction: () => void;
+  link: string;
   isSelected: boolean;
+  isExternal?: boolean;
+  asBtn?: boolean;
+  onClickAsBtn?: () => void;
 }
 
-const HeaderDesktopLink: React.FC<HeaderDesktopLinkProps> = ({ text, color, onClickAction, isSelected}) => {
-  const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
-  const [isHovered, setHovered] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
-  const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
+const HeaderDesktopLink: React.FC<HeaderDesktopLinkProps> = ({
+  text,
+  link,
+  isExternal,
+  color,
+  isSelected,
+  asBtn,
+  onClickAsBtn
+}) => {
+  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const {isHovered, isClicked, ...eventHandlers} = useHoverAndClick()
+  const WrapperComponent = asBtn ? "div" : Link
 
   return(
-    <div
+    <WrapperComponent
+      to={link}
+      style={{ textDecoration: 'none' }}
+      target={isExternal ? '_blank' : undefined}
+      onClick={() => {
+        if (onClickAsBtn && asBtn) {
+          onClickAsBtn()
+        }
+      }}
       className={`desktop-header-link-wrapper ${isHovered && 'hovered'}`}
-      onClick={onClickAction}
-      onMouseEnter={() => {
-        if (!isTouchable) {
-          setHovered(true)
-        }
-      }}
-      onMouseLeave={() => {
-        if (!isTouchable) {
-          setHovered(false)
-          setIsClicked(false)
-        }
-      }}
-      onTouchStart={() => {
-        setHovered(true)
-        setIsClicked(true)
-      }}
-      onTouchEnd={() => {
-        setHovered(false)
-        setIsClicked(false)
-      }}
-      onTouchCancel={() => {
-        setHovered(false)
-        setIsClicked(false)
-      }}
-      onMouseDown={() => {
-        if (!isTouchable) {
-          setIsClicked(true)
-        }
-      }}
-      onMouseUp={() => {
-        if (!isTouchable) {
-          setIsClicked(false)
-        }
-      }}
+      {...eventHandlers}
     >
-      <div className={`link-bracket ${(isClicked || isSelected) && color} animation-02s-all mobile-button-text ${isHovered && 'hovered'} ${currTheme === ColorTheme.DARK && 'white'}`}>
+      <div
+        className={`
+          link-bracket animation-02s-all mobile-button-text
+          ${(isClicked || isHovered || isSelected) && color}  
+          ${isHovered && 'hovered'} 
+          ${currTheme !== ColorTheme.DARK ? 'dark' : 'white'}
+        `}
+      >
         {'<'}
       </div>
-      <div className={`desktop-header-wrapper animation-02s-all ${(isClicked || isSelected) && color} mobile-button-text ${isHovered && 'hovered'} ${currTheme === ColorTheme.DARK && 'white'}`}>
+      <div
+        className={`
+          desktop-header-wrapper animation-02s-all mobile-button-text
+          ${(isClicked || isHovered || isSelected) && color} 
+          ${isHovered && 'hovered'} 
+          ${currTheme !== ColorTheme.DARK ? 'dark' : 'white'}
+        `}
+      >
         {text}
       </div>
-      <div className={`link-bracket ${(isClicked || isSelected) && color} animation-02s-all mobile-button-text ${isHovered && 'hovered'} ${currTheme === ColorTheme.DARK && 'white'}`}>
+      <div
+        className={`
+          link-bracket animation-02s-all mobile-button-text
+          ${(isClicked || isHovered || isSelected) && color} 
+          ${isHovered && 'hovered'} 
+          ${currTheme !== ColorTheme.DARK ? 'dark' : 'white'}
+        `}
+      >
         {'>'}
       </div>
-    </div>
+    </WrapperComponent>
   )
 }
 

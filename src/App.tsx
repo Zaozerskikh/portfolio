@@ -10,20 +10,20 @@ import Header from "./components/header/Header";
 import BurgerMenu from "./components/burger_menu/BurgerMenu";
 import Footer from "./components/footer/Footer";
 import {useSelector} from "react-redux";
-import {RootState} from "./redux/ReduxStore";
 import {ColorTheme} from "./constants/ColorTheme";
 import ServicesPage from "./pages/services_page/ServicesPage";
 import NotFoundPage from "./pages/not_found_page/NotFoundPage";
 import AboutPage from "./pages/about_page/AboutPage";
-import DataFetcher from "./components/data_fetcher/dataFetcher";
 import ProjectDetailedPage from "./pages/project_detailed_page/ProjectDetailedPage";
-import {GithubPagesRoutePaths} from "./constants/GithubPagesRoutePaths";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "./constants/MediaQueries";
+import MetaTagsManager from "./utils/managers/MetaTagsManager";
+import MetaThemeManager from "./utils/managers/MetaThemeManager";
+import {RootStoreState} from "./redux/ReduxStore";
 
 const App: React.FC = () => {
-  const isBurgerOpened = useSelector((state: RootState) => state.burgerMenu.isOpened)
-  const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
+  const isBurgerOpened = useSelector((state: RootStoreState) => state.burger.isOpened)
+  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
   const location = useLocation()
 
   const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
@@ -43,20 +43,18 @@ const App: React.FC = () => {
 
   return (
     <div className={`app ${currTheme === ColorTheme.DARK ? 'dark' : 'white'} animation-02s-all`}>
-      <DataFetcher/>
       <Header/>
       <BurgerMenu/>
+      <MetaThemeManager/>
+      <MetaTagsManager/>
       <div className={`main-content-wrapper ${isDesktop ? 'desktop' : isTablet ? 'tablet' : 'mobile'}`}>
         <Routes>
           <Route path="/" element={<Navigate to={RoutePaths.HOME} />} />
-          <Route path={GithubPagesRoutePaths.GH_PAGES_HOME_1} element={<Navigate to={RoutePaths.HOME} />} />
-          <Route path={GithubPagesRoutePaths.GH_PAGES_HOME_2} element={<Navigate to={RoutePaths.HOME} />} />
           <Route path={RoutePaths.HOME} element={<HomePage />} />
           <Route path={RoutePaths.PROJECT_DETAILED} element={<ProjectDetailedPage />} />
           <Route path={RoutePaths.SERVICES} element={<ServicesPage />} />
           <Route path={RoutePaths.ABOUT} element={<AboutPage />} />
-          <Route path={RoutePaths.NOT_FOUND} element={<NotFoundPage />} />
-          <Route path="*" element={<Navigate to={RoutePaths.NOT_FOUND} />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
       <Footer/>

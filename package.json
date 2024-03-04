@@ -17,6 +17,7 @@
     "@use-gesture/react": "^10.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.4",
     "react-hook-form": "^7.43.5",
     "react-parallax-tilt": "^1.7.170",
     "react-redux": "^8.1.2",

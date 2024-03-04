@@ -1,39 +1,29 @@
 import './CopyrightLink.css'
 import './../../../assets/styles/animation_durations.css'
-import React, {useState} from "react";
+import React from "react";
 import ExternalLinks from "../../../constants/ExternalLinks";
 import {ColorTheme} from "../../../constants/ColorTheme";
 import {Lang} from "../../../constants/Lang";
 import {useSelector} from "react-redux";
-import {RootState} from "../../../redux/ReduxStore";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../constants/MediaQueries";
+import useHover from "../../../utils/hooks/UseHoverHook";
+import {Link} from "react-router-dom";
+import {RootStoreState} from "../../../redux/ReduxStore";
 
 const CopyrightLink: React.FC = () => {
-  const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
-  const currLang = useSelector((state: RootState) => state.lang.lang)
-
-  const [isHovered, setHovered] = useState(false)
+  const {isHovered, ...hoverHandlers} = useHover()
+  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currLang = useSelector((state: RootStoreState) => state.lang)
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
-  const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
 
   return(
-    <div
-      onClick={() => window.open(ExternalLinks.GLEB_KOSSOV_COPYRIGHT, '_blank')}
+    <Link
+      to={ExternalLinks.GLEB_KOSSOV_COPYRIGHT}
+      style={{ textDecoration: 'none' }}
+      target={'_blank'}
       className="copyright-link-wrapper"
-      onMouseEnter={() => {
-        if (!isTouchable) {
-          setHovered(true)
-        }
-      }}
-      onMouseLeave={() => {
-        if (!isTouchable) {
-          setHovered(false)
-        }
-      }}
-      onTouchStart={() => setHovered(true)}
-      onTouchEnd={() => setHovered(false)}
-      onTouchCancel={() => setHovered(false)}
+      {...hoverHandlers}
     >
       <div
         className={`
@@ -64,7 +54,7 @@ const CopyrightLink: React.FC = () => {
       >
         {'>'}
       </div>
-    </div>
+    </Link>
   )
 }
 

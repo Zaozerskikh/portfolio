@@ -4,10 +4,10 @@ import '../../../assets/styles/fonts.css'
 import '../../../assets/styles/animation_durations.css'
 import {ColorTheme} from "../../../constants/ColorTheme";
 import {useSelector} from "react-redux";
-import {RootState} from "../../../redux/ReduxStore";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../constants/MediaQueries";
 import InclinedBoop from "../../about_page/avatar/InclinedBoop";
+import {RootStoreState} from "../../../redux/ReduxStore";
 
 interface ServiceDescriptionProps {
   boopTrigger: boolean;
@@ -15,7 +15,7 @@ interface ServiceDescriptionProps {
   icon: React.ReactNode;
 }
 const ServiceDescription: React.FC<ServiceDescriptionProps> = ({ boopTrigger, text, icon}) => {
-  const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
+  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
 
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
   const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });

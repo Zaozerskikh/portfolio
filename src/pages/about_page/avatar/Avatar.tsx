@@ -3,10 +3,11 @@ import React, {useEffect, useState} from "react";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../constants/MediaQueries";
 import InclinedBoop from "./InclinedBoop";
+import useHover from "../../../utils/hooks/UseHoverHook";
 
 const Avatar: React.FC = () => {
   const avatar = 'https://i.imgur.com/iZV5NZ3.png'
-  const [isHovered, setHovered] = useState(false)
+  const {isHovered, ...hoverHandlers} = useHover()
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
   const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
   const [externalTrigger, setExternalTrigger] = useState(false)
@@ -37,16 +38,7 @@ const Avatar: React.FC = () => {
       >
         <div
           className={`avatar-wrapper ${isDesktop && 'desktop'} ${isHovered && 'hovered'}`}
-          onMouseEnter={() => {
-            if (!isTouchable) {
-              setHovered(true)
-            }
-          }}
-          onMouseLeave={() => {
-            if (!isTouchable) {
-              setHovered(false)
-            }
-          }}
+          {...hoverHandlers}
         >
           <img src={avatar} className={`avatar ${isDesktop && 'desktop'}`} alt="avatar"/>
           <div className={`avatar-shadow ${isDesktop && 'desktop'}`}/>

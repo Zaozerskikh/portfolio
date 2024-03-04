@@ -5,12 +5,10 @@ import React, {useEffect, useState} from "react";
 import {ColorTheme} from "../../constants/ColorTheme";
 import {Lang} from "../../constants/Lang";
 import {useSelector} from "react-redux";
-import {RootState} from "../../redux/ReduxStore";
-import DefaultButton from "../../components/default_button/DefaultButton";
+import {ButtonWithLink} from "../../components/default_button/DefaultButton";
 import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
 import {RoutePaths} from "../../constants/RoutePaths";
 import ExternalLinks from "../../constants/ExternalLinks";
-import {useNavigate} from "react-router-dom";
 import BackendSvg from "./assets/BackendSvg";
 import WebsitesFromScratchSvg from "./assets/WebsitesFromScratchSvg";
 import WebsitesByDesignSvg from "./assets/WebsitesByDesignSvg";
@@ -20,11 +18,11 @@ import MobileAppsFromScratchSvg from "./assets/MobileAppsFromScratchSvg";
 import ServiceDescription from "./service_description/ServiceDescription";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
+import {RootStoreState} from "../../redux/ReduxStore";
 
 const ServicesPage: React.FC = () => {
-  const currLang = useSelector((state: RootState) => state.lang.lang)
-  const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
-  const navigate = useNavigate()
+  const currLang = useSelector((state: RootStoreState) => state.lang)
+  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
 
   const [boopWFS, setBoopWFS] = useState(false)
   const [boopWBD, setBoopWBD] = useState(false)
@@ -82,13 +80,19 @@ const ServicesPage: React.FC = () => {
 
   return(
     <div className="services-page-wrapper">
-      <div
-        className={`h1-text ${isDesktop && 'desktop'} ${isTablet && 'tablet'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
-        dangerouslySetInnerHTML={{__html: `${currLang === Lang.ENG
-            ? `Made with love for&nbsp;each button&ensp;;)`
-            : `Делаю с любовью к&nbsp;каждой кнопке&ensp;;)`
-        }`}}
-      />
+      <h1
+        className={`
+          h1-text animation-02s-all 
+          ${isDesktop && 'desktop'} 
+          ${isTablet && 'tablet'}
+          ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}
+        `}
+      >
+        {currLang === Lang.ENG
+          ? `Made with love for\u00A0each button\u00A0:)`
+          : `Делаю с любовью к\u00A0каждой кнопке\u00A0:)`
+        }
+      </h1>
       <div className={`services ${(isTablet || isDesktop) && 'desktop'}`}>
         <ServiceDescription
           boopTrigger={boopWFS}
@@ -122,15 +126,16 @@ const ServicesPage: React.FC = () => {
         />
       </div>
       <div className="buttons">
-        <DefaultButton
+        <ButtonWithLink
           color={DefaultButtonColor.VIOLET}
           text={currLang === Lang.ENG ? 'Back to portfolio' : 'Вернуться к кейсам'}
-          onClickAction={() => navigate(RoutePaths.HOME)}
+          to={RoutePaths.HOME}
         />
-        <DefaultButton
+        <ButtonWithLink
           color={DefaultButtonColor.BLUE}
           text={currLang === Lang.ENG ? 'Message in Telegram' : 'Написать в телеграм'}
-          onClickAction={() => window.open(ExternalLinks.TELEGRAM, '_blank')}
+          to={ExternalLinks.TELEGRAM}
+          openAsBlank={true}
         />
       </div>
     </div>

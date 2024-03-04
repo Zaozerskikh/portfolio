@@ -2,16 +2,16 @@ import './BurgerButton.css'
 import '../../assets/styles/animation_durations.css'
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../redux/ReduxStore";
-import {toggleBurger} from "../../redux/burger_menu_reducer/BurgerMenuReducer";
+import {toggleBurger} from "../../redux/BurgerMenuReducer";
 import '../../assets/styles/fonts.css'
 import {Lang} from "../../constants/Lang";
 import {ColorTheme} from "../../constants/ColorTheme";
+import {RootStoreState} from "../../redux/ReduxStore";
 
 const BurgerButton: React.FC = () => {
-  const isOpened = useSelector((state: RootState) => state.burgerMenu.isOpened)
-  const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
-  const currLang = useSelector((state: RootState) => state.lang.lang)
+  const isOpened = useSelector((state: RootStoreState) => state.burger.isOpened)
+  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currLang = useSelector((state: RootStoreState) => state.lang)
   const dispatch = useDispatch()
 
   return(

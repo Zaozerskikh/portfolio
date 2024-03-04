@@ -6,15 +6,14 @@ import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../constants/MediaQueries";
 import {RoutePaths} from "../../../constants/RoutePaths";
 import {ColorTheme} from "../../../constants/ColorTheme";
-import {useLocation, useNavigate} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {RootState} from "../../../redux/ReduxStore";
+import {RootStoreState} from "../../../redux/ReduxStore";
 
 const Logo: React.FC = () => {
-  const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
+  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
   const isTouchable = useMediaQuery({query: MediaQueries.TOUCHABLE})
-  const navigate = useNavigate()
   const location = useLocation()
 
   const [readyToAnimate, setReadyToAnimate] = useState(true)
@@ -75,8 +74,9 @@ const Logo: React.FC = () => {
   }, [isAnimated, isTouchable]);
 
   return(
-    <div
-      onClick={() => navigate(RoutePaths.HOME)}
+    <Link
+      style={{ textDecoration: "none" }}
+      to={RoutePaths.HOME}
       onMouseEnter={() => {
         if (!isTouchable) {
           if (readyToAnimate) {
@@ -139,7 +139,7 @@ const Logo: React.FC = () => {
         i
       </div>
       kh
-    </div>
+    </Link>
   )
 }
 

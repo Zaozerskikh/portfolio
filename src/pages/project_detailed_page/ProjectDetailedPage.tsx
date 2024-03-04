@@ -4,24 +4,23 @@ import './../../assets/styles/animation_durations.css'
 import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {RootState} from "../../redux/ReduxStore";
 import {RoutePaths} from "../../constants/RoutePaths";
-import {ProjectInfo} from "../../redux/projects_reducer/ProjectInfo";
-import DefaultButton, {ButtonIcon} from "../../components/default_button/DefaultButton";
+import {ProjectInfo} from "../../types/ProjectInfo";
+import {ButtonIcon, ButtonWithLink} from "../../components/default_button/DefaultButton";
 import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
 import {Lang} from "../../constants/Lang";
 import {ColorTheme} from "../../constants/ColorTheme";
 import Tag from "../../components/tag/Tag";
 import ExternalLinks from "../../constants/ExternalLinks";
-import TextFormatterComponent from "../../components/text_formatter/TextFormatterComponent";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
+import {MockProjectArr} from "../../mock_data/MockProjectArr";
+import {RootStoreState} from "../../redux/ReduxStore";
 
 
 const ProjectDetailedPage: React.FC = () => {
-  const currLang = useSelector((state: RootState) => state.lang.lang)
-  const currTheme = useSelector((state: RootState) => state.colorTheme.colorTheme)
-  const projectArr = useSelector((state: RootState) => state.projects.projects)
+  const currLang = useSelector((state: RootStoreState) => state.lang)
+  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
 
   const { id } = useParams<{ id: string }>()
   const [project, setProject] = useState<ProjectInfo | undefined>(undefined)
@@ -36,8 +35,8 @@ const ProjectDetailedPage: React.FC = () => {
       navigate(RoutePaths.NOT_FOUND)
     }
 
-    if (projectArr && id && projectArr?.length > 0) {
-      const proj = projectArr.find(proj => proj.id === id)
+    if (MockProjectArr && id && MockProjectArr?.length > 0) {
+      const proj = MockProjectArr.find(proj => proj.id === id)
 
       if (proj) {
         setProject(proj)
@@ -45,49 +44,62 @@ const ProjectDetailedPage: React.FC = () => {
         navigate(RoutePaths.NOT_FOUND)
       }
     }
-  }, [id, projectArr, navigate]);
+  }, [id, navigate]);
 
   return(
     <div className="project-detailed-wrapper">
       <div className="info-wrapper">
-        <div
-          className={`h1-text ${isDesktop && 'desktop'} ${isTablet && 'tablet'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
+        <h1
+          className={`
+            h1-text ${isDesktop && 'desktop'} 
+            ${isTablet && 'tablet'} 
+            animation-02s-all 
+            ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}
+          `}
         >
           {project?.name}
-        </div>
+        </h1>
         <div className="tags-wrapper">
           {project?.tags.map((tag, idx) => (
             <Tag type={tag} key={idx} />
           ))}
         </div>
-        <TextFormatterComponent
-          text={(currLang === Lang.ENG ? project?.fullDescriptionENG : project?.fullDescriptionRUS) || 'h'}
-          additionalStyles={`main-text ${isDesktop && 'desktop'} ${isTablet && 'tablet'} animation-02s-all maxwidth ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
-          letterWidth={(isDesktop || isTablet) ? 11 : 9.9}
-        />
+        <div
+          className={`
+            main-text animation-02s-all maxwidth 
+            ${isDesktop && 'desktop'} 
+            ${isTablet && 'tablet'} 
+            ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}
+          `}
+        >
+          {(currLang === Lang.ENG ? project?.fullDescriptionENG : project?.fullDescriptionRUS) || ''}
+        </div>
       </div>
       <div className='btns-wrapper'>
         {project?.websiteLink && (
-          <DefaultButton
+          <ButtonWithLink
             color={DefaultButtonColor.VIOLET}
             text={currLang === Lang.ENG ? 'Open website' : 'Открыть cайт'}
-            onClickAction={() => window.open(project?.websiteLink, '_blank')}
+            to={project?.websiteLink}
+            openAsBlank={true}
           />
         )}
         {project?.googlePlayLink && (
-          <DefaultButton
+          <ButtonWithLink
             color={DefaultButtonColor.MINT}
             text={currLang === Lang.ENG ? 'Open in Google Play' : 'Скачать в Google Play'}
             buttonIcon={ButtonIcon.GOOGLE_PLAY}
-            onClickAction={() => window.open(project?.googlePlayLink, '_blank')}
+            to={project.googlePlayLink}
+            openAsBlank={true}
           />
         )}
         {project?.appStoreLink && (
-          <DefaultButton
+          <ButtonWithLink
             color={DefaultButtonColor.GRAY}
             text={currLang === Lang.ENG ? 'Open in App Store' : 'Скачать в App Store'}
             buttonIcon={ButtonIcon.APP_STORE}
-            onClickAction={() => window.open(project?.appStoreLink, '_blank')}
+            to={project?.appStoreLink}
+            openAsBlank={true}
           />
         )}
       </div>
@@ -106,20 +118,21 @@ const ProjectDetailedPage: React.FC = () => {
         }
       </div>
       <div className="buttons-wrapper">
-        <DefaultButton
+        <ButtonWithLink
           color={DefaultButtonColor.BLUE}
           text={currLang === Lang.ENG ? 'Text me in Telegram' : 'Написать в телеграм'}
-          onClickAction={() => window.open(ExternalLinks.TELEGRAM, '_blank')}
+          to={ExternalLinks.TELEGRAM}
+          openAsBlank={true}
         />
-        <DefaultButton
+        <ButtonWithLink
           color={DefaultButtonColor.YELLOW}
           text={currLang === Lang.ENG ? 'More about services' : 'Подробнее об услугах'}
-          onClickAction={() => navigate(RoutePaths.SERVICES)}
+          to={RoutePaths.SERVICES}
         />
-        <DefaultButton
+        <ButtonWithLink
           color={DefaultButtonColor.MINT}
           text={currLang === Lang.ENG ? 'Back to homepage' : 'На главную'}
-          onClickAction={() => navigate(RoutePaths.HOME)}
+          to={RoutePaths.HOME}
         />
       </div>
     </div>
