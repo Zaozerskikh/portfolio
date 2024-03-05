@@ -2,17 +2,23 @@ import {ProjectInfo} from "../types/ProjectInfo";
 import {TagType} from "../constants/TagType"
 import {ProjectType} from "../constants/ProjectType";
 
+// glebkossov.com
+const glebkossovPreview = 'https://i.imgur.com/XRc5fnP.png'
+const glebkossov1 = 'https://i.imgur.com/tBKhcr6.png'
+const glebkossov2 = 'https://i.imgur.com/TQRUq56.png'
+
+// audioguides
 const audioGuidePreview  = 'https://i.imgur.com/LM8SHy7.png'
 const audioGuide1 = 'https://i.imgur.com/HFBwQKC.png';
 const audioGuide2 = 'https://i.imgur.com/XzQNv7Z.png'
 
+// hookah
 const hookahPreview = 'https://i.imgur.com/ZbLrNpz.png'
 const hookah1 = 'https://i.imgur.com/mguGHTp.png'
 const hookah2 = 'https://i.imgur.com/Nmco1o5.png'
-const hookah3 = 'https://i.imgur.com/iPUtklZ.jpg'
 const hookah4 = 'https://i.imgur.com/qDyhBvT.png'
 
-// const puzzlesPreview = 'https://i.imgur.com/jXj6vUs.png'
+// chess puzzles
 const puzzlesPreview = 'https://i.imgur.com/Fq3bz2N.png'
 const puzzles1 = 'https://i.imgur.com/DuxU5ml.png'
 const puzzles2 = 'https://i.imgur.com/pt8keLO.png'
@@ -31,6 +37,19 @@ export const MockProjectArr: ProjectInfo[] = [
     tags: [TagType.REACT_NATIVE, TagType.CMS, TagType.GIT],
     googlePlayLink: 'https://play.google.com/store/apps/details?id=com.audioguides_paris',
     appStoreLink: 'https://apps.apple.com/us/app/audio-guide-paris/id6471984315'
+  },
+  {
+    id: 'glebkossov',
+    name: 'glebkossov.com',
+    projectType: ProjectType.WEBSITE,
+    detailedSharedImages: [glebkossov1, glebkossov2],
+    previewImage: glebkossovPreview,
+    shortDescriptionRUS: 'разработал мультиязычный сайт-портфолио для UI/UX дизайнера, провел интеграцию с\u00A0CMS и развернул на VPS.',
+    shortDescriptionENG: 'developed a\u00A0multilingual portfolio website for a\u00A0UI/UX designer, \u00A0integrated it\u00A0with CMS and hosted it on\u00A0VPS',
+    fullDescriptionRUS: 'Разработал мультиязычный сайт-портфолио для UI/UX дизайнера, провел интеграцию с\u00A0CMS и\u00A0развернул на\u00A0VPS.',
+    fullDescriptionENG: 'Developed a\u00A0multilingual portfolio website for a\u00A0UI/UX designer, \u00A0integrated it with CMS and\u00A0hosted it on\u00A0VPS.',
+    tags: [TagType.REACT, TagType.CMS, TagType.GIT],
+    websiteLink: 'https://glebkossov.com'
   },
   {
     id: 'hookah-pt',

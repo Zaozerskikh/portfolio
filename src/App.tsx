@@ -47,7 +47,7 @@ const App: React.FC = () => {
       <BurgerMenu/>
       <MetaThemeManager/>
       <MetaTagsManager/>
-      <div className={`main-content-wrapper ${isDesktop ? 'desktop' : isTablet ? 'tablet' : 'mobile'}`}>
+      <div className={`main-content-wrapper animation-02s-all ${isDesktop ? 'desktop' : isTablet ? 'tablet' : 'mobile'}`}>
         <Routes>
           <Route path="/" element={<Navigate to={RoutePaths.HOME} />} />
           <Route path={RoutePaths.HOME} element={<HomePage />} />

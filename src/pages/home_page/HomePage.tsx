@@ -53,7 +53,7 @@ const HomePage: React.FC = () => {
         `}
       >
         {currLang === Lang.ENG
-          ? `I create products from\u00A0scratch or\u00A0based on&nbsp;a\u00A0ready design, as\u00A0well as\u00A0execute front-end and&nbsp;back-end development.`
+          ? `I create products from\u00A0scratch or\u00A0based on\u00A0a\u00A0ready design, as\u00A0well as\u00A0execute front-end and\u00A0back-end development.`
           : `Создаю продукты с\u00A0нуля или по\u00A0готовому дизайну, берусь за\u00A0фронтенд и\u00A0бэкенд.`}
       </h1>
       <div className="buttons">

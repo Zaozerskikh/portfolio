@@ -46,3 +46,4 @@ lerna-debug.log*
 .env.production.local
 /src/app/dev.env
 .env
+.firebase
