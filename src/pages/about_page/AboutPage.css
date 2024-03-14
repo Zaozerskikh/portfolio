@@ -5,6 +5,16 @@
     width: 100%;
 }
 
+.about-page-wrapper p {
+    padding: 0;
+    margin: 0;
+}
+
+.about-page-wrapper figure {
+    padding: 0;
+    margin: 0;
+}
+
 .about-page-wrapper.desktop {
     max-width: 1264px;
 }

@@ -31,10 +31,12 @@ const Avatar: React.FC = () => {
   return(
     <div style={{ zIndex: '3'}}>
       <InclinedBoop
+        rotateOnClick={true}
         rotation={20}
         externalTrigger={externalTrigger}
         tension={400}
         friction={10}
+        onClickRollbackTimeInMs={3000}
       >
         <div
           className={`avatar-wrapper ${isDesktop && 'desktop'} ${isHovered && 'hovered'}`}

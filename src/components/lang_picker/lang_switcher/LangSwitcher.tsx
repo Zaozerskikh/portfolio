@@ -16,15 +16,17 @@ const LangSwitcher: React.FC<LangSwitcherProps> = ({ lang, onClickAction}) => {
   const selectedLang = useSelector((state: RootStoreState) => state.lang)
 
   return(
-    <div
+    <button
       className={`lang-switcher-wrapper animation-02s-all
         ${selectedColorTheme === ColorTheme.DARK ? 'dark' : 'white'} 
         ${(lang === selectedLang) && (selectedColorTheme === ColorTheme.DARK ? 'dark-selected' : 'white-selected')}
       `}
       onClick={onClickAction}
     >
-      <div className={`mobile-button-text ${selectedColorTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>{lang}</div>
-    </div>
+      <div className={`mobile-button-text ${selectedColorTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
+        {lang}
+      </div>
+    </button>
   )
 }
 

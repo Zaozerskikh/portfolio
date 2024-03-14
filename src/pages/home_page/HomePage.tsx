@@ -30,7 +30,7 @@ const HomePage: React.FC = () => {
             : `Разрабатываю ${isMobile ? '</br>' : ''} сайты, ${isTablet || isDesktop ? '</br>' : ''} мобильные ${isMobile ? '</br>' : ''} и веб-приложения.`}`
         }}
       />
-      <div className={`projects-wrapper ${isDesktop ? 'desktop' : isTablet ? 'tablet' : 'mobile'}`}>
+      <section className={`projects-wrapper ${isDesktop ? 'desktop' : isTablet ? 'tablet' : 'mobile'}`}>
         {MockProjectArr.map((project, idx) => (
           <ProjectCard
             to={RoutePaths.PROJECT_DETAILED.replace(':id', project?.id)}
@@ -43,7 +43,7 @@ const HomePage: React.FC = () => {
             tags={project.tags}
           />
         ))}
-      </div>
+      </section>
       <h1
         className={`
           h1-text animation-02s-all 

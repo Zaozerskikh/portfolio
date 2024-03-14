@@ -6,7 +6,7 @@ import BurgerButton from "../burger_button/BurgerButton";
 import {useDispatch, useSelector} from "react-redux";
 import {ColorTheme} from "../../constants/ColorTheme";
 import {RoutePaths} from "../../constants/RoutePaths";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
 import HeaderDesktopLink from "./header_desktop_link/HeaderDesktopLink";
@@ -23,14 +23,13 @@ const Header: React.FC = () => {
   const currLang = useSelector((state: RootStoreState) => state.lang)
 
   const location = useLocation()
-  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
 
   return(
-    <div className="header-wrapper">
+    <header className="header-wrapper">
       <div
         className={`
           header animation-02s-all
@@ -41,7 +40,7 @@ const Header: React.FC = () => {
         <Logo/>
         {isDesktop ? (
           <>
-            <div className="header-links-wrapper">
+            <nav className="header-links-wrapper">
               <HeaderDesktopLink
                 text={currLang === Lang.ENG ? 'projects' : 'проекты'}
                 color={DefaultButtonColor.VIOLET}
@@ -81,7 +80,7 @@ const Header: React.FC = () => {
                 link={`mailto:${ExternalLinks.EMAIL}`}
                 isExternal={true}
               />
-            </div>
+            </nav>
             <div className="header-left-section">
               <HeaderDesktopLink
                 text={currLang === Lang.ENG ? 'Eng' : 'Рус'}
@@ -98,7 +97,7 @@ const Header: React.FC = () => {
           <BurgerButton/>
         )}
       </div>
-    </div>
+    </header>
   )
 }
 

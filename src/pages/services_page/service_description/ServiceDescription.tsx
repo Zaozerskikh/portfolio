@@ -14,6 +14,7 @@ interface ServiceDescriptionProps {
   text: string;
   icon: React.ReactNode;
 }
+
 const ServiceDescription: React.FC<ServiceDescriptionProps> = ({ boopTrigger, text, icon}) => {
   const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
 
@@ -34,7 +35,15 @@ const ServiceDescription: React.FC<ServiceDescriptionProps> = ({ boopTrigger, te
           }}
           onMouseLeave={() => setHoverBoopTrigger(false)}
         >
-          <InclinedBoop tension={400} friction={5} rotation={15} externalTrigger={boopTrigger}>
+          <InclinedBoop
+            tension={400}
+            friction={5}
+            rotation={15}
+            externalTrigger={boopTrigger}
+            rotateOnClick={true}
+            frictionOnClick={6}
+            tensionOnClick={50}
+          >
             {icon}
           </InclinedBoop >
         </div>

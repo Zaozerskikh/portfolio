@@ -12,6 +12,11 @@ const audioGuidePreview  = 'https://i.imgur.com/LM8SHy7.png'
 const audioGuide1 = 'https://i.imgur.com/HFBwQKC.png';
 const audioGuide2 = 'https://i.imgur.com/XzQNv7Z.png'
 
+// yourmeal
+const yourmealPreview  = 'https://i.imgur.com/VDV4Jye.png'
+const yourmeal1 = 'https://i.imgur.com/2QDa9oA.png';
+const yourmeal2 = 'https://i.imgur.com/3sKk2Y1.png'
+
 // hookah
 const hookahPreview = 'https://i.imgur.com/ZbLrNpz.png'
 const hookah1 = 'https://i.imgur.com/mguGHTp.png'
@@ -39,15 +44,28 @@ export const MockProjectArr: ProjectInfo[] = [
     appStoreLink: 'https://apps.apple.com/us/app/audio-guide-paris/id6471984315'
   },
   {
+    id: 'yourmeal',
+    name: 'YourMeal',
+    projectType: ProjectType.WEBSITE,
+    detailedSharedImages: [yourmeal1, yourmeal2],
+    previewImage: yourmealPreview,
+    shortDescriptionRUS: 'разработал фронтенд-часть амбициозного фудтех-стартапа, упаковал в\u00A0докер, развернул на\u00A0сервере',
+    shortDescriptionENG: 'developed a\u00A0front-end part of an\u00A0ambitious foodtech startup, composed it with\u00A0Docker, and\u00A0deployed it on\u00A0VPS',
+    fullDescriptionRUS: 'Разработал фронтенд-часть амбициозного фудтех-стартапа, упаковал в\u00A0докер, развернул на\u00A0сервере. Сейчас проект находится в\u00A0стадии разработки бэкенда, но\u00A0вы можете свободно протестировать интерфейс дев-версии по ссылке ниже.',
+    fullDescriptionENG: 'developed a\u00A0front-end part of an\u00A0ambitious foodtech startup, composed it with\u00A0Docker, and\u00A0deployed it on\u00A0VPS. The\u00A0project is\u00A0currently in\u00A0the backend development stage, but you can freely test the dev version UI using the link below.',
+    tags: [TagType.REACT, TagType.DOCKER, TagType.GIT],
+    websiteLink: 'https://yourmeal.app'
+  },
+  {
     id: 'glebkossov',
     name: 'glebkossov.com',
     projectType: ProjectType.WEBSITE,
     detailedSharedImages: [glebkossov1, glebkossov2],
     previewImage: glebkossovPreview,
-    shortDescriptionRUS: 'разработал мультиязычный сайт-портфолио для UI/UX дизайнера, провел интеграцию с\u00A0CMS и развернул на VPS.',
-    shortDescriptionENG: 'developed a\u00A0multilingual portfolio website for a\u00A0UI/UX designer, \u00A0integrated it\u00A0with CMS and hosted it on\u00A0VPS',
+    shortDescriptionRUS: 'разработал мультиязычный сайт-портфолио для UI/UX дизайнера, провел интеграцию с\u00A0CMS и развернул на\u00A0VPS',
+    shortDescriptionENG: 'developed a\u00A0multilingual portfolio website for\u00A0a\u00A0UI/UX designer,\u00A0integrated it\u00A0with CMS and hosted it\u00A0on\u00A0VPS',
     fullDescriptionRUS: 'Разработал мультиязычный сайт-портфолио для UI/UX дизайнера, провел интеграцию с\u00A0CMS и\u00A0развернул на\u00A0VPS.',
-    fullDescriptionENG: 'Developed a\u00A0multilingual portfolio website for a\u00A0UI/UX designer, \u00A0integrated it with CMS and\u00A0hosted it on\u00A0VPS.',
+    fullDescriptionENG: 'Developed a\u00A0multilingual portfolio website for\u00A0a\u00A0UI/UX designer, integrated it\u00A0with CMS and\u00A0hosted it\u00A0on\u00A0VPS.',
     tags: [TagType.REACT, TagType.CMS, TagType.GIT],
     websiteLink: 'https://glebkossov.com'
   },

@@ -15,7 +15,7 @@ const BurgerButton: React.FC = () => {
   const dispatch = useDispatch()
 
   return(
-    <div
+    <button
       className="burger-btn-wrapper"
       onClick={() => dispatch(toggleBurger())}
     >
@@ -30,7 +30,7 @@ const BurgerButton: React.FC = () => {
       <div className={`mobile-menu-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
         {currLang === Lang.ENG ? 'menu>' : 'меню>'}
       </div>
-    </div>
+    </button>
   )
 }
 

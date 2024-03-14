@@ -40,7 +40,7 @@ const ColorThemeSwitcher: React.FC<ColorThemeSwitcherProps> = ({ assignedTheme})
   }, [isRotated]);
 
   return(
-    <div
+    <button
       className={`
         color-theme-switcher-wrapper 
         animation-02s-all
@@ -75,7 +75,7 @@ const ColorThemeSwitcher: React.FC<ColorThemeSwitcherProps> = ({ assignedTheme})
           </Boop>
         )
       )}
-    </div>
+    </button>
   )
 }
 

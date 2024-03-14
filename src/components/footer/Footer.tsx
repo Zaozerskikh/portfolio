@@ -18,8 +18,8 @@ const Footer: React.FC = () => {
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
 
   return(
-    <div className={`footer-wrapper animation-02s-all ${currTheme === ColorTheme.DARK ? 'dark' : 'white'}`}>
-      <div className="links">
+    <footer className={`footer-wrapper animation-02s-all ${currTheme === ColorTheme.DARK ? 'dark' : 'white'}`}>
+      <nav className="links">
         <FooterLink
           link={ExternalLinks.TELEGRAM}
           text={currLang === Lang.ENG ? 'telegram' : 'телеграм'}
@@ -38,17 +38,17 @@ const Footer: React.FC = () => {
           styleOnHover={'violet-text-hover'}
           styleOnClick={'violet-text-click'}
         />
-      </div>
-      <div className="bottom-links">
-        <div className={`description-text ${isDesktop && 'desktop'} ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
+      </nav>
+      <nav className="bottom-links">
+        <time className={`description-text ${isDesktop && 'desktop'} ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
           {currLang === Lang.ENG
             ? `© ${new Date().getFullYear()} Sergey Zaozerskikh`
             : `© ${new Date().getFullYear()} Сергей Заозерских`
           }
-        </div>
+        </time>
         <CopyrightLink/>
-      </div>
-    </div>
+      </nav>
+    </footer>
   )
 }
 

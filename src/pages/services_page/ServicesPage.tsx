@@ -125,7 +125,7 @@ const ServicesPage: React.FC = () => {
           icon={<FullstackSvg colorTheme={currTheme} />}
         />
       </div>
-      <div className="buttons">
+      <nav className="buttons">
         <ButtonWithLink
           color={DefaultButtonColor.VIOLET}
           text={currLang === Lang.ENG ? 'Back to portfolio' : 'Вернуться к кейсам'}
@@ -137,7 +137,7 @@ const ServicesPage: React.FC = () => {
           to={ExternalLinks.TELEGRAM}
           openAsBlank={true}
         />
-      </div>
+      </nav>
     </div>
   )
 }

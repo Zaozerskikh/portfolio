@@ -54,7 +54,7 @@ const BurgerMenu: React.FC = () => {
             <ColorThemePicker/>
             <LangPicker/>
           </div>
-          <div className="buttons">
+          <nav className="buttons">
             <ButtonWithLink
               color={DefaultButtonColor.MINT}
               text={currLang === Lang.ENG ? 'Projects' : 'Проекты'}
@@ -88,7 +88,7 @@ const BurgerMenu: React.FC = () => {
               to={`mailto:${ExternalLinks.EMAIL}`}
               openAsBlank={true}
             />
-          </div>
+          </nav>
         </div>
       </animated.div>
     </>

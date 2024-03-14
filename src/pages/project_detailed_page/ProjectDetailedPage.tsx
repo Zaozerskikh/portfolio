@@ -17,7 +17,6 @@ import {MediaQueries} from "../../constants/MediaQueries";
 import {MockProjectArr} from "../../mock_data/MockProjectArr";
 import {RootStoreState} from "../../redux/ReduxStore";
 
-
 const ProjectDetailedPage: React.FC = () => {
   const currLang = useSelector((state: RootStoreState) => state.lang)
   const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
@@ -47,7 +46,7 @@ const ProjectDetailedPage: React.FC = () => {
   }, [id, navigate]);
 
   return(
-    <div className="project-detailed-wrapper">
+    <article className="project-detailed-wrapper">
       <div className="info-wrapper">
         <h1
           className={`
@@ -64,7 +63,7 @@ const ProjectDetailedPage: React.FC = () => {
             <Tag type={tag} key={idx} />
           ))}
         </div>
-        <div
+        <p
           className={`
             main-text animation-02s-all maxwidth 
             ${isDesktop && 'desktop'} 
@@ -73,9 +72,9 @@ const ProjectDetailedPage: React.FC = () => {
           `}
         >
           {(currLang === Lang.ENG ? project?.fullDescriptionENG : project?.fullDescriptionRUS) || ''}
-        </div>
+        </p>
       </div>
-      <div className='btns-wrapper'>
+      <nav className='btns-wrapper'>
         {project?.websiteLink && (
           <ButtonWithLink
             color={DefaultButtonColor.VIOLET}
@@ -102,7 +101,7 @@ const ProjectDetailedPage: React.FC = () => {
             openAsBlank={true}
           />
         )}
-      </div>
+      </nav>
       <div className="images-wrapper">
         {project?.detailedSharedImages.map((image, idx) => (
             <img src={image} alt={idx.toString()} key={idx}/>
@@ -117,7 +116,7 @@ const ProjectDetailedPage: React.FC = () => {
           ))
         }
       </div>
-      <div className="buttons-wrapper">
+      <nav className="buttons-wrapper">
         <ButtonWithLink
           color={DefaultButtonColor.BLUE}
           text={currLang === Lang.ENG ? 'Text me in Telegram' : 'Написать в телеграм'}
@@ -134,8 +133,8 @@ const ProjectDetailedPage: React.FC = () => {
           text={currLang === Lang.ENG ? 'Back to homepage' : 'На главную'}
           to={RoutePaths.HOME}
         />
-      </div>
-    </div>
+      </nav>
+    </article>
   )
 }
 
