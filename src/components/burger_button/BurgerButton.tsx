@@ -4,15 +4,15 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {toggleBurger} from "../../redux/BurgerMenuReducer";
 import '../../assets/styles/fonts.css'
-import {Lang} from "../../constants/Lang";
 import {ColorTheme} from "../../constants/ColorTheme";
 import {RootStoreState} from "../../redux/ReduxStore";
+import {useTranslation} from "react-i18next";
 
 const BurgerButton: React.FC = () => {
   const isOpened = useSelector((state: RootStoreState) => state.burger.isOpened)
   const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
-  const currLang = useSelector((state: RootStoreState) => state.lang)
   const dispatch = useDispatch()
+  const { t } = useTranslation()
 
   return(
     <button
@@ -28,7 +28,7 @@ const BurgerButton: React.FC = () => {
         </div>
       </div>
       <div className={`mobile-menu-text animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
-        {currLang === Lang.ENG ? 'menu>' : 'меню>'}
+        {t('header.burgerButton')}{'>'}
       </div>
     </button>
   )

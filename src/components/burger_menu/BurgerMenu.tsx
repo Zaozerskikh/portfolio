@@ -9,7 +9,6 @@ import {useLocation} from "react-router-dom";
 import {setIsBurgerShown} from "../../redux/BurgerMenuReducer";
 import ColorThemePicker from "../color_theme_picker/ColorThemePicker";
 import {ColorTheme} from "../../constants/ColorTheme";
-import {Lang} from "../../constants/Lang";
 import {RoutePaths} from "../../constants/RoutePaths";
 import ExternalLinks from "../../constants/ExternalLinks";
 import {useMediaQuery} from "react-responsive";
@@ -18,14 +17,15 @@ import {useDrag} from "@use-gesture/react";
 import {animated} from "react-spring";
 import {ReactDOMAttributes} from "@use-gesture/react/dist/declarations/src/types";
 import {RootStoreState} from "../../redux/ReduxStore";
+import {useTranslation} from "react-i18next";
 
 
 const BurgerMenu: React.FC = () => {
   const isBurgerOpened = useSelector((state: RootStoreState) => state.burger.isOpened)
   const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
-  const currLang = useSelector((state: RootStoreState) => state.lang)
   const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE})
 
+  const { t } = useTranslation()
   const location = useLocation()
   const dispatch = useDispatch()
 
@@ -57,34 +57,34 @@ const BurgerMenu: React.FC = () => {
           <nav className="buttons">
             <ButtonWithLink
               color={DefaultButtonColor.MINT}
-              text={currLang === Lang.ENG ? 'Projects' : 'Проекты'}
+              text={t('burger.projects')}
               to={RoutePaths.HOME}
             />
             <ButtonWithLink
               color={DefaultButtonColor.YELLOW}
-              text={currLang === Lang.ENG ? 'Services' : 'Услуги'}
+              text={t('burger.services')}
               to={RoutePaths.SERVICES}
             />
             <ButtonWithLink
               color={DefaultButtonColor.ORANGE}
-              text={currLang === Lang.ENG ? 'About' : 'Обо мне'}
+              text={t('burger.about')}
               to={RoutePaths.ABOUT}
             />
             <ButtonWithLink
               color={DefaultButtonColor.BLUE}
-              text={currLang === Lang.ENG ? 'Telegram' : 'Телеграм'}
+              text={t('burger.tg')}
               to={ExternalLinks.TELEGRAM}
               openAsBlank={true}
             />
             <ButtonWithLink
               color={DefaultButtonColor.WHITE}
-              text={currLang === Lang.ENG ? 'Github' : 'Гитхаб'}
+              text={t('burger.github')}
               to={ExternalLinks.GITHUB}
               openAsBlank={true}
             />
             <ButtonWithLink
               color={DefaultButtonColor.VIOLET}
-              text={currLang === Lang.ENG ? 'E-mail' : 'Эл. Почта'}
+              text={t('burger.email')}
               to={`mailto:${ExternalLinks.EMAIL}`}
               openAsBlank={true}
             />

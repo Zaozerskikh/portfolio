@@ -6,29 +6,29 @@ import {useSelector} from "react-redux";
 import {ColorTheme} from "../../constants/ColorTheme";
 import FooterLink from "./footer_link/FooterLink";
 import ExternalLinks from "../../constants/ExternalLinks";
-import {Lang} from "../../constants/Lang";
 import CopyrightLink from "./copyright_link/CopyrightLink";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
 import {RootStoreState} from "../../redux/ReduxStore";
+import {useTranslation} from "react-i18next";
 
 const Footer: React.FC = () => {
   const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
-  const currLang = useSelector((state: RootStoreState) => state.lang)
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
+  const { t } = useTranslation()
 
   return(
     <footer className={`footer-wrapper animation-02s-all ${currTheme === ColorTheme.DARK ? 'dark' : 'white'}`}>
       <nav className="links">
         <FooterLink
           link={ExternalLinks.TELEGRAM}
-          text={currLang === Lang.ENG ? 'telegram' : 'телеграм'}
+          text={t('footer.tg')}
           styleOnHover={'blue-text-hover'}
           styleOnClick={'blue-text-click'}
         />
         <FooterLink
           link={ExternalLinks.GITHUB}
-          text={currLang === Lang.ENG ? 'github' : 'гитхаб'}
+          text={t('footer.github')}
           styleOnHover={'grey-text-hover'}
           styleOnClick={'grey-text-click'}
         />
@@ -41,10 +41,7 @@ const Footer: React.FC = () => {
       </nav>
       <nav className="bottom-links">
         <time className={`description-text ${isDesktop && 'desktop'} ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}>
-          {currLang === Lang.ENG
-            ? `© ${new Date().getFullYear()} Sergey Zaozerskikh`
-            : `© ${new Date().getFullYear()} Сергей Заозерских`
-          }
+          {t('footer.copyright', { date: new Date().getFullYear() })}
         </time>
         <CopyrightLink/>
       </nav>

@@ -1,0 +1,13 @@
+{
+  "commonBtnsText": {
+    "moreAboutServices": "More about services",
+    "messageInTelegram": "Text me in Telegram",
+    "backToHome": "Back to homepage",
+    "backToCases": "Back to portfolio"
+  },
+  "projectBtnsText": {
+    "openWebsite": "Open website",
+    "openGooglePlay": "Open in Google Play",
+    "openAppStore": "Open in App Store"
+  }
+}

@@ -19,9 +19,11 @@ import ServiceDescription from "./service_description/ServiceDescription";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
 import {RootStoreState} from "../../redux/ReduxStore";
+import {useTranslation} from "react-i18next";
 
 const ServicesPage: React.FC = () => {
-  const currLang = useSelector((state: RootStoreState) => state.lang)
+  const { t, i18n } = useTranslation()
+  const currLang = i18n?.language as Lang
   const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
 
   const [boopWFS, setBoopWFS] = useState(false)
@@ -75,7 +77,7 @@ const ServicesPage: React.FC = () => {
         }, 1000)
       }, 4500)
     }
-  }, [currTheme, currLang, isTouchable]);
+  }, [currTheme, isTouchable]);
 
 
   return(
@@ -88,10 +90,7 @@ const ServicesPage: React.FC = () => {
           ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}
         `}
       >
-        {currLang === Lang.ENG
-          ? `Made with love for\u00A0each button\u00A0:)`
-          : `Делаю с любовью к\u00A0каждой кнопке\u00A0:)`
-        }
+        {t('servicesPage.header')}
       </h1>
       <div className={`services ${(isTablet || isDesktop) && 'desktop'}`}>
         <ServiceDescription
@@ -128,12 +127,12 @@ const ServicesPage: React.FC = () => {
       <nav className="buttons">
         <ButtonWithLink
           color={DefaultButtonColor.VIOLET}
-          text={currLang === Lang.ENG ? 'Back to portfolio' : 'Вернуться к кейсам'}
+          text={t('commonBtnsText.backToCases')}
           to={RoutePaths.HOME}
         />
         <ButtonWithLink
           color={DefaultButtonColor.BLUE}
-          text={currLang === Lang.ENG ? 'Message in Telegram' : 'Написать в телеграм'}
+          text={t('commonBtnsText.messageInTelegram')}
           to={ExternalLinks.TELEGRAM}
           openAsBlank={true}
         />

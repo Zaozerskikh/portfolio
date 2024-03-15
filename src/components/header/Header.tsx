@@ -3,7 +3,7 @@ import '../../assets/styles/fonts.css'
 import React from "react";
 import '../../assets/styles/animation_durations.css'
 import BurgerButton from "../burger_button/BurgerButton";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {ColorTheme} from "../../constants/ColorTheme";
 import {RoutePaths} from "../../constants/RoutePaths";
 import {useLocation} from "react-router-dom";
@@ -11,22 +11,20 @@ import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
 import HeaderDesktopLink from "./header_desktop_link/HeaderDesktopLink";
 import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
-import {Lang} from "../../constants/Lang";
 import ExternalLinks from "../../constants/ExternalLinks";
-import {toggleLang} from "../../redux/LangReducer";
 import ColorThemeSwitcher from "../color_theme_picker/color_theme_switcher/colorThemeSwitcher";
 import Logo from "./logo/Logo";
 import {RootStoreState} from "../../redux/ReduxStore";
+import {useTranslation} from "react-i18next";
+import {toggleLang} from "../../i18n/config/i18n";
 
 const Header: React.FC = () => {
   const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
-  const currLang = useSelector((state: RootStoreState) => state.lang)
-
-  const location = useLocation()
-  const dispatch = useDispatch()
-
   const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
+
+  const location = useLocation()
+  const { t } = useTranslation();
 
   return(
     <header className="header-wrapper">
@@ -42,39 +40,39 @@ const Header: React.FC = () => {
           <>
             <nav className="header-links-wrapper">
               <HeaderDesktopLink
-                text={currLang === Lang.ENG ? 'projects' : 'проекты'}
+                text={t('header.projects')}
                 color={DefaultButtonColor.VIOLET}
                 isSelected={location.pathname === RoutePaths.HOME}
                 link={RoutePaths.HOME}
               />
               <HeaderDesktopLink
-                text={currLang === Lang.ENG ? 'services' : 'услуги'}
+                text={t('header.services')}
                 color={DefaultButtonColor.YELLOW}
                 isSelected={location.pathname === RoutePaths.SERVICES}
                 link={RoutePaths.SERVICES}
               />
               <HeaderDesktopLink
-                text={currLang === Lang.ENG ? 'about' : 'обо мне'}
+                text={t('header.about')}
                 color={DefaultButtonColor.ORANGE}
                 isSelected={location.pathname === RoutePaths.ABOUT}
                 link={RoutePaths.ABOUT}
               />
               <HeaderDesktopLink
-                text={currLang === Lang.ENG ? 'telegram' : 'телеграм'}
+                text={t('header.tg')}
                 color={DefaultButtonColor.BLUE}
                 isSelected={false}
                 link={ExternalLinks.TELEGRAM}
                 isExternal={true}
               />
               <HeaderDesktopLink
-                text={currLang === Lang.ENG ? 'github' : 'гитхаб'}
+                text={t('header.github')}
                 color={DefaultButtonColor.GRAY}
                 isSelected={false}
                 link={ExternalLinks.GITHUB}
                 isExternal={true}
               />
               <HeaderDesktopLink
-                text={currLang === Lang.ENG ? 'email' : 'эл. почта'}
+                text={t('header.email')}
                 color={DefaultButtonColor.ORANGE}
                 isSelected={false}
                 link={`mailto:${ExternalLinks.EMAIL}`}
@@ -83,12 +81,12 @@ const Header: React.FC = () => {
             </nav>
             <div className="header-left-section">
               <HeaderDesktopLink
-                text={currLang === Lang.ENG ? 'Eng' : 'Рус'}
+                text={t('header.lang')}
                 color={DefaultButtonColor.MINT}
                 isSelected={false}
                 link={''}
                 asBtn={true}
-                onClickAsBtn={() => dispatch(toggleLang())}
+                onClickAsBtn={toggleLang}
               />
               <ColorThemeSwitcher/>
             </div>

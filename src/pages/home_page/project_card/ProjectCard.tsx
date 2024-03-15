@@ -12,6 +12,7 @@ import {MediaQueries} from "../../../constants/MediaQueries";
 import useHoverAndClick from "../../../utils/hooks/UseHoverAndClickHook";
 import withLink from "../../../utils/HOCs/WithLinkHOC";
 import {RootStoreState} from "../../../redux/ReduxStore";
+import {useTranslation} from "react-i18next";
 
 const ProjectCardWithoutLink: React.FC<ShortProjectInfo> = ({
   previewImage,
@@ -20,8 +21,9 @@ const ProjectCardWithoutLink: React.FC<ShortProjectInfo> = ({
   shortDescriptionRUS,
   tags
 }) => {
+  const { i18n } = useTranslation()
+  const currLang = i18n?.language as Lang
   const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
-  const currLang = useSelector((state: RootStoreState) => state.lang)
 
   const isTablet = useMediaQuery({ query: MediaQueries.TABLET })
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP })

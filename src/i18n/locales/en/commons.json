@@ -1,0 +1,26 @@
+{
+  "footer": {
+    "tg": "telegram",
+    "github": "github",
+    "copyright": "@ {{date}} Sergey Zaozerskikh",
+    "designerCredits": "designed by Gleb Kossov"
+  },
+  "header": {
+    "projects": "projects",
+    "services": "services",
+    "about": "about",
+    "tg": "telegram",
+    "github": "github",
+    "email": "email",
+    "lang": "Eng",
+    "burgerButton": "menu"
+  },
+  "burger": {
+    "projects": "Projects",
+    "services": "Services",
+    "about": "About",
+    "tg": "Telegram",
+    "github": "Github",
+    "email": "E-mail"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "homePage": {
+    "header": "Developing{{sep1}}websites,{{sep2}}mobile{{sep3}}and web applications.",
+    "bottomPhrase": "I create products from\u00A0scratch or\u00A0based on\u00A0a\u00A0ready design, as\u00A0well as\u00A0execute front-end and\u00A0back-end development."
+  },
+  "notFoundPage": {
+    "text": "It means that the page is\u00A0out of\u00A0date or\u00A0has been deleted, or\u00A0there is\u00A0an\u00A0error in\u00A0the link. But it\u00A0doesn’t matter, because all my\u00A0projects are still available on\u00A0the main page :)"
+  },
+  "servicesPage": {
+    "header": "Made with love for\u00A0each button\u00A0:)"
+  },
+  "aboutPage": {
+    "header": "Hello!",
+    "mainText1": "I’m Sergey Zaozerskikh, a\u00A0fullstack developer. Every day I\u00A0write code that turns ideas into technological, beautiful and\u00A0modern digital solutions. My experience of\u00A0studying at\u00A0the Software Engineering Department of\u00A0the HSE helps me in\u00A0this, as well as the skills I’ve gained from developing a\u00A0lot of\u00A0websites and mobile applications alone or\u00A0as a\u00A0part of teams.",
+    "mainText2": "I usually use React or\u00A0React Native for the frontend and Spring Boot for the server side, but I\u00A0am always ready to\u00A0use other technologies and tools as\u00A0well."
+  }
+}

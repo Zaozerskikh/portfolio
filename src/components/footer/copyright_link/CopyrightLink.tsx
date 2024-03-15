@@ -3,19 +3,19 @@ import './../../../assets/styles/animation_durations.css'
 import React from "react";
 import ExternalLinks from "../../../constants/ExternalLinks";
 import {ColorTheme} from "../../../constants/ColorTheme";
-import {Lang} from "../../../constants/Lang";
 import {useSelector} from "react-redux";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../constants/MediaQueries";
 import useHover from "../../../utils/hooks/UseHoverHook";
 import {Link} from "react-router-dom";
 import {RootStoreState} from "../../../redux/ReduxStore";
+import {useTranslation} from "react-i18next";
 
 const CopyrightLink: React.FC = () => {
   const {isHovered, ...hoverHandlers} = useHover()
   const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
-  const currLang = useSelector((state: RootStoreState) => state.lang)
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
+  const { t } = useTranslation()
 
   return(
     <Link
@@ -42,7 +42,7 @@ const CopyrightLink: React.FC = () => {
           ${isHovered && (currTheme === ColorTheme.DARK ? 'hovered-white' : 'hovered-dark')}
         `}
       >
-        {currLang === Lang.ENG ? 'designed by Gleb Kossov' : 'задизайнил Глеб Коссов'}
+        {t('footer.designerCredits')}
       </div>
       <div
         className={`

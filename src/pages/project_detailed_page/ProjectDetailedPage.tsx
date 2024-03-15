@@ -16,9 +16,11 @@ import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
 import {MockProjectArr} from "../../mock_data/MockProjectArr";
 import {RootStoreState} from "../../redux/ReduxStore";
+import {useTranslation} from "react-i18next";
 
 const ProjectDetailedPage: React.FC = () => {
-  const currLang = useSelector((state: RootStoreState) => state.lang)
+  const { t, i18n } = useTranslation()
+  const currLang = i18n?.language as Lang
   const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
 
   const { id } = useParams<{ id: string }>()
@@ -78,7 +80,7 @@ const ProjectDetailedPage: React.FC = () => {
         {project?.websiteLink && (
           <ButtonWithLink
             color={DefaultButtonColor.VIOLET}
-            text={currLang === Lang.ENG ? 'Open website' : 'Открыть cайт'}
+            text={t('projectBtnsText.openWebsite')}
             to={project?.websiteLink}
             openAsBlank={true}
           />
@@ -86,7 +88,7 @@ const ProjectDetailedPage: React.FC = () => {
         {project?.googlePlayLink && (
           <ButtonWithLink
             color={DefaultButtonColor.MINT}
-            text={currLang === Lang.ENG ? 'Open in Google Play' : 'Скачать в Google Play'}
+            text={t('projectBtnsText.openGooglePlay')}
             buttonIcon={ButtonIcon.GOOGLE_PLAY}
             to={project.googlePlayLink}
             openAsBlank={true}
@@ -95,7 +97,7 @@ const ProjectDetailedPage: React.FC = () => {
         {project?.appStoreLink && (
           <ButtonWithLink
             color={DefaultButtonColor.GRAY}
-            text={currLang === Lang.ENG ? 'Open in App Store' : 'Скачать в App Store'}
+            text={t('projectBtnsText.openAppStore')}
             buttonIcon={ButtonIcon.APP_STORE}
             to={project?.appStoreLink}
             openAsBlank={true}
@@ -119,18 +121,18 @@ const ProjectDetailedPage: React.FC = () => {
       <nav className="buttons-wrapper">
         <ButtonWithLink
           color={DefaultButtonColor.BLUE}
-          text={currLang === Lang.ENG ? 'Text me in Telegram' : 'Написать в телеграм'}
+          text={t('commonBtnsText.messageInTelegram')}
           to={ExternalLinks.TELEGRAM}
           openAsBlank={true}
         />
         <ButtonWithLink
           color={DefaultButtonColor.YELLOW}
-          text={currLang === Lang.ENG ? 'More about services' : 'Подробнее об услугах'}
+          text={t('commonBtnsText.moreAboutServices')}
           to={RoutePaths.SERVICES}
         />
         <ButtonWithLink
           color={DefaultButtonColor.MINT}
-          text={currLang === Lang.ENG ? 'Back to homepage' : 'На главную'}
+          text={t('commonBtnsText.backToHome')}
           to={RoutePaths.HOME}
         />
       </nav>

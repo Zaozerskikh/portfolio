@@ -1,0 +1,26 @@
+{
+  "footer": {
+    "tg": "телеграм",
+    "github": "гитхаб",
+    "copyright": "@ {{date}} Сергей Заозерских",
+    "designerCredits": "задизайнил Глеб Коссов"
+  },
+  "header" : {
+    "projects": "проекты",
+    "services": "услуги",
+    "about": "обо мне",
+    "tg": "телеграм",
+    "github": "гитхаб",
+    "email": "эл. почта",
+    "lang": "Рус",
+    "burgerButton": "меню"
+  },
+  "burger": {
+    "projects": "Проекты",
+    "services": "Услуги",
+    "about": "Обо мне",
+    "tg": "Телеграм",
+    "github": "Гитхаб",
+    "email": "Эл. Почта"
+  }
+}

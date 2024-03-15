@@ -1,0 +1,13 @@
+{
+  "commonBtnsText": {
+    "moreAboutServices": "Подробнее об услугах",
+    "messageInTelegram": "Написать в телеграм",
+    "backToHome": "На главную",
+    "backToCases": "Вернуться к кейсам"
+  },
+  "projectBtnsText": {
+    "openWebsite": "Открыть cайт",
+    "openGooglePlay": "Скачать в Google Play",
+    "openAppStore": "Скачать в App Store"
+  }
+}

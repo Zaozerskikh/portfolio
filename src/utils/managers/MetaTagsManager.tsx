@@ -1,14 +1,14 @@
 import React, {useMemo} from "react";
 import {Helmet} from "react-helmet-async";
 import {useLocation} from "react-router-dom";
-import {useSelector} from "react-redux";
 import {Lang} from "../../constants/Lang";
-import {RootStoreState} from "../../redux/ReduxStore";
 import {RoutePaths} from "../../constants/RoutePaths";
+import {useTranslation} from "react-i18next";
 
 const MetaTagsManager: React.FC = () => {
   const location = useLocation()
-  const currLang = useSelector((state: RootStoreState) => state.lang)
+  const { i18n } = useTranslation()
+  const currLang = i18n?.language as Lang
 
   const metaTags = useMemo<{ title: string, description: string }>(() => {
     switch (location?.pathname) {
