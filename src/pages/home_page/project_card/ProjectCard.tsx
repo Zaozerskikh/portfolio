@@ -3,7 +3,6 @@ import '../../../assets/styles/fonts.css'
 import '../../../assets/styles/animation_durations.css'
 import React from "react";
 import {ColorTheme} from "../../../constants/ColorTheme";
-import {useSelector} from "react-redux";
 import Tag from "../../../components/tag/Tag";
 import {ShortProjectInfo} from "../../../types/ProjectInfo";
 import {Lang} from "../../../constants/Lang";
@@ -11,8 +10,8 @@ import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../constants/MediaQueries";
 import useHoverAndClick from "../../../utils/hooks/UseHoverAndClickHook";
 import withLink from "../../../utils/HOCs/WithLinkHOC";
-import {RootStoreState} from "../../../redux/ReduxStore";
 import {useTranslation} from "react-i18next";
+import {useAppSelector} from "../../../redux/Hooks";
 
 const ProjectCardWithoutLink: React.FC<ShortProjectInfo> = ({
   previewImage,
@@ -23,7 +22,7 @@ const ProjectCardWithoutLink: React.FC<ShortProjectInfo> = ({
 }) => {
   const { i18n } = useTranslation()
   const currLang = i18n?.language as Lang
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currTheme = useAppSelector(state => state.colorTheme)
 
   const isTablet = useMediaQuery({ query: MediaQueries.TABLET })
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP })

@@ -3,11 +3,10 @@ import './../../../assets/styles/fonts.css'
 import './../../../assets/styles/animation_durations.css'
 import React from "react";
 import {DefaultButtonColor} from "../../../constants/DefaultButtonColor";
-import {useSelector} from "react-redux";
 import {ColorTheme} from "../../../constants/ColorTheme";
 import useHoverAndClick from "../../../utils/hooks/UseHoverAndClickHook";
 import {Link} from "react-router-dom";
-import {RootStoreState} from "../../../redux/ReduxStore";
+import {useAppSelector} from "../../../redux/Hooks";
 
 interface HeaderDesktopLinkProps {
   text: string;
@@ -28,7 +27,7 @@ const HeaderDesktopLink: React.FC<HeaderDesktopLinkProps> = ({
   asBtn,
   onClickAsBtn
 }) => {
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currTheme = useAppSelector(state => state.colorTheme)
   const {isHovered, isClicked, ...eventHandlers} = useHoverAndClick()
   const WrapperComponent = asBtn ? "div" : Link
 

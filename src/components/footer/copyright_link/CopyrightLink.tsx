@@ -3,17 +3,16 @@ import './../../../assets/styles/animation_durations.css'
 import React from "react";
 import ExternalLinks from "../../../constants/ExternalLinks";
 import {ColorTheme} from "../../../constants/ColorTheme";
-import {useSelector} from "react-redux";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../constants/MediaQueries";
 import useHover from "../../../utils/hooks/UseHoverHook";
 import {Link} from "react-router-dom";
-import {RootStoreState} from "../../../redux/ReduxStore";
 import {useTranslation} from "react-i18next";
+import {useAppSelector} from "../../../redux/Hooks";
 
 const CopyrightLink: React.FC = () => {
   const {isHovered, ...hoverHandlers} = useHover()
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currTheme = useAppSelector(state => state.colorTheme)
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
   const { t } = useTranslation()
 

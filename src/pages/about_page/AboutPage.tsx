@@ -3,7 +3,6 @@ import './../../assets/styles/fonts.css'
 import './../../assets/styles/animation_durations.css'
 import React from "react";
 import {ButtonWithLink} from "../../components/default_button/DefaultButton";
-import {useSelector} from "react-redux";
 import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
 import {RoutePaths} from "../../constants/RoutePaths";
 import ExternalLinks from "../../constants/ExternalLinks";
@@ -12,11 +11,11 @@ import DecorativeCodelines from "./DecorativeCodelines";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
 import Avatar from "./avatar/Avatar";
-import {RootStoreState} from "../../redux/ReduxStore";
 import {useTranslation} from "react-i18next";
+import {useAppSelector} from "../../redux/Hooks";
 
 const AboutPage: React.FC = () => {
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currTheme = useAppSelector(state => state.colorTheme)
   const { t } = useTranslation()
 
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})

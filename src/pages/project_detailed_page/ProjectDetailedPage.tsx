@@ -3,7 +3,6 @@ import './../../assets/styles/fonts.css'
 import './../../assets/styles/animation_durations.css'
 import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
-import {useSelector} from "react-redux";
 import {RoutePaths} from "../../constants/RoutePaths";
 import {ProjectInfo} from "../../types/ProjectInfo";
 import {ButtonIcon, ButtonWithLink} from "../../components/default_button/DefaultButton";
@@ -15,13 +14,13 @@ import ExternalLinks from "../../constants/ExternalLinks";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
 import {MockProjectArr} from "../../mock_data/MockProjectArr";
-import {RootStoreState} from "../../redux/ReduxStore";
 import {useTranslation} from "react-i18next";
+import {useAppSelector} from "../../redux/Hooks";
 
 const ProjectDetailedPage: React.FC = () => {
   const { t, i18n } = useTranslation()
   const currLang = i18n?.language as Lang
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currTheme = useAppSelector(state => state.colorTheme)
 
   const { id } = useParams<{ id: string }>()
   const [project, setProject] = useState<ProjectInfo | undefined>(undefined)

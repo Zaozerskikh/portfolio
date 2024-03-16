@@ -1,10 +1,9 @@
 import React, {useEffect} from "react";
-import {useSelector} from "react-redux";
 import {ColorTheme} from "../../constants/ColorTheme";
-import {RootStoreState} from "../../redux/ReduxStore";
+import {useAppSelector} from "../../redux/Hooks";
 
 const MetaThemeManager: React.FC = () => {
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currTheme = useAppSelector(state => state.colorTheme)
 
   useEffect(() => {
     const metaThemeColor = document.querySelector('meta[name=theme-color]');

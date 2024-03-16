@@ -11,4 +11,5 @@ const reduxStore = configureStore({
 });
 
 export default reduxStore;
-export type RootStoreState = ReturnType<typeof reduxStore.getState>;
+export type RootStoreState = ReturnType<typeof reduxStore.getState>
+export type AppDispatch = typeof reduxStore.dispatch

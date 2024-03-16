@@ -4,18 +4,17 @@ import '../../assets/styles/animation_durations.css'
 import {ButtonWithLink} from "../../components/default_button/DefaultButton";
 import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
 import ExternalLinks from "../../constants/ExternalLinks";
-import {useSelector} from "react-redux";
 import {RoutePaths} from "../../constants/RoutePaths";
 import {ColorTheme} from "../../constants/ColorTheme";
 import ProjectCard from "./project_card/ProjectCard";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
 import {MockProjectArr} from "../../mock_data/MockProjectArr";
-import {RootStoreState} from "../../redux/ReduxStore";
 import {useTranslation} from "react-i18next";
+import {useAppSelector} from "../../redux/Hooks";
 
 const HomePage: React.FC = () => {
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currTheme = useAppSelector(state => state.colorTheme)
   const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
   const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE})

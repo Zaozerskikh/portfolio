@@ -5,11 +5,10 @@ import React from "react";
 import {useMediaQuery} from "react-responsive";
 import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
 import {MediaQueries} from "../../constants/MediaQueries";
-import {useSelector} from "react-redux";
 import {ColorTheme} from "../../constants/ColorTheme";
 import useHoverAndClick from "../../utils/hooks/UseHoverAndClickHook";
 import withLink from "../../utils/HOCs/WithLinkHOC";
-import {RootStoreState} from "../../redux/ReduxStore";
+import {useAppSelector} from "../../redux/Hooks";
 
 export enum ButtonIcon {
   APP_STORE = 'APP_STORE',
@@ -23,7 +22,7 @@ export interface DefaultButtonProps {
 }
 
 const DefaultButton: React.FC<DefaultButtonProps> = ({ color, text, onClickAction, buttonIcon}) => {
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currTheme = useAppSelector(state => state.colorTheme)
   const {isHovered, isClicked, ...eventHandlers}
     = useHoverAndClick({ touchEndDelay: 1000 })
   const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });

@@ -2,17 +2,16 @@ import './LangSwitcher.css'
 import '../../../assets/styles/animation_durations.css'
 import '../../../assets/styles/fonts.css'
 import React from "react";
-import {useSelector} from "react-redux";
 import {ColorTheme} from "../../../constants/ColorTheme";
-import {RootStoreState} from "../../../redux/ReduxStore";
 import {useTranslation} from "react-i18next";
+import {useAppSelector} from "../../../redux/Hooks";
 
 interface LangSwitcherProps {
   lang: string;
   onClickAction: () => void;
 }
 const LangSwitcher: React.FC<LangSwitcherProps> = ({ lang, onClickAction}) => {
-  const selectedColorTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const selectedColorTheme = useAppSelector(state => state.colorTheme)
   const { i18n } = useTranslation()
 
   return(

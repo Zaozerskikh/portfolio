@@ -2,22 +2,21 @@ import './colorThemeSwitcher.css'
 import '../../../assets/styles/animation_durations.css'
 import React, {useEffect, useState} from "react";
 import {ColorTheme} from "../../../constants/ColorTheme";
-import {useDispatch, useSelector} from "react-redux";
 import SunIcon from "../assets/SunIcon";
 import MoonIcon from "../assets/MoonIcon";
 import Boop from "../../boop/Boop";
 import SunRotator from "./sun_rotator/SunRotator";
 import useHover from "../../../utils/hooks/UseHoverHook";
-import {RootStoreState} from "../../../redux/ReduxStore";
 import {toggleTheme} from "../../../redux/ColorThemeReducer";
+import {useAppDispatch, useAppSelector} from "../../../redux/Hooks";
 
 interface ColorThemeSwitcherProps {
   assignedTheme ? : ColorTheme
 }
 
 const ColorThemeSwitcher: React.FC<ColorThemeSwitcherProps> = ({ assignedTheme}) => {
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
-  const dispatch = useDispatch()
+  const currTheme = useAppSelector(state => state.colorTheme)
+  const dispatch = useAppDispatch()
 
   const [isBooped, setIsBooped] = useState(false)
   const [isRotated, setRotated] = useState(false)

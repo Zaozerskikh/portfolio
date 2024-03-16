@@ -7,11 +7,10 @@ import {MediaQueries} from "../../../constants/MediaQueries";
 import {RoutePaths} from "../../../constants/RoutePaths";
 import {ColorTheme} from "../../../constants/ColorTheme";
 import {Link, useLocation} from "react-router-dom";
-import {useSelector} from "react-redux";
-import {RootStoreState} from "../../../redux/ReduxStore";
+import {useAppSelector} from "../../../redux/Hooks";
 
 const Logo: React.FC = () => {
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currTheme = useAppSelector(state => state.colorTheme)
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
   const isTouchable = useMediaQuery({query: MediaQueries.TOUCHABLE})
   const location = useLocation()

@@ -1,7 +1,6 @@
 import './BurgerMenu.css'
 import '../../assets/styles/animation_durations.css'
 import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
 import {ButtonWithLink} from "../default_button/DefaultButton";
 import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
 import LangPicker from "../lang_picker/LangPicker";
@@ -16,18 +15,18 @@ import {MediaQueries} from "../../constants/MediaQueries";
 import {useDrag} from "@use-gesture/react";
 import {animated} from "react-spring";
 import {ReactDOMAttributes} from "@use-gesture/react/dist/declarations/src/types";
-import {RootStoreState} from "../../redux/ReduxStore";
 import {useTranslation} from "react-i18next";
+import {useAppDispatch, useAppSelector} from "../../redux/Hooks";
 
 
 const BurgerMenu: React.FC = () => {
-  const isBurgerOpened = useSelector((state: RootStoreState) => state.burger.isOpened)
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const isBurgerOpened = useAppSelector(state => state.burger.isOpened)
+  const currTheme = useAppSelector(state => state.colorTheme)
   const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE})
 
   const { t } = useTranslation()
   const location = useLocation()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(setIsBurgerShown(false))

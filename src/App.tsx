@@ -9,7 +9,6 @@ import './assets/styles/animation_durations.css'
 import Header from "./components/header/Header";
 import BurgerMenu from "./components/burger_menu/BurgerMenu";
 import Footer from "./components/footer/Footer";
-import {useSelector} from "react-redux";
 import {ColorTheme} from "./constants/ColorTheme";
 import ServicesPage from "./pages/services_page/ServicesPage";
 import NotFoundPage from "./pages/not_found_page/NotFoundPage";
@@ -19,11 +18,11 @@ import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "./constants/MediaQueries";
 import MetaTagsManager from "./utils/managers/MetaTagsManager";
 import MetaThemeManager from "./utils/managers/MetaThemeManager";
-import {RootStoreState} from "./redux/ReduxStore";
+import {useAppSelector} from "./redux/Hooks";
 
 const App: React.FC = () => {
-  const isBurgerOpened = useSelector((state: RootStoreState) => state.burger.isOpened)
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const isBurgerOpened = useAppSelector(state => state.burger.isOpened)
+  const currTheme = useAppSelector(state => state.colorTheme)
   const location = useLocation()
 
   const isTablet = useMediaQuery({ query: MediaQueries.TABLET})

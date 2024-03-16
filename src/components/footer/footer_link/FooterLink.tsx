@@ -2,13 +2,12 @@ import './FooterLink.css'
 import '../../../assets/styles/animation_durations.css'
 import '../../../assets/styles/fonts.css'
 import React from "react";
-import {useSelector} from "react-redux";
 import {ColorTheme} from "../../../constants/ColorTheme";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../constants/MediaQueries";
 import useHoverAndClick from "../../../utils/hooks/UseHoverAndClickHook";
 import {Link} from "react-router-dom";
-import {RootStoreState} from "../../../redux/ReduxStore";
+import {useAppSelector} from "../../../redux/Hooks";
 
 interface FooterLinkProps {
   link: string,
@@ -19,7 +18,7 @@ interface FooterLinkProps {
 
 const FooterLink: React.FC<FooterLinkProps> = ({ link, text, styleOnHover, styleOnClick }) => {
   const {isHovered, isClicked, ...eventHandlers} = useHoverAndClick()
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme);
+  const currTheme = useAppSelector(state => state.colorTheme);
   const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
 

@@ -1,7 +1,6 @@
 import React from "react";
-import {useSelector} from "react-redux";
-import {RootStoreState} from "../../../redux/ReduxStore";
 import {ColorTheme} from "../../../constants/ColorTheme";
+import {useAppSelector} from "../../../redux/Hooks";
 
 interface MoonIconProps {
   isActive?: boolean;
@@ -9,7 +8,7 @@ interface MoonIconProps {
 }
 
 const MoonIcon: React.FC<MoonIconProps> = ({ isActive, isHovered }) => {
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currTheme = useAppSelector(state => state.colorTheme)
 
   return(
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

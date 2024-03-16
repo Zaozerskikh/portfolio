@@ -2,18 +2,17 @@ import './Footer.css'
 import '../../assets/styles/animation_durations.css'
 import '../../assets/styles/fonts.css'
 import React from "react";
-import {useSelector} from "react-redux";
 import {ColorTheme} from "../../constants/ColorTheme";
 import FooterLink from "./footer_link/FooterLink";
 import ExternalLinks from "../../constants/ExternalLinks";
 import CopyrightLink from "./copyright_link/CopyrightLink";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
-import {RootStoreState} from "../../redux/ReduxStore";
 import {useTranslation} from "react-i18next";
+import {useAppSelector} from "../../redux/Hooks";
 
 const Footer: React.FC = () => {
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currTheme = useAppSelector(state=> state.colorTheme)
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
   const { t } = useTranslation()
 

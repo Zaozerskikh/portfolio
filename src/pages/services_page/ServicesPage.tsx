@@ -4,7 +4,6 @@ import '../../assets/styles/fonts.css'
 import React, {useEffect, useState} from "react";
 import {ColorTheme} from "../../constants/ColorTheme";
 import {Lang} from "../../constants/Lang";
-import {useSelector} from "react-redux";
 import {ButtonWithLink} from "../../components/default_button/DefaultButton";
 import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
 import {RoutePaths} from "../../constants/RoutePaths";
@@ -18,13 +17,13 @@ import MobileAppsFromScratchSvg from "./assets/MobileAppsFromScratchSvg";
 import ServiceDescription from "./service_description/ServiceDescription";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
-import {RootStoreState} from "../../redux/ReduxStore";
 import {useTranslation} from "react-i18next";
+import {useAppSelector} from "../../redux/Hooks";
 
 const ServicesPage: React.FC = () => {
   const { t, i18n } = useTranslation()
   const currLang = i18n?.language as Lang
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currTheme = useAppSelector(state => state.colorTheme)
 
   const [boopWFS, setBoopWFS] = useState(false)
   const [boopWBD, setBoopWBD] = useState(false)

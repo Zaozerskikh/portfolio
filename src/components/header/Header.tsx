@@ -3,7 +3,6 @@ import '../../assets/styles/fonts.css'
 import React from "react";
 import '../../assets/styles/animation_durations.css'
 import BurgerButton from "../burger_button/BurgerButton";
-import {useSelector} from "react-redux";
 import {ColorTheme} from "../../constants/ColorTheme";
 import {RoutePaths} from "../../constants/RoutePaths";
 import {useLocation} from "react-router-dom";
@@ -14,12 +13,12 @@ import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
 import ExternalLinks from "../../constants/ExternalLinks";
 import ColorThemeSwitcher from "../color_theme_picker/color_theme_switcher/colorThemeSwitcher";
 import Logo from "./logo/Logo";
-import {RootStoreState} from "../../redux/ReduxStore";
 import {useTranslation} from "react-i18next";
 import {toggleLang} from "../../i18n/config/i18n";
+import {useAppSelector} from "../../redux/Hooks";
 
 const Header: React.FC = () => {
-  const currTheme = useSelector((state: RootStoreState) => state.colorTheme)
+  const currTheme = useAppSelector(state => state.colorTheme)
   const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
 
