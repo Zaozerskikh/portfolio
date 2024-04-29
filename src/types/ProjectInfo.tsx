@@ -17,6 +17,12 @@ export interface ProjectInfo extends ShortProjectInfo {
   detailedSharedImages: string[];
   detailedMobileImages?: string[];
   detailedDesktopImages?: string[]
+  detailedImageGrids?: {
+    im1: string;
+    im2: string;
+    im3: string;
+    im4: string;
+  }[];
   websiteLink?: string;
   googlePlayLink?: string;
   appStoreLink?: string;

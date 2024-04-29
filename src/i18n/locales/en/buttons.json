@@ -8,6 +8,7 @@
   "projectBtnsText": {
     "openWebsite": "Open website",
     "openGooglePlay": "Open in Google Play",
-    "openAppStore": "Open in App Store"
+    "openAppStore": "Open in App Store",
+    "closeBtn": "Close"
   }
 }

@@ -4,7 +4,7 @@ import '../../assets/styles/animation_durations.css'
 import React from "react";
 import NotFoundPageSvg from "./assets/NotFoundPageSvg";
 import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
-import DefaultButton from "../../components/default_button/DefaultButton";
+import DefaultButton from "../../components/buttons/default_button/DefaultButton";
 import {useNavigate} from "react-router-dom";
 import {RoutePaths} from "../../constants/RoutePaths";
 import {ColorTheme} from "../../constants/ColorTheme";

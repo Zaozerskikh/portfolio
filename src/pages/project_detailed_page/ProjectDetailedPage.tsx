@@ -1,11 +1,11 @@
 import './ProjectDetailed.css'
 import './../../assets/styles/fonts.css'
 import './../../assets/styles/animation_durations.css'
-import React, {useEffect, useState} from "react";
+import React, {ReactNode, useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {RoutePaths} from "../../constants/RoutePaths";
 import {ProjectInfo} from "../../types/ProjectInfo";
-import {ButtonIcon, ButtonWithLink} from "../../components/default_button/DefaultButton";
+import {ButtonIcon, ButtonWithLink} from "../../components/buttons/default_button/DefaultButton";
 import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
 import {Lang} from "../../constants/Lang";
 import {ColorTheme} from "../../constants/ColorTheme";
@@ -16,11 +16,16 @@ import {MediaQueries} from "../../constants/MediaQueries";
 import {MockProjectArr} from "../../mock_data/MockProjectArr";
 import {useTranslation} from "react-i18next";
 import {useAppSelector} from "../../redux/Hooks";
+import FullscreenModal from "./fullscreen_modal/FullscreenModal";
+import {AnimatePresence} from "framer-motion";
+import ImageGrid from "./image_grid/ImageGrid";
+import {createPortal} from "react-dom";
 
 const ProjectDetailedPage: React.FC = () => {
   const { t, i18n } = useTranslation()
   const currLang = i18n?.language as Lang
   const currTheme = useAppSelector(state => state.colorTheme)
+  const root = document.getElementById('app')
 
   const { id } = useParams<{ id: string }>()
   const [project, setProject] = useState<ProjectInfo | undefined>(undefined)
@@ -29,6 +34,9 @@ const ProjectDetailedPage: React.FC = () => {
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
   const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
   const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE })
+
+  const [fullscreenState, setFullscreenState]
+    = useState({ isOpened: false, initialIdx: 0 })
 
   useEffect(() => {
     if (!id) {
@@ -46,8 +54,21 @@ const ProjectDetailedPage: React.FC = () => {
     }
   }, [id, navigate]);
 
+  useEffect(() => {
+    if (fullscreenState.isOpened) {
+      document.body.classList.add('hidden');
+    } else {
+      document.body.classList.remove('hidden');
+    }
+  }, [fullscreenState]);
+
   return(
     <article className="project-detailed-wrapper">
+      <FullscreenModal
+        images={project?.detailedImageGrids?.flatMap(g => [g.im1, g.im2, g.im3,g.im4]) || []}
+        fullscreenState={fullscreenState}
+        onClose={() => setFullscreenState({ isOpened: false, initialIdx: 0 })}
+      />
       <div className="info-wrapper">
         <h1
           className={`
@@ -104,8 +125,19 @@ const ProjectDetailedPage: React.FC = () => {
         )}
       </nav>
       <div className="images-wrapper">
+        {project?.detailedImageGrids?.map((g, i) =>
+          <ImageGrid
+            pictures={[g.im1, g.im2, g.im3,g.im4]}
+            onPictureClick={idx => setFullscreenState(prev => ({ images: [g.im1, g.im2, g.im3,g.im4], isOpened: true, initialIdx: idx }))}
+            key={i}
+          />
+        )}
         {project?.detailedSharedImages.map((image, idx) => (
-            <img src={image} alt={idx.toString()} key={idx}/>
+            <img
+              src={image}
+              alt={idx.toString()}
+              key={idx}
+            />
           ))
         }
         {isMobile && project?.detailedMobileImages?.map((image, idx) => (

@@ -1,5 +1,6 @@
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
+import Cookies from 'js-cookie';
 
 import en_pages from '../locales/en/pages.json';
 import en_buttons from '../locales/en/buttons.json';
@@ -20,7 +21,7 @@ const resources = {
 
 const detectInitialLang = (): string => {
   try {
-    return navigator.language.split('-')[0]
+    return Cookies.get('language') || navigator.language.split('-')[0];
   } catch (err) {
     return 'en'
   }
@@ -39,5 +40,9 @@ i18n.use(initReactI18next).init({
 export default i18n;
 
 export const toggleLang = () => {
-  i18n.changeLanguage(i18n.language === 'en' ? 'rus' : 'en')
+  const newLang = i18n.language === 'en' ? 'rus' : 'en';
+  i18n
+    .changeLanguage(newLang)
+    .then(() => Cookies.set('language', newLang, { expires: 365 }))
+  ;
 }

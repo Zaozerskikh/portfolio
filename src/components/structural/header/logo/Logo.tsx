@@ -1,13 +1,13 @@
 import './Logo.css'
-import './../../../assets/styles/fonts.css'
-import './../../../assets/styles/animation_durations.css'
+import '../../../../assets/styles/fonts.css'
+import '../../../../assets/styles/animation_durations.css'
 import React, {useEffect, useState} from "react";
 import {useMediaQuery} from "react-responsive";
-import {MediaQueries} from "../../../constants/MediaQueries";
-import {RoutePaths} from "../../../constants/RoutePaths";
-import {ColorTheme} from "../../../constants/ColorTheme";
+import {MediaQueries} from "../../../../constants/MediaQueries";
+import {RoutePaths} from "../../../../constants/RoutePaths";
+import {ColorTheme} from "../../../../constants/ColorTheme";
 import {Link, useLocation} from "react-router-dom";
-import {useAppSelector} from "../../../redux/Hooks";
+import {useAppSelector} from "../../../../redux/Hooks";
 
 const Logo: React.FC = () => {
   const currTheme = useAppSelector(state => state.colorTheme)

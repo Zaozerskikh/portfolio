@@ -1,15 +1,15 @@
 import './Footer.css'
-import '../../assets/styles/animation_durations.css'
-import '../../assets/styles/fonts.css'
+import '../../../assets/styles/animation_durations.css'
+import '../../../assets/styles/fonts.css'
 import React from "react";
-import {ColorTheme} from "../../constants/ColorTheme";
+import {ColorTheme} from "../../../constants/ColorTheme";
 import FooterLink from "./footer_link/FooterLink";
-import ExternalLinks from "../../constants/ExternalLinks";
+import ExternalLinks from "../../../constants/ExternalLinks";
 import CopyrightLink from "./copyright_link/CopyrightLink";
 import {useMediaQuery} from "react-responsive";
-import {MediaQueries} from "../../constants/MediaQueries";
+import {MediaQueries} from "../../../constants/MediaQueries";
 import {useTranslation} from "react-i18next";
-import {useAppSelector} from "../../redux/Hooks";
+import {useAppSelector} from "../../../redux/Hooks";
 
 const Footer: React.FC = () => {
   const currTheme = useAppSelector(state=> state.colorTheme)

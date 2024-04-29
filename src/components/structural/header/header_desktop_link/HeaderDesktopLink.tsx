@@ -1,12 +1,12 @@
 import './HeaderDesktopLink.css'
-import './../../../assets/styles/fonts.css'
-import './../../../assets/styles/animation_durations.css'
+import '../../../../assets/styles/fonts.css'
+import '../../../../assets/styles/animation_durations.css'
 import React from "react";
-import {DefaultButtonColor} from "../../../constants/DefaultButtonColor";
-import {ColorTheme} from "../../../constants/ColorTheme";
-import useHoverAndClick from "../../../utils/hooks/UseHoverAndClickHook";
+import {DefaultButtonColor} from "../../../../constants/DefaultButtonColor";
+import {ColorTheme} from "../../../../constants/ColorTheme";
+import useHoverAndClick from "../../../../utils/hooks/UseHoverAndClickHook";
 import {Link} from "react-router-dom";
-import {useAppSelector} from "../../../redux/Hooks";
+import {useAppSelector} from "../../../../redux/Hooks";
 
 interface HeaderDesktopLinkProps {
   text: string;

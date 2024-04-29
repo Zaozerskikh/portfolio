@@ -1,14 +1,14 @@
 import './CopyrightLink.css'
-import './../../../assets/styles/animation_durations.css'
+import '../../../../assets/styles/animation_durations.css'
 import React from "react";
-import ExternalLinks from "../../../constants/ExternalLinks";
-import {ColorTheme} from "../../../constants/ColorTheme";
+import ExternalLinks from "../../../../constants/ExternalLinks";
+import {ColorTheme} from "../../../../constants/ColorTheme";
 import {useMediaQuery} from "react-responsive";
-import {MediaQueries} from "../../../constants/MediaQueries";
-import useHover from "../../../utils/hooks/UseHoverHook";
+import {MediaQueries} from "../../../../constants/MediaQueries";
+import useHover from "../../../../utils/hooks/UseHoverHook";
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
-import {useAppSelector} from "../../../redux/Hooks";
+import {useAppSelector} from "../../../../redux/Hooks";
 
 const CopyrightLink: React.FC = () => {
   const {isHovered, ...hoverHandlers} = useHover()

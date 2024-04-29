@@ -47,14 +47,22 @@ export const MockProjectArr: ProjectInfo[] = [
     id: 'yourmeal',
     name: 'YourMeal',
     projectType: ProjectType.WEBSITE,
-    detailedSharedImages: [yourmeal1, yourmeal2],
+    detailedSharedImages: [],
     previewImage: yourmealPreview,
     shortDescriptionRUS: 'разработал фронтенд-часть амбициозного фудтех-стартапа, упаковал в\u00A0докер, развернул на\u00A0сервере',
     shortDescriptionENG: 'developed a\u00A0front-end part of an\u00A0ambitious foodtech startup, composed it with\u00A0Docker, and\u00A0deployed it on\u00A0VPS',
     fullDescriptionRUS: 'Разработал фронтенд-часть амбициозного фудтех-стартапа, упаковал в\u00A0докер, развернул на\u00A0сервере. Сейчас проект находится в\u00A0стадии разработки бэкенда, но\u00A0вы можете свободно протестировать интерфейс дев-версии по ссылке ниже.',
-    fullDescriptionENG: 'developed a\u00A0front-end part of an\u00A0ambitious foodtech startup, composed it with\u00A0Docker, and\u00A0deployed it on\u00A0VPS. The\u00A0project is\u00A0currently in\u00A0the backend development stage, but you can freely test the dev version UI using the link below.',
+    fullDescriptionENG: 'Developed a\u00A0front-end part of an\u00A0ambitious foodtech startup, composed it with\u00A0Docker, and\u00A0deployed it on\u00A0VPS. The\u00A0project is\u00A0currently in\u00A0the backend development stage, but you can freely test the dev version UI using the link below.',
     tags: [TagType.REACT, TagType.DOCKER, TagType.GIT],
-    websiteLink: 'https://yourmeal.app'
+    websiteLink: 'https://yourmeal.app',
+    detailedImageGrids: [
+      {
+        im1: 'https://i.imgur.com/hFZbXGT.jpg',
+        im2: 'https://i.imgur.com/Hv4ukM4.jpg',
+        im3: 'https://i.imgur.com/oaIdBhV.jpg',
+        im4: 'https://i.imgur.com/wgZmkMD.jpg'
+      }
+    ]
   },
   {
     id: 'glebkossov',

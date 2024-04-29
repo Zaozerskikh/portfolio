@@ -1,13 +1,13 @@
 import './FooterLink.css'
-import '../../../assets/styles/animation_durations.css'
-import '../../../assets/styles/fonts.css'
+import '../../../../assets/styles/animation_durations.css'
+import '../../../../assets/styles/fonts.css'
 import React from "react";
-import {ColorTheme} from "../../../constants/ColorTheme";
+import {ColorTheme} from "../../../../constants/ColorTheme";
 import {useMediaQuery} from "react-responsive";
-import {MediaQueries} from "../../../constants/MediaQueries";
-import useHoverAndClick from "../../../utils/hooks/UseHoverAndClickHook";
+import {MediaQueries} from "../../../../constants/MediaQueries";
+import useHoverAndClick from "../../../../utils/hooks/UseHoverAndClickHook";
 import {Link} from "react-router-dom";
-import {useAppSelector} from "../../../redux/Hooks";
+import {useAppSelector} from "../../../../redux/Hooks";
 
 interface FooterLinkProps {
   link: string,

@@ -1,21 +1,21 @@
 import './Header.css'
-import '../../assets/styles/fonts.css'
+import '../../../assets/styles/fonts.css'
 import React from "react";
-import '../../assets/styles/animation_durations.css'
-import BurgerButton from "../burger_button/BurgerButton";
-import {ColorTheme} from "../../constants/ColorTheme";
-import {RoutePaths} from "../../constants/RoutePaths";
+import '../../../assets/styles/animation_durations.css'
+import {ColorTheme} from "../../../constants/ColorTheme";
+import {RoutePaths} from "../../../constants/RoutePaths";
 import {useLocation} from "react-router-dom";
 import {useMediaQuery} from "react-responsive";
-import {MediaQueries} from "../../constants/MediaQueries";
+import {MediaQueries} from "../../../constants/MediaQueries";
 import HeaderDesktopLink from "./header_desktop_link/HeaderDesktopLink";
-import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
-import ExternalLinks from "../../constants/ExternalLinks";
-import ColorThemeSwitcher from "../color_theme_picker/color_theme_switcher/colorThemeSwitcher";
+import {DefaultButtonColor} from "../../../constants/DefaultButtonColor";
+import ExternalLinks from "../../../constants/ExternalLinks";
+import ColorThemeSwitcher from "../../color_theme_picker/color_theme_switcher/colorThemeSwitcher";
 import Logo from "./logo/Logo";
 import {useTranslation} from "react-i18next";
-import {toggleLang} from "../../i18n/config/i18n";
-import {useAppSelector} from "../../redux/Hooks";
+import {toggleLang} from "../../../i18n/config/i18n";
+import {useAppSelector} from "../../../redux/Hooks";
+import BurgerMenu from "../../burger_menu/BurgerMenu";
 
 const Header: React.FC = () => {
   const currTheme = useAppSelector(state => state.colorTheme)
@@ -91,7 +91,7 @@ const Header: React.FC = () => {
             </div>
           </>
         ) : (
-          <BurgerButton/>
+          <BurgerMenu/>
         )}
       </div>
     </header>

@@ -7,7 +7,10 @@ const reduxStore = configureStore({
     burger: burgerReducer,
     colorTheme: colorThemeReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export default reduxStore;

@@ -1,7 +1,7 @@
 import React from "react";
 import './HomePage.css'
 import '../../assets/styles/animation_durations.css'
-import {ButtonWithLink} from "../../components/default_button/DefaultButton";
+import {ButtonWithLink} from "../../components/buttons/default_button/DefaultButton";
 import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
 import ExternalLinks from "../../constants/ExternalLinks";
 import {RoutePaths} from "../../constants/RoutePaths";

@@ -4,49 +4,43 @@ import {Navigate, Route, Routes, useLocation} from "react-router-dom";
 import HomePage from "./pages/home_page/HomePage";
 import './assets/styles/colors.css'
 import './index.css'
-import './App.css'
 import './assets/styles/animation_durations.css'
-import Header from "./components/header/Header";
-import BurgerMenu from "./components/burger_menu/BurgerMenu";
-import Footer from "./components/footer/Footer";
+import Header from "./components/structural/header/Header";
+import Footer from "./components/structural/footer/Footer";
 import {ColorTheme} from "./constants/ColorTheme";
 import ServicesPage from "./pages/services_page/ServicesPage";
 import NotFoundPage from "./pages/not_found_page/NotFoundPage";
 import AboutPage from "./pages/about_page/AboutPage";
 import ProjectDetailedPage from "./pages/project_detailed_page/ProjectDetailedPage";
-import {useMediaQuery} from "react-responsive";
-import {MediaQueries} from "./constants/MediaQueries";
 import MetaTagsManager from "./utils/managers/MetaTagsManager";
 import MetaThemeManager from "./utils/managers/MetaThemeManager";
 import {useAppSelector} from "./redux/Hooks";
+import MainWrapper from "./components/structural/main_wrapper/MainWrapper";
+import styled from "styled-components";
+
+const StyledApp = styled.div<{ $colorTheme: ColorTheme }>`
+  position: relative;
+  background-color: ${props => props?.$colorTheme === ColorTheme.DARK 
+          ? 'var(--dark-theme-bg, #1E1E1E)'
+          : 'white'
+  };
+  transition: 0.2s background-color ease-in-out;
+`
 
 const App: React.FC = () => {
-  const isBurgerOpened = useAppSelector(state => state.burger.isOpened)
   const currTheme = useAppSelector(state => state.colorTheme)
   const location = useLocation()
-
-  const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
-  const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
 
   useEffect(() => {
     window.scroll({top: 0})
   }, [location]);
 
-  useEffect(() => {
-    if (isBurgerOpened) {
-      document.body.classList.add('hidden');
-    } else {
-      document.body.classList.remove('hidden');
-    }
-  }, [isBurgerOpened]);
-
   return (
-    <div className={`app ${currTheme === ColorTheme.DARK ? 'dark' : 'white'} animation-02s-all`}>
+    <StyledApp $colorTheme={currTheme} id={'app'}>
       <Header/>
-      <BurgerMenu/>
       <MetaThemeManager/>
       <MetaTagsManager/>
-      <div className={`main-content-wrapper animation-02s-all ${isDesktop ? 'desktop' : isTablet ? 'tablet' : 'mobile'}`}>
+      <MainWrapper>
         <Routes>
           <Route path="/" element={<Navigate to={RoutePaths.HOME} />} />
           <Route path={RoutePaths.HOME} element={<HomePage />} />
@@ -55,9 +49,9 @@ const App: React.FC = () => {
           <Route path={RoutePaths.ABOUT} element={<AboutPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-      </div>
+      </MainWrapper>
       <Footer/>
-    </div>
+    </StyledApp>
   );
 }
 

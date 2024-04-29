@@ -8,6 +8,7 @@
   "projectBtnsText": {
     "openWebsite": "Открыть cайт",
     "openGooglePlay": "Скачать в Google Play",
-    "openAppStore": "Скачать в App Store"
+    "openAppStore": "Скачать в App Store",
+    "closeBtn": "Закрыть"
   }
 }

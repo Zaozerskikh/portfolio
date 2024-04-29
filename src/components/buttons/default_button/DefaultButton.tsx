@@ -1,27 +1,28 @@
 import './DefaultButton.css'
-import '../../assets/styles/fonts.css'
-import '../../assets/styles/animation_durations.css'
+import '../../../assets/styles/fonts.css'
+import '../../../assets/styles/animation_durations.css'
 import React from "react";
 import {useMediaQuery} from "react-responsive";
-import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
-import {MediaQueries} from "../../constants/MediaQueries";
-import {ColorTheme} from "../../constants/ColorTheme";
-import useHoverAndClick from "../../utils/hooks/UseHoverAndClickHook";
-import withLink from "../../utils/HOCs/WithLinkHOC";
-import {useAppSelector} from "../../redux/Hooks";
+import {MediaQueries} from "../../../constants/MediaQueries";
+import {ColorTheme} from "../../../constants/ColorTheme";
+import useHoverAndClick from "../../../utils/hooks/UseHoverAndClickHook";
+import withLink from "../../../utils/HOCs/WithLinkHOC";
+import {useAppSelector} from "../../../redux/Hooks";
+import {DefaultButtonProps} from "./DefaultButtonProps";
 
 export enum ButtonIcon {
   APP_STORE = 'APP_STORE',
   GOOGLE_PLAY = 'GOOGLE_PLAY'
 }
-export interface DefaultButtonProps {
-  color: DefaultButtonColor,
-  text: string,
-  onClickAction: () => void;
-  buttonIcon?: ButtonIcon;
-}
 
-const DefaultButton: React.FC<DefaultButtonProps> = ({ color, text, onClickAction, buttonIcon}) => {
+const DefaultButton: React.FC<DefaultButtonProps> = (props) => {
+  const {
+    color,
+    text,
+    onClickAction,
+    buttonIcon,
+    children
+  } = props
   const currTheme = useAppSelector(state => state.colorTheme)
   const {isHovered, isClicked, ...eventHandlers}
     = useHoverAndClick({ touchEndDelay: 1000 })
@@ -51,7 +52,8 @@ const DefaultButton: React.FC<DefaultButtonProps> = ({ color, text, onClickActio
             <path d="M10.9049 12.5766H0.856406C0.38367 12.5766 0 12.1929 0 11.7202C0 11.2474 0.38367 10.8638 0.856406 10.8638H10.9049C11.3776 10.8638 11.7613 11.2474 11.7613 11.7202C11.7613 12.1929 11.3776 12.5766 10.9049 12.5766ZM17.4136 12.5766H13.5769C13.1042 12.5766 12.7205 12.1929 12.7205 11.7202C12.7205 11.2474 13.1042 10.8638 13.5769 10.8638H17.4136C17.8863 10.8638 18.27 11.2474 18.27 11.7202C18.27 12.1929 17.8863 12.5766 17.4136 12.5766Z" fill="black"/>
           </svg>
         )}
-        <div className={`mobile-button-text dark`}>{text}</div>
+        {text && <div className={`mobile-button-text dark`}>{text}</div>}
+        {children}
       </div>
     </div>
   )

@@ -4,7 +4,7 @@ import '../../assets/styles/fonts.css'
 import React, {useEffect, useState} from "react";
 import {ColorTheme} from "../../constants/ColorTheme";
 import {Lang} from "../../constants/Lang";
-import {ButtonWithLink} from "../../components/default_button/DefaultButton";
+import {ButtonWithLink} from "../../components/buttons/default_button/DefaultButton";
 import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
 import {RoutePaths} from "../../constants/RoutePaths";
 import ExternalLinks from "../../constants/ExternalLinks";
