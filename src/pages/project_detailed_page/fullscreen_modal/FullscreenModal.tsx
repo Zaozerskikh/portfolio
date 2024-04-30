@@ -73,17 +73,17 @@ const StyledImageCarouselWrapper = styled(motion.div)<{ $desktop: boolean, $aspe
   max-width: ${props => Math.min((props?.$height - 50) * props?.$aspect, 1440)}px;
 `
 
-const StyledImageContainer = styled.div`
+const StyledImageContainer = styled.div<{ $aspectRatio: number }>`
   border-radius: 4px;
   overflow: hidden;
-  aspect-ratio: 162 / 97;
+  aspect-ratio: ${props => props?.$aspectRatio};
 `
 
-const StyledImage = styled.img`
+const StyledImage = styled.img<{ $aspectRatio: number }>`
   width: 100%;
   height: auto;
   object-fit: cover;
-  aspect-ratio: 162 / 97;
+  aspect-ratio: ${props => props?.$aspectRatio};
   pointer-events: none;
 `
 
@@ -126,8 +126,8 @@ const currItemVariants = {
 const swipeConfidenceThreshold = 3000;
 
 const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
-  const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE})
-  const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
+  const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE })
+  const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP })
   const currTheme = useAppSelector(state => state.colorTheme)
   const { width, height } = useWindowParams()
   const { t } = useTranslation()
@@ -143,7 +143,7 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
     = useState([fullscreenState?.initialIdx, 0]);
   const imageIndex = wrap(0, images.length, page);
 
-  const imageWidth = Math.min(1264, width - resolvedPadding * 2)
+  const imageWidth = Math.min(1264, width - resolvedPadding * 2, (height - 50) * resolvedAspectRatio - resolvedPadding * 2)
   const currItemPosition = new MotionValue<number>()
   const nextItemScale = useTransform(currItemPosition, [0, -imageWidth], [0.6, 0.9])
   const nextItemOpacity = useTransform(currItemPosition, [0, -imageWidth], [0, 1])
@@ -179,13 +179,10 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
   }, [fullscreenState]);
 
   useEffect(() => {
-    const handleResize = () => {
-      onClose()
-    }
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', onClose);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', onClose);
     };
   }, []);
 
@@ -215,12 +212,7 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
       return 16
     }
 
-    const imageHeight = Math.min(
-      (height - 50) * resolvedAspectRatio,
-      Math.min(1264, width - resolvedPadding * 2) / resolvedAspectRatio
-    )
-
-    return (height - imageHeight) / 2 - 16
+    return (height - imageWidth / resolvedAspectRatio) / 2 - 16
   }
 
   return (
@@ -272,8 +264,11 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
                     style={{ x: currItemPosition }}
                     onClick={handleClose}
                   >
-                    <StyledImageContainer>
-                      <StyledImage src={images[imageIndex]}/>
+                    <StyledImageContainer $aspectRatio={resolvedAspectRatio}>
+                      <StyledImage
+                        $aspectRatio={resolvedAspectRatio}
+                        src={images[imageIndex]}
+                      />
                     </StyledImageContainer>
                   </StyledImageCarouselWrapper>
 
@@ -285,8 +280,11 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
                     key={'next'}
                     style={{ opacity: nextItemOpacity, scale: hasDragged ? nextItemScale : 0.8 }}
                   >
-                    <StyledImageContainer>
-                      <StyledImage src={images[wrap(0, images.length, imageIndex + 1)]}/>
+                    <StyledImageContainer $aspectRatio={resolvedAspectRatio}>
+                      <StyledImage
+                        $aspectRatio={resolvedAspectRatio}
+                        src={images[wrap(0, images.length, imageIndex + 1)]}
+                      />
                     </StyledImageContainer>
                   </StyledImageCarouselWrapper>
 
@@ -298,8 +296,11 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
                     key={'prev'}
                     style={{ opacity: prevItemOpacity, scale: hasDragged ? prevItemScale : 0.8 }}
                   >
-                    <StyledImageContainer>
-                      <StyledImage src={images[wrap(0, images.length, imageIndex - 1)]}/>
+                    <StyledImageContainer $aspectRatio={resolvedAspectRatio}>
+                      <StyledImage
+                        $aspectRatio={resolvedAspectRatio}
+                        src={images[wrap(0, images.length, imageIndex - 1)]}
+                      />
                     </StyledImageContainer>
                   </StyledImageCarouselWrapper>
                 </AnimatePresence>
