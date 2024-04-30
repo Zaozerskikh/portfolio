@@ -1,12 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {ColorTheme} from "../constants/ColorTheme";
+import Cookies from "js-cookie";
 
-export enum LocalStorageColorThemeFields {
-  COLOR_THEME_STATE = 'COLOR_THEME_STATE'
-}
-
-const storedColorTheme = localStorage.getItem(LocalStorageColorThemeFields.COLOR_THEME_STATE);
-const initialState: ColorTheme = storedColorTheme ? JSON.parse(storedColorTheme).colorTheme : ColorTheme.WHITE;
+const storedColorTheme = Cookies.get('color_theme')
+const initialState: ColorTheme = storedColorTheme ? storedColorTheme as ColorTheme : ColorTheme.WHITE;
 
 const colorThemeSlice = createSlice({
   name: 'colorTheme',
@@ -14,17 +11,17 @@ const colorThemeSlice = createSlice({
   reducers: {
     toggleTheme: (state) => {
       state = state === ColorTheme.WHITE ? ColorTheme.DARK : ColorTheme.WHITE;
-      localStorage.setItem(LocalStorageColorThemeFields.COLOR_THEME_STATE, JSON.stringify({ colorTheme: state }));
+      Cookies.set('color_theme', state)
       return state;
     },
     setWhiteTheme: (state) => {
       state = ColorTheme.WHITE;
-      localStorage.setItem(LocalStorageColorThemeFields.COLOR_THEME_STATE, JSON.stringify({ colorTheme: state }));
+      Cookies.set('color_theme', state)
       return state;
     },
     setDarkTheme: (state) => {
       state = ColorTheme.DARK;
-      localStorage.setItem(LocalStorageColorThemeFields.COLOR_THEME_STATE, JSON.stringify({ colorTheme: state }));
+      Cookies.set('color_theme', state)
       return state;
     }
   }

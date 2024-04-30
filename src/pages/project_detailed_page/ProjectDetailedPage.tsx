@@ -5,19 +5,20 @@ import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {RoutePaths} from "../../constants/RoutePaths";
 import {ProjectInfo} from "../../types/ProjectInfo";
-import {ButtonIcon, ButtonWithLink} from "../../components/buttons/default_button/DefaultButton";
-import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
+import { ButtonWithLink} from "../../components/buttons/default_button/DefaultButton";
+import {DefaultButtonColor} from "../../components/buttons/default_button/DefaultButtonColor";
 import {Lang} from "../../constants/Lang";
 import {ColorTheme} from "../../constants/ColorTheme";
 import Tag from "../../components/tag/Tag";
 import ExternalLinks from "../../constants/ExternalLinks";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
-import {MockProjectArr} from "../../mock_data/MockProjectArr";
+import {MockProjectArr} from "../../data/MockProjectArr";
 import {useTranslation} from "react-i18next";
 import {useAppSelector} from "../../redux/Hooks";
 import FullscreenModal from "./fullscreen_modal/FullscreenModal";
 import ImageGrid from "./image_grid/ImageGrid";
+import {DefaultButtonIcon} from "../../components/buttons/default_button/DefaultButtonIcon";
 
 const ProjectDetailedPage: React.FC = () => {
   const { t, i18n } = useTranslation()
@@ -93,34 +94,36 @@ const ProjectDetailedPage: React.FC = () => {
           {(currLang === Lang.ENG ? project?.fullDescriptionENG : project?.fullDescriptionRUS) || ''}
         </p>
       </div>
-      <nav className='btns-wrapper'>
-        {project?.websiteLink && (
-          <ButtonWithLink
-            color={DefaultButtonColor.VIOLET}
-            text={t('projectBtnsText.openWebsite')}
-            to={project?.websiteLink}
-            openAsBlank={true}
-          />
-        )}
-        {project?.googlePlayLink && (
-          <ButtonWithLink
-            color={DefaultButtonColor.MINT}
-            text={t('projectBtnsText.openGooglePlay')}
-            buttonIcon={ButtonIcon.GOOGLE_PLAY}
-            to={project.googlePlayLink}
-            openAsBlank={true}
-          />
-        )}
-        {project?.appStoreLink && (
-          <ButtonWithLink
-            color={DefaultButtonColor.GRAY}
-            text={t('projectBtnsText.openAppStore')}
-            buttonIcon={ButtonIcon.APP_STORE}
-            to={project?.appStoreLink}
-            openAsBlank={true}
-          />
-        )}
-      </nav>
+      {(project?.appStoreLink || project?.googlePlayLink || project?.websiteLink) && (
+        <nav className='btns-wrapper'>
+          {project?.websiteLink && (
+            <ButtonWithLink
+              color={DefaultButtonColor.VIOLET}
+              text={t('projectBtnsText.openWebsite')}
+              to={project?.websiteLink}
+              openAsBlank={true}
+            />
+          )}
+          {project?.googlePlayLink && (
+            <ButtonWithLink
+              color={DefaultButtonColor.MINT}
+              text={t('projectBtnsText.openGooglePlay')}
+              buttonIcon={DefaultButtonIcon.GOOGLE_PLAY}
+              to={project.googlePlayLink}
+              openAsBlank={true}
+            />
+          )}
+          {project?.appStoreLink && (
+            <ButtonWithLink
+              color={DefaultButtonColor.GRAY}
+              text={t('projectBtnsText.openAppStore')}
+              buttonIcon={DefaultButtonIcon.APP_STORE}
+              to={project?.appStoreLink}
+              openAsBlank={true}
+            />
+          )}
+        </nav>
+      )}
       <div className="images-wrapper">
         {project?.detailedImageGrids?.map((g, i) =>
           <ImageGrid

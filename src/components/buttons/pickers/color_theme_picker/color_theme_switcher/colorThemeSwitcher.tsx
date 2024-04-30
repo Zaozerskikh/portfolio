@@ -1,18 +1,14 @@
-import './colorThemeSwitcher.css'
-import '../../../assets/styles/animation_durations.css'
 import React, {useEffect, useState} from "react";
-import {ColorTheme} from "../../../constants/ColorTheme";
+import {ColorTheme} from "../../../../../constants/ColorTheme";
 import SunIcon from "../assets/SunIcon";
 import MoonIcon from "../assets/MoonIcon";
-import Boop from "../../boop/Boop";
+import Boop from "../../../../boop/Boop";
 import SunRotator from "./sun_rotator/SunRotator";
-import useHover from "../../../utils/hooks/UseHoverHook";
-import {toggleTheme} from "../../../redux/ColorThemeReducer";
-import {useAppDispatch, useAppSelector} from "../../../redux/Hooks";
-
-interface ColorThemeSwitcherProps {
-  assignedTheme ? : ColorTheme
-}
+import useHover from "../../../../../utils/hooks/UseHoverHook";
+import {toggleTheme} from "../../../../../redux/ColorThemeReducer";
+import {useAppDispatch, useAppSelector} from "../../../../../redux/Hooks";
+import {StyledSwitcher} from "../../styles/SwitcherStyles";
+import {ColorThemeSwitcherProps} from "./ColorThemeSwitcherProps";
 
 const ColorThemeSwitcher: React.FC<ColorThemeSwitcherProps> = ({ assignedTheme}) => {
   const currTheme = useAppSelector(state => state.colorTheme)
@@ -39,13 +35,10 @@ const ColorThemeSwitcher: React.FC<ColorThemeSwitcherProps> = ({ assignedTheme})
   }, [isRotated]);
 
   return(
-    <button
-      className={`
-        color-theme-switcher-wrapper 
-        animation-02s-all
-        ${assignedTheme ? (currTheme === ColorTheme.WHITE ? 'white' : 'dark') : 'transparent'}
-        ${currTheme === assignedTheme && (currTheme === ColorTheme.DARK ? 'dark-selected' : 'white-selected')}
-      `}
+    <StyledSwitcher
+      $colorTheme={currTheme}
+      $picked={currTheme === assignedTheme}
+      $transparent={assignedTheme === undefined}
       onClick={() => {
         setIsBooped(true)
         setRotated(true)
@@ -74,7 +67,7 @@ const ColorThemeSwitcher: React.FC<ColorThemeSwitcherProps> = ({ assignedTheme})
           </Boop>
         )
       )}
-    </button>
+    </StyledSwitcher>
   )
 }
 

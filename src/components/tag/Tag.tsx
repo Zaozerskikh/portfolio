@@ -1,4 +1,4 @@
-import {TagType} from "../../constants/TagType";
+import {TagType} from "../../types/TagType";
 import React from "react";
 import './Tag.css'
 import '../../assets/styles/fonts.css'

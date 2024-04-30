@@ -36,7 +36,7 @@ const App: React.FC = () => {
     window.scroll({top: 0})
   }, [location]);
 
-  const element = useRoutes([
+  const page = useRoutes([
     {
       path: "/",
       element: <Navigate to={RoutePaths.HOME} />
@@ -60,6 +60,10 @@ const App: React.FC = () => {
     {
       path: RoutePaths.NOT_FOUND,
       element: <NotFoundPage />
+    },
+    {
+      path:'*',
+      element: <NotFoundPage />
     }
   ]);
 
@@ -71,7 +75,7 @@ const App: React.FC = () => {
       <AnimatePresence mode={'wait'}>
         {React.cloneElement(
           <MainWrapper>
-            {element}
+            {page}
           </MainWrapper>,
           { key: location.pathname }
         )}

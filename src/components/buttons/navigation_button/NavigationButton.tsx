@@ -1,7 +1,7 @@
 import DefaultButton from "../default_button/DefaultButton";
 import {NavigationButtonProps} from "./NavigationButtonProps";
 import React, {useMemo} from "react";
-import {DefaultButtonColor} from "../../../constants/DefaultButtonColor";
+import {DefaultButtonColor} from "../default_button/DefaultButtonColor";
 import {NavigationButtonType} from "./NavigationButtonType";
 
 const NavigationButton: React.FC<NavigationButtonProps> = ({ type, onClickAction}) => {

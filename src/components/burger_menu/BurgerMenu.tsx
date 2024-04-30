@@ -1,10 +1,10 @@
 import React, {useEffect} from "react";
 import {ButtonWithLink} from "../buttons/default_button/DefaultButton";
-import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
-import LangPicker from "../lang_picker/LangPicker";
+import {DefaultButtonColor} from "../buttons/default_button/DefaultButtonColor";
+import LangPicker from "../buttons/pickers/lang_picker/LangPicker";
 import {useLocation} from "react-router-dom";
 import {setBurgerXPosition, setIsBurgerShown, toggleBurger} from "../../redux/BurgerMenuReducer";
-import ColorThemePicker from "../color_theme_picker/ColorThemePicker";
+import ColorThemePicker from "../buttons/pickers/color_theme_picker/ColorThemePicker";
 import {ColorTheme} from "../../constants/ColorTheme";
 import {RoutePaths} from "../../constants/RoutePaths";
 import ExternalLinks from "../../constants/ExternalLinks";

@@ -5,7 +5,7 @@ import React, {useEffect, useState} from "react";
 import {ColorTheme} from "../../constants/ColorTheme";
 import {Lang} from "../../constants/Lang";
 import {ButtonWithLink} from "../../components/buttons/default_button/DefaultButton";
-import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
+import {DefaultButtonColor} from "../../components/buttons/default_button/DefaultButtonColor";
 import {RoutePaths} from "../../constants/RoutePaths";
 import ExternalLinks from "../../constants/ExternalLinks";
 import BackendSvg from "./assets/BackendSvg";

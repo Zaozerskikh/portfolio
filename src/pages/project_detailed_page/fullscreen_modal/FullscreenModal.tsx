@@ -5,7 +5,7 @@ import {ColorTheme} from "../../../constants/ColorTheme";
 import {useAppSelector} from "../../../redux/Hooks";
 import {FullscreenModalProps} from "./FullscreenModalProps";
 import DefaultButton from "../../../components/buttons/default_button/DefaultButton";
-import {DefaultButtonColor} from "../../../constants/DefaultButtonColor";
+import {DefaultButtonColor} from "../../../components/buttons/default_button/DefaultButtonColor";
 import {useTranslation} from "react-i18next";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../constants/MediaQueries";
@@ -77,6 +77,9 @@ const StyledImageContainer = styled.div<{ $aspectRatio: number }>`
   border-radius: 4px;
   overflow: hidden;
   aspect-ratio: ${props => props?.$aspectRatio};
+  &:hover {
+    cursor: grab;
+  }
 `
 
 const StyledImage = styled.img<{ $aspectRatio: number }>`
@@ -85,6 +88,7 @@ const StyledImage = styled.img<{ $aspectRatio: number }>`
   object-fit: cover;
   aspect-ratio: ${props => props?.$aspectRatio};
   pointer-events: none;
+}
 `
 
 const StyledCarouselItemWrapper = styled(motion.div)<{ $mobile: boolean }>`

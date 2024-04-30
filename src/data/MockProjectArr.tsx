@@ -1,6 +1,6 @@
 import {ProjectInfo} from "../types/ProjectInfo";
-import {TagType} from "../constants/TagType"
-import {ProjectType} from "../constants/ProjectType";
+import {TagType} from "../types/TagType"
+import {ProjectType} from "../types/ProjectType";
 
 // glebkossov.com
 const glebkossovPreview = 'https://i.imgur.com/XRc5fnP.png'

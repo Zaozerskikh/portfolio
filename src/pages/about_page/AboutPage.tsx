@@ -3,7 +3,7 @@ import './../../assets/styles/fonts.css'
 import './../../assets/styles/animation_durations.css'
 import React from "react";
 import {ButtonWithLink} from "../../components/buttons/default_button/DefaultButton";
-import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
+import {DefaultButtonColor} from "../../components/buttons/default_button/DefaultButtonColor";
 import {RoutePaths} from "../../constants/RoutePaths";
 import ExternalLinks from "../../constants/ExternalLinks";
 import {ColorTheme} from "../../constants/ColorTheme";

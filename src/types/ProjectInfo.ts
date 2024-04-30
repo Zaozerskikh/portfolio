@@ -1,5 +1,5 @@
-import {TagType} from "../constants/TagType";
-import {ProjectType} from "../constants/ProjectType";
+import {TagType} from "./TagType";
+import {ProjectType} from "./ProjectType";
 
 export interface ShortProjectInfo {
   id: string;

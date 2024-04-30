@@ -2,14 +2,14 @@ import React from "react";
 import './HomePage.css'
 import '../../assets/styles/animation_durations.css'
 import {ButtonWithLink} from "../../components/buttons/default_button/DefaultButton";
-import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
+import {DefaultButtonColor} from "../../components/buttons/default_button/DefaultButtonColor";
 import ExternalLinks from "../../constants/ExternalLinks";
 import {RoutePaths} from "../../constants/RoutePaths";
 import {ColorTheme} from "../../constants/ColorTheme";
 import ProjectCard from "./project_card/ProjectCard";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
-import {MockProjectArr} from "../../mock_data/MockProjectArr";
+import {MockProjectArr} from "../../data/MockProjectArr";
 import {useTranslation} from "react-i18next";
 import {useAppSelector} from "../../redux/Hooks";
 

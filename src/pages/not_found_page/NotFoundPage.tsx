@@ -3,7 +3,7 @@ import '../../assets/styles/fonts.css'
 import '../../assets/styles/animation_durations.css'
 import React from "react";
 import NotFoundPageSvg from "./assets/NotFoundPageSvg";
-import {DefaultButtonColor} from "../../constants/DefaultButtonColor";
+import {DefaultButtonColor} from "../../components/buttons/default_button/DefaultButtonColor";
 import DefaultButton from "../../components/buttons/default_button/DefaultButton";
 import {useNavigate} from "react-router-dom";
 import {RoutePaths} from "../../constants/RoutePaths";

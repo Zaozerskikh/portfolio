@@ -1,6 +1,6 @@
 import React from "react";
-import {ColorTheme} from "../../../constants/ColorTheme";
-import {useAppSelector} from "../../../redux/Hooks";
+import {ColorTheme} from "../../../../../constants/ColorTheme";
+import {useAppSelector} from "../../../../../redux/Hooks";
 
 interface SunProps {
   isHovered ? : boolean;
