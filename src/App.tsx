@@ -79,15 +79,6 @@ const App: React.FC = () => {
       <Footer/>
     </StyledApp>
   );
-
-  {/*<Routes>*/}
-  {/*  <Route path="/" element={<Navigate to={RoutePaths.HOME} />} />*/}
-  {/*  <Route path={RoutePaths.HOME} element={<HomePage />} />*/}
-  {/*  <Route path={RoutePaths.PROJECT_DETAILED} element={<ProjectDetailedPage />} />*/}
-  {/*  <Route path={RoutePaths.SERVICES} element={<ServicesPage />} />*/}
-  {/*  <Route path={RoutePaths.ABOUT} element={<AboutPage />} />*/}
-  {/*  <Route path="*" element={<NotFoundPage />} />*/}
-  {/*</Routes>*/}
 }
 
 export default App;

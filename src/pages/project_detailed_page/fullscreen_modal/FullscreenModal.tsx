@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {AnimatePresence, motion, Point, wrap} from "framer-motion";
+import {AnimatePresence, motion, MotionValue, Point, useMotionValueEvent, useTransform, wrap} from "framer-motion";
 import styled from "styled-components";
 import {ColorTheme} from "../../../constants/ColorTheme";
 import {useAppSelector} from "../../../redux/Hooks";
@@ -96,13 +96,14 @@ const StyledCarouselItemWrapper = styled(motion.div)<{ $mobile: boolean }>`
   box-sizing: border-box;
 `
 
-const variants = {
-  enter: (direction: number) => {
+const currItemVariants = {
+  enter: (custom : { initialScale: number, direction: number, imageWidth: number }) => {
     return {
-      x: direction > 0 ? 300 : -300,
-      opacity: 0,
-      scale: 0.8
-    };
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: custom?.initialScale
+    }
   },
 
   center: {
@@ -112,30 +113,70 @@ const variants = {
     scale: 1
   },
 
-  exit: (direction: number) => {
+  exit: (custom : { initialScale: number, direction: number, imageWidth: number }) => {
     return {
       zIndex: 0,
-      x: direction < 0 ? 300 : -300,
+      x: custom.direction < 0 ? custom.imageWidth: -custom.imageWidth,
       opacity: 0,
-      scale: 0.8
+      scale: 0.9
     };
   }
 };
 
-const swipeConfidenceThreshold = 10000;
+const swipeConfidenceThreshold = 3000;
 
 const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
-  const root = document.getElementById('app')
-  const {fullscreenState, onClose, images, aspectRatio} = props
-  const resolvedAspectRatio = aspectRatio || 162 / 97
-  const { width, height } = useWindowParams()
   const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE})
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
   const currTheme = useAppSelector(state => state.colorTheme)
+  const { width, height } = useWindowParams()
   const { t } = useTranslation()
+
+  const root = document.getElementById('app')
+  const [hasDragged, setHasDragged] = useState(false)
+  const {fullscreenState, onClose, images, aspectRatio} = props
+  const resolvedPadding = isDesktop ? 88 : 16
+  const resolvedAspectRatio = aspectRatio || 162 / 97
+
+  const [isReady, setIsReady] = useState(false)
   const [[page, direction], setPage]
-    = useState([fullscreenState.initialIdx, 0]);
+    = useState([fullscreenState?.initialIdx, 0]);
   const imageIndex = wrap(0, images.length, page);
+
+  const imageWidth = Math.min(1264, width - resolvedPadding * 2)
+  const currItemPosition = new MotionValue<number>()
+  const nextItemScale = useTransform(currItemPosition, [0, -imageWidth], [0.6, 0.9])
+  const nextItemOpacity = useTransform(currItemPosition, [0, -imageWidth], [0, 1])
+  const prevItemScale = useTransform(currItemPosition, [0, imageWidth], [0.6, 0.9])
+  const prevItemOpacity = useTransform(currItemPosition, [0, imageWidth], [0, 1])
+
+  const [nextScale, setNextScale] = useState(0.9)
+  const [prevScale, setPrevScale] = useState(0.9)
+
+  useMotionValueEvent(prevItemScale, "change", (latest) => {
+    if (latest as number) {
+      setPrevScale(latest)
+    }
+  })
+
+  useMotionValueEvent(nextItemScale, "change", (latest) => {
+    if (latest as number) {
+      setNextScale(latest)
+    }
+  })
+
+  useEffect(() => {
+    setPage([fullscreenState?.initialIdx, 0])
+  }, [fullscreenState?.initialIdx]);
+
+  useEffect(() => {
+    if (fullscreenState?.isOpened) {
+      setTimeout(() => setIsReady(true))
+    } else {
+      setIsReady(false)
+      setHasDragged(false)
+    }
+  }, [fullscreenState]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -153,10 +194,12 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
   };
 
   const handleDragEnd = (_: any, info: { offset: Point, velocity: Point }) => {
-    const swipe = Math.abs(info.offset.x) * info.velocity.x;
-    if (swipe < -swipeConfidenceThreshold) {
+    const offsetX = info.offset.x
+    const swipe = Math.abs(offsetX) * info.velocity.x;
+
+    if (swipe < -swipeConfidenceThreshold || offsetX < -imageWidth / 3) {
       paginate(1);
-    } else if (swipe > swipeConfidenceThreshold) {
+    } else if (swipe > swipeConfidenceThreshold || offsetX > imageWidth / 3) {
       paginate(-1);
     }
   }
@@ -172,10 +215,9 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
       return 16
     }
 
-    const padding = isDesktop ? 88 : 16
     const imageHeight = Math.min(
       (height - 50) * resolvedAspectRatio,
-      Math.min(1264, width - padding * 2) / resolvedAspectRatio
+      Math.min(1264, width - resolvedPadding * 2) / resolvedAspectRatio
     )
 
     return (height - imageHeight) / 2 - 16
@@ -185,7 +227,7 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
     root && (
       createPortal(
         <AnimatePresence>
-          {fullscreenState?.isOpened && (
+          {fullscreenState?.isOpened && isReady && (
             <StyledWrapper
               $height={height}
               $width={width}
@@ -193,7 +235,7 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.5 }}
               onClick={handleClose}
             >
               <StyledCarouselItemWrapper
@@ -204,15 +246,16 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
                 onClick={handleClose}
                 style={{ y: -50 }}
               >
-                <AnimatePresence initial={false} custom={direction}>
+                <AnimatePresence initial={false} custom={{ initialScale: 0.9, direction: direction, imageWidth: imageWidth }}>
+                  {/*current image*/}
                   <StyledImageCarouselWrapper
                     $desktop={isDesktop}
                     $aspect={resolvedAspectRatio}
                     $height={height}
                     key={page}
 
-                    custom={direction}
-                    variants={variants}
+                    custom={{ initialScale: direction > 0 ? nextScale : prevScale, direction: direction, mageWidth: imageWidth }}
+                    variants={currItemVariants}
                     initial="enter"
                     animate="center"
                     exit="exit"
@@ -225,13 +268,42 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
                     dragConstraints={{ left: 0, right: 0 }}
                     dragElastic={1}
                     onDragEnd={handleDragEnd}
+                    onDragStart={() => setHasDragged(true)}
+                    style={{ x: currItemPosition }}
                     onClick={handleClose}
                   >
                     <StyledImageContainer>
                       <StyledImage src={images[imageIndex]}/>
                     </StyledImageContainer>
                   </StyledImageCarouselWrapper>
+
+                  {/*next image*/}
+                  <StyledImageCarouselWrapper
+                    $desktop={isDesktop}
+                    $aspect={resolvedAspectRatio}
+                    $height={height}
+                    key={'next'}
+                    style={{ opacity: nextItemOpacity, scale: hasDragged ? nextItemScale : 0.8 }}
+                  >
+                    <StyledImageContainer>
+                      <StyledImage src={images[wrap(0, images.length, imageIndex + 1)]}/>
+                    </StyledImageContainer>
+                  </StyledImageCarouselWrapper>
+
+                  {/*prev image*/}
+                  <StyledImageCarouselWrapper
+                    $desktop={isDesktop}
+                    $aspect={resolvedAspectRatio}
+                    $height={height}
+                    key={'prev'}
+                    style={{ opacity: prevItemOpacity, scale: hasDragged ? prevItemScale : 0.8 }}
+                  >
+                    <StyledImageContainer>
+                      <StyledImage src={images[wrap(0, images.length, imageIndex - 1)]}/>
+                    </StyledImageContainer>
+                  </StyledImageCarouselWrapper>
                 </AnimatePresence>
+
               </StyledCarouselItemWrapper>
               <StyledButtonsContainer
                 $mobile={isMobile}
