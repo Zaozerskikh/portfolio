@@ -1,7 +1,7 @@
 import './ProjectDetailed.css'
 import './../../assets/styles/fonts.css'
 import './../../assets/styles/animation_durations.css'
-import React, {ReactNode, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {RoutePaths} from "../../constants/RoutePaths";
 import {ProjectInfo} from "../../types/ProjectInfo";
@@ -17,15 +17,12 @@ import {MockProjectArr} from "../../mock_data/MockProjectArr";
 import {useTranslation} from "react-i18next";
 import {useAppSelector} from "../../redux/Hooks";
 import FullscreenModal from "./fullscreen_modal/FullscreenModal";
-import {AnimatePresence} from "framer-motion";
 import ImageGrid from "./image_grid/ImageGrid";
-import {createPortal} from "react-dom";
 
 const ProjectDetailedPage: React.FC = () => {
   const { t, i18n } = useTranslation()
   const currLang = i18n?.language as Lang
   const currTheme = useAppSelector(state => state.colorTheme)
-  const root = document.getElementById('app')
 
   const { id } = useParams<{ id: string }>()
   const [project, setProject] = useState<ProjectInfo | undefined>(undefined)
@@ -67,7 +64,7 @@ const ProjectDetailedPage: React.FC = () => {
       <FullscreenModal
         images={project?.detailedImageGrids?.flatMap(g => [g.im1, g.im2, g.im3,g.im4]) || []}
         fullscreenState={fullscreenState}
-        onClose={() => setFullscreenState({ isOpened: false, initialIdx: 0 })}
+        onClose={() => setFullscreenState({ isOpened: false, initialIdx: fullscreenState?.initialIdx })}
       />
       <div className="info-wrapper">
         <h1
@@ -128,7 +125,7 @@ const ProjectDetailedPage: React.FC = () => {
         {project?.detailedImageGrids?.map((g, i) =>
           <ImageGrid
             pictures={[g.im1, g.im2, g.im3,g.im4]}
-            onPictureClick={idx => setFullscreenState(prev => ({ images: [g.im1, g.im2, g.im3,g.im4], isOpened: true, initialIdx: idx }))}
+            onPictureClick={idx => setFullscreenState({ isOpened: true, initialIdx: idx })}
             key={i}
           />
         )}

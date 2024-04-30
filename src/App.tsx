@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {RoutePaths} from "./constants/RoutePaths";
-import {Navigate, Route, Routes, useLocation} from "react-router-dom";
+import {Navigate, useLocation, useRoutes} from "react-router-dom";
 import HomePage from "./pages/home_page/HomePage";
 import './assets/styles/colors.css'
 import './index.css'
@@ -17,6 +17,7 @@ import MetaThemeManager from "./utils/managers/MetaThemeManager";
 import {useAppSelector} from "./redux/Hooks";
 import MainWrapper from "./components/structural/main_wrapper/MainWrapper";
 import styled from "styled-components";
+import {AnimatePresence} from "framer-motion";
 
 const StyledApp = styled.div<{ $colorTheme: ColorTheme }>`
   position: relative;
@@ -35,24 +36,58 @@ const App: React.FC = () => {
     window.scroll({top: 0})
   }, [location]);
 
+  const element = useRoutes([
+    {
+      path: "/",
+      element: <Navigate to={RoutePaths.HOME} />
+    },
+    {
+      path: RoutePaths.HOME,
+      element: <HomePage />
+    },
+    {
+      path: RoutePaths.PROJECT_DETAILED,
+      element: <ProjectDetailedPage />
+    },
+    {
+      path: RoutePaths.SERVICES,
+      element: <ServicesPage />
+    },
+    {
+      path: RoutePaths.ABOUT,
+      element: <AboutPage />
+    },
+    {
+      path: RoutePaths.NOT_FOUND,
+      element: <NotFoundPage />
+    }
+  ]);
+
   return (
     <StyledApp $colorTheme={currTheme} id={'app'}>
       <Header/>
       <MetaThemeManager/>
       <MetaTagsManager/>
-      <MainWrapper>
-        <Routes>
-          <Route path="/" element={<Navigate to={RoutePaths.HOME} />} />
-          <Route path={RoutePaths.HOME} element={<HomePage />} />
-          <Route path={RoutePaths.PROJECT_DETAILED} element={<ProjectDetailedPage />} />
-          <Route path={RoutePaths.SERVICES} element={<ServicesPage />} />
-          <Route path={RoutePaths.ABOUT} element={<AboutPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </MainWrapper>
+      <AnimatePresence mode={'wait'}>
+        {React.cloneElement(
+          <MainWrapper>
+            {element}
+          </MainWrapper>,
+          { key: location.pathname }
+        )}
+      </AnimatePresence>
       <Footer/>
     </StyledApp>
   );
+
+  {/*<Routes>*/}
+  {/*  <Route path="/" element={<Navigate to={RoutePaths.HOME} />} />*/}
+  {/*  <Route path={RoutePaths.HOME} element={<HomePage />} />*/}
+  {/*  <Route path={RoutePaths.PROJECT_DETAILED} element={<ProjectDetailedPage />} />*/}
+  {/*  <Route path={RoutePaths.SERVICES} element={<ServicesPage />} />*/}
+  {/*  <Route path={RoutePaths.ABOUT} element={<AboutPage />} />*/}
+  {/*  <Route path="*" element={<NotFoundPage />} />*/}
+  {/*</Routes>*/}
 }
 
 export default App;
