@@ -62,7 +62,7 @@ const ProjectDetailedPage: React.FC = () => {
   return(
     <article className="project-detailed-wrapper">
       <FullscreenModal
-        images={project?.detailedImageGrids?.flatMap(g => [g.im1, g.im2, g.im3,g.im4]) || []}
+        images={project?.detailedImageGrids?.flatMap(g => g.rows.flatMap(r => [r.im1, r.im2])) || []}
         fullscreenState={fullscreenState}
         onClose={() => setFullscreenState({ isOpened: false, initialIdx: fullscreenState?.initialIdx })}
       />
@@ -124,7 +124,7 @@ const ProjectDetailedPage: React.FC = () => {
       <div className="images-wrapper">
         {project?.detailedImageGrids?.map((g, i) =>
           <ImageGrid
-            pictures={[g.im1, g.im2, g.im3,g.im4]}
+            pictures={g.rows.flatMap(r => [r.im1, r.im2]) || []}
             onPictureClick={idx => setFullscreenState({ isOpened: true, initialIdx: idx })}
             key={i}
           />

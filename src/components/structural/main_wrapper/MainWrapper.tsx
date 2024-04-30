@@ -44,9 +44,16 @@ const MainWrapper: React.FC<PropsWithChildren> = ({ children }) => {
       $desktop={isDesktop}
       $tablet={isTablet}
       ref={wrapperRef}
-      initial={{ opacity: 0, y: isMobile ? 0 : 4 }}
-      animate={{ opacity: 1, y: 0, transition: { duration: isMobile ? 0.1 : 0.2 } }}
-      exit={{ opacity: 0, transition: { duration: 0.1 } }}
+      initial={{ opacity: 0, y: isMobile ? 0 : 3 }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        transition: {
+          y: { duration: 0.2 },
+          opacity: { duration: 0.07 }
+        }
+      }}
+      exit={{ opacity: 0, transition: { duration: 0.07 } }}
       style={{
         scale: !isDesktop ? scale : undefined,
         transformOrigin: !isDesktop ? `${transformXPivot}% ${transformYPivot}%` : undefined

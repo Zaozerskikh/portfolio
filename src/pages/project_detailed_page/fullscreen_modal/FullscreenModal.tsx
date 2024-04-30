@@ -116,7 +116,7 @@ const currItemVariants = {
   exit: (custom : { initialScale: number, direction: number, imageWidth: number }) => {
     return {
       zIndex: 0,
-      x: custom.direction < 0 ? custom.imageWidth: -custom.imageWidth,
+      x: custom.direction < 0 ? -custom.imageWidth: custom.imageWidth,
       opacity: 0,
       scale: 0.9
     };
@@ -145,10 +145,10 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
 
   const imageWidth = Math.min(1264, width - resolvedPadding * 2, (height - 50) * resolvedAspectRatio - resolvedPadding * 2)
   const currItemPosition = new MotionValue<number>()
-  const nextItemScale = useTransform(currItemPosition, [0, -imageWidth], [0.6, 0.9])
-  const nextItemOpacity = useTransform(currItemPosition, [0, -imageWidth], [0, 1])
-  const prevItemScale = useTransform(currItemPosition, [0, imageWidth], [0.6, 0.9])
-  const prevItemOpacity = useTransform(currItemPosition, [0, imageWidth], [0, 1])
+  const nextItemScale = useTransform(currItemPosition, [0, imageWidth], [0.6, 0.9])
+  const nextItemOpacity = useTransform(currItemPosition, [0, imageWidth], [0, 1])
+  const prevItemScale = useTransform(currItemPosition, [0, -imageWidth], [0.6, 0.9])
+  const prevItemOpacity = useTransform(currItemPosition, [0, -imageWidth], [0, 1])
 
   const [nextScale, setNextScale] = useState(0.9)
   const [prevScale, setPrevScale] = useState(0.9)
@@ -195,9 +195,9 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
     const swipe = Math.abs(offsetX) * info.velocity.x;
 
     if (swipe < -swipeConfidenceThreshold || offsetX < -imageWidth / 3) {
-      paginate(1);
-    } else if (swipe > swipeConfidenceThreshold || offsetX > imageWidth / 3) {
       paginate(-1);
+    } else if (swipe > swipeConfidenceThreshold || offsetX > imageWidth / 3) {
+      paginate(1);
     }
   }
 
@@ -321,11 +321,11 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
                 <StyledNavigationButtonsContainer $mobile={isMobile}>
                   <NavigationButton
                     type={NavigationButtonType.BACK}
-                    onClickAction={() => paginate(1)}
+                    onClickAction={() => paginate(-1)}
                   />
                   <NavigationButton
                     type={NavigationButtonType.FORWARD}
-                    onClickAction={() => paginate(-1)}
+                    onClickAction={() => paginate(1)}
                   />
                 </StyledNavigationButtonsContainer>
               </StyledButtonsContainer>
