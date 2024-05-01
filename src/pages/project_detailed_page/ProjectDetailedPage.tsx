@@ -19,6 +19,7 @@ import FullscreenModal from "./fullscreen_modal/FullscreenModal";
 import ImageGrid from "./image_grid/ImageGrid";
 import {DefaultButtonIcon} from "../../components/buttons/default_button/DefaultButtonIcon";
 import ButtonWithLink from "../../components/buttons/default_button/ButtonWithLink";
+import {FullscreenState} from "./fullscreen_modal/FullscreenModalProps";
 
 const ProjectDetailedPage: React.FC = () => {
   const { t, i18n } = useTranslation()
@@ -34,7 +35,7 @@ const ProjectDetailedPage: React.FC = () => {
   const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE })
 
   const [fullscreenState, setFullscreenState]
-    = useState({ isOpened: false, initialIdx: 0 })
+    = useState<FullscreenState>({ isOpened: false, initialIdx: 0, gridY: 0, gridHeight: 0 })
 
   useEffect(() => {
     if (!id) {
@@ -65,7 +66,7 @@ const ProjectDetailedPage: React.FC = () => {
       <FullscreenModal
         images={project?.detailedImageGrids?.flatMap(g => g.rows.flatMap(r => [r.im1, r.im2])) || []}
         fullscreenState={fullscreenState}
-        onClose={() => setFullscreenState({ isOpened: false, initialIdx: fullscreenState?.initialIdx })}
+        onClose={() => setFullscreenState(prev => ({ ...prev, isOpened: false, initialIdx: fullscreenState?.initialIdx }))}
       />
       <div className="info-wrapper">
         <h1
@@ -128,7 +129,9 @@ const ProjectDetailedPage: React.FC = () => {
         {project?.detailedImageGrids?.map((g, i) =>
           <ImageGrid
             pictures={g.rows.flatMap(r => [r.im1, r.im2]) || []}
-            onPictureClick={idx => setFullscreenState({ isOpened: true, initialIdx: idx })}
+            onPictureClick={(idx, gridY, gridHeight) =>
+              setFullscreenState({ isOpened: true, initialIdx: idx, gridY: gridY, gridHeight: gridHeight })
+            }
             key={i}
           />
         )}

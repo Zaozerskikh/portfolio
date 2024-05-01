@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useMemo, useRef, useState} from "react";
 import {AnimatePresence, motion, MotionValue, Point, useMotionValueEvent, useTransform, wrap} from "framer-motion";
 import styled from "styled-components";
 import {ColorTheme} from "../../../constants/ColorTheme";
@@ -13,18 +13,14 @@ import useWindowParams from "../../../utils/hooks/UseWindowParamsHook";
 import NavigationButton from "../../../components/buttons/navigation_button/NavigationButton";
 import {NavigationButtonType} from "../../../components/buttons/navigation_button/NavigationButtonType";
 import {createPortal} from "react-dom";
+import {calculateInitialPosition} from "./FullscreenModalUtils";
 
 const StyledWrapper = styled(motion.div)<{
-  $colorTheme: ColorTheme;
   $height: number;
   $width: number;
 }>`
   min-width: ${props => props?.$width}px;
-  min-height: ${props => props?.$height}px; 
-  background-color: ${props => props?.$colorTheme === ColorTheme.DARK 
-          ? 'var(--layers-dark-layer, rgba(0, 0, 0, 0.50))'
-          : 'var(--layers-light-layer, rgba(255, 255, 255, 0.50))'
-  }; 
+  min-height: ${props => props?.$height}px;
   position: fixed;
   top: 0;
   left: 0;
@@ -36,7 +32,7 @@ const StyledWrapper = styled(motion.div)<{
   flex-direction: column;
 `
 
-const StyledButtonsContainer = styled.div<{
+const StyledButtonsContainer = styled(motion.div)<{
   $mobile: boolean,
   $desktop: boolean,
   $aspectRatio: number,
@@ -67,8 +63,6 @@ const StyledNavigationButtonsContainer = styled.div<{ $mobile: boolean }>`
 const StyledImageCarouselWrapper = styled(motion.div)<{ $desktop: boolean, $aspect: number, $height: number }>`
   width: 100%;
   position: absolute;
-  padding-left: ${props => props?.$desktop ? 88 : 16}px;
-  padding-right: ${props => props?.$desktop ? 88 : 16}px;
   box-sizing: border-box;
   max-width: ${props => Math.min((props?.$height - 50) * props?.$aspect, 1440)}px;
 `
@@ -128,7 +122,12 @@ const currItemVariants = {
 };
 
 const SWIPE_CONFIDENCE_THRESHOLD = 3000;
-const PAGINATION_TIMEOUT_MS = 500
+const PAGINATION_TIMEOUT_MS = 500;
+const IN_OUT_ANIMATION_DURATION_S = 0.15;
+const DESKTOP_SIDE_PADDING = 88;
+const MOBILE_SIDE_PADDING = 16;
+const DESKTOP_GRID_GAP = 12;
+const MOBILE_GRID_GAP = 4;
 
 const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
   const {
@@ -145,8 +144,24 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
 
   const root = document.getElementById('app')
   const [hasDragged, setHasDragged] = useState(false)
-  const resolvedPadding = isDesktop ? 88 : 16
+  const resolvedPadding = isDesktop ? DESKTOP_SIDE_PADDING : MOBILE_SIDE_PADDING
   const resolvedAspectRatio = aspectRatio || 162 / 97
+
+  const initialPos = useMemo(() => {
+    return calculateInitialPosition(
+      fullscreenState.initialIdx,
+      width,
+      height,
+      isDesktop,
+      isMobile,
+      fullscreenState.gridY,
+      resolvedAspectRatio,
+      DESKTOP_SIDE_PADDING,
+      MOBILE_SIDE_PADDING,
+      DESKTOP_GRID_GAP,
+      MOBILE_GRID_GAP
+    )
+  }, [fullscreenState])
 
   const [isReady, setIsReady] = useState(false)
   const [readyForNext, setReadyForNext] = useState(true)
@@ -247,20 +262,38 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
             <StyledWrapper
               $height={height}
               $width={width}
-              $colorTheme={currTheme}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ backgroundColor: 'rgba(0, 0, 0, 0)'}}
+              animate={{ backgroundColor: currTheme === ColorTheme.DARK
+                  ? 'var(--layers-dark-layer, rgba(0, 0, 0, 0.50))'
+                  : 'var(--layers-light-layer, rgba(255, 255, 255, 0.50))'
+              }}
+              exit={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}
+              transition={{ duration: IN_OUT_ANIMATION_DURATION_S }}
               onClick={handleClose}
             >
               <StyledCarouselItemWrapper
                 $mobile={isMobile}
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.2 }}
+                initial={{
+                  width: initialPos.width,
+                  x: initialPos.x,
+                  y: initialPos.y,
+                  padding: 0
+                }}
+                animate={{
+                  x: 0,
+                  y: -50,
+                  width: imageWidth,
+                  paddingLeft: isDesktop ? DESKTOP_SIDE_PADDING : MOBILE_SIDE_PADDING,
+                  paddingRight: isDesktop ? DESKTOP_SIDE_PADDING : MOBILE_SIDE_PADDING
+                }}
+                exit={{
+                  width: initialPos.width,
+                  x: initialPos.x,
+                  y: initialPos.y,
+                  padding: 0
+                }}
+                transition={{ duration: IN_OUT_ANIMATION_DURATION_S }}
                 onClick={handleClose}
-                style={{ y: -50 }}
               >
                 <AnimatePresence initial={false} custom={{ initialScale: 0.9, direction: direction, imageWidth: imageWidth }}>
                   {/*current image*/}
@@ -331,6 +364,10 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
 
               </StyledCarouselItemWrapper>
               <StyledButtonsContainer
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: IN_OUT_ANIMATION_DURATION_S }}
                 $mobile={isMobile}
                 $desktop={isDesktop}
                 $height={height}

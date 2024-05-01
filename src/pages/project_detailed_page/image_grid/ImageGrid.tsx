@@ -1,5 +1,5 @@
 import {ImageGridProps} from "./ImageGridProps";
-import React from "react";
+import React, {useRef} from "react";
 import styled from "styled-components";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../constants/MediaQueries";
@@ -23,18 +23,27 @@ const StyledImage = styled.img<{ $touchable: boolean }>`
 `
 
 const ImageGrid: React.FC<ImageGridProps> = ({ pictures, onPictureClick}) => {
+  const ref = useRef<HTMLDivElement>(null)
   const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE })
   const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
 
   return(
-    <StyledImageGrid $isMobile={isMobile}>
+    <StyledImageGrid
+      $isMobile={isMobile}
+      ref={ref}
+    >
       {pictures?.map((p, i) =>
         <StyledImage
           $touchable={isTouchable}
           src={p}
           key={i}
           alt={'img'}
-          onClick={() => onPictureClick(i)}
+          onClick={() => {
+            const grid = ref?.current?.getBoundingClientRect()
+            if (grid) {
+              onPictureClick(i, grid.y, grid.height)
+            }
+          }}
         />
       )}
     </StyledImageGrid>

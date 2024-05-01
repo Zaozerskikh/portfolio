@@ -1,9 +1,13 @@
 export interface FullscreenModalProps {
-  fullscreenState: {
-    isOpened: boolean,
-    initialIdx: number
-  };
+  fullscreenState: FullscreenState;
   onClose: () => void;
   images: string[];
   aspectRatio?: number;
+}
+
+export interface FullscreenState {
+  isOpened: boolean,
+  initialIdx: number,
+  gridY: number,
+  gridHeight: number,
 }
