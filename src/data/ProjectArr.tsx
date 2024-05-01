@@ -17,7 +17,7 @@ const hookahPreview = 'https://i.imgur.com/ZbLrNpz.png'
 // chess puzzles
 const puzzlesPreview = 'https://i.imgur.com/Fq3bz2N.png'
 
-export const MockProjectArr: ProjectInfo[] = [
+export const ProjectArr: ProjectInfo[] = [
   {
     id: 'audio-guide-paris',
     name: 'Audio Guide Paris',

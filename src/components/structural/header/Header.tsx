@@ -1,7 +1,5 @@
-import './Header.css'
 import '../../../assets/styles/fonts.css'
 import React from "react";
-import '../../../assets/styles/animation_durations.css'
 import {ColorTheme} from "../../../constants/ColorTheme";
 import {RoutePaths} from "../../../constants/RoutePaths";
 import {useLocation} from "react-router-dom";
@@ -16,28 +14,69 @@ import {useTranslation} from "react-i18next";
 import {toggleLang} from "../../../i18n/config/i18n";
 import {useAppSelector} from "../../../redux/Hooks";
 import BurgerMenu from "../../burger_menu/BurgerMenu";
+import styled from "styled-components";
+
+const StyledHeaderWrapper = styled.header`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+`
+
+const StyledHeader = styled.div<{
+  $desktop: boolean,
+  $colorTheme: ColorTheme
+}>`
+  transition: 0.2s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  top: 0;
+  z-index: 10;
+  align-self: center;
+  max-width: 1440px;
+
+  height: ${props => props?.$desktop ? '74' : '48'}px;
+  background-color: ${props => props?.$colorTheme === ColorTheme.WHITE 
+          ? 'var(--main-white, #FFF)' 
+          : 'var(--dark-theme-bg, #1E1E1E)'
+  };
+  position: ${props => props?.$desktop ? 'relative' : 'fixed'};
+  padding: ${props => props?.$desktop ? '8px 88px' : '8px 16px'};
+`
+
+const HeaderLinksWrapper = styled.nav`
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+`
+
+const HeaderLeftSection = styled.nav`
+  display: flex;
+  flex-direction: row;
+  gap: 16px
+`
 
 const Header: React.FC = () => {
   const currTheme = useAppSelector(state => state.colorTheme)
-  const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
 
   const location = useLocation()
   const { t } = useTranslation();
 
   return(
-    <header className="header-wrapper">
-      <div
-        className={`
-          header animation-02s-all
-          ${isDesktop ? 'desktop' : isTablet ? 'tablet' : 'mobile'} 
-          ${currTheme === ColorTheme.DARK ? 'dark' : 'white'}
-        `}
+    <StyledHeaderWrapper>
+      <StyledHeader
+        $desktop={isDesktop}
+        $colorTheme={currTheme}
       >
         <Logo/>
         {isDesktop ? (
           <>
-            <nav className="header-links-wrapper">
+            <HeaderLinksWrapper>
               <HeaderDesktopLink
                 text={t('header.projects')}
                 color={DefaultButtonColor.VIOLET}
@@ -77,8 +116,8 @@ const Header: React.FC = () => {
                 link={`mailto:${ExternalLinks.EMAIL}`}
                 isExternal={true}
               />
-            </nav>
-            <div className="header-left-section">
+            </HeaderLinksWrapper>
+            <HeaderLeftSection>
               <HeaderDesktopLink
                 text={t('header.lang')}
                 color={DefaultButtonColor.MINT}
@@ -88,13 +127,13 @@ const Header: React.FC = () => {
                 onClickAsBtn={toggleLang}
               />
               <ColorThemeSwitcher/>
-            </div>
+            </HeaderLeftSection>
           </>
         ) : (
           <BurgerMenu/>
         )}
-      </div>
-    </header>
+      </StyledHeader>
+    </StyledHeaderWrapper>
   )
 }
 

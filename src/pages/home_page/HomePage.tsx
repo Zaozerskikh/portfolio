@@ -9,7 +9,7 @@ import {ColorTheme} from "../../constants/ColorTheme";
 import ProjectCard from "./project_card/ProjectCard";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
-import {MockProjectArr} from "../../data/MockProjectArr";
+import {ProjectArr} from "../../data/ProjectArr";
 import {useTranslation} from "react-i18next";
 import {useAppSelector} from "../../redux/Hooks";
 
@@ -35,7 +35,7 @@ const HomePage: React.FC = () => {
         `}}
       />
       <section className={`projects-wrapper ${isDesktop ? 'desktop' : isTablet ? 'tablet' : 'mobile'}`}>
-        {MockProjectArr.map((project, idx) => (
+        {ProjectArr.map((project, idx) => (
           <ProjectCard
             to={RoutePaths.PROJECT_DETAILED.replace(':id', project?.id)}
             key={idx}

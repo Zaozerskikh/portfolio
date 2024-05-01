@@ -107,6 +107,7 @@ const BurgerMenu: React.FC = () => {
   const buttonSlashOpacity = useTransform(burgerXPosition, [0, 280], [1, 0]);
   const buttonSlashMaxWidth = useTransform(burgerXPosition, [0, 280], [10, 0]);
 
+  // TODO - must be a better way to do it
   useMotionValueEvent(burgerXPosition, "change", () => {
     dispatch(setBurgerXPosition(burgerXPosition))
   })

@@ -23,7 +23,6 @@ const MainWrapper: React.FC<PropsWithChildren> = ({ children }) => {
   const wrapperRef = useRef<HTMLDivElement>(null)
   const isTablet = useMediaQuery({ query: MediaQueries.TABLET})
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
-  const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE})
 
   const { width } = useWindowParams()
   const burgerX = useAppSelector(state => state.burger.XPosition)
@@ -44,12 +43,10 @@ const MainWrapper: React.FC<PropsWithChildren> = ({ children }) => {
       $desktop={isDesktop}
       $tablet={isTablet}
       ref={wrapperRef}
-      initial={{ opacity: 0.5, y: isMobile ? 2 : 3 }}
+      initial={{ opacity: 0.5 }}
       animate={{
         opacity: 1,
-        y: 0,
         transition: {
-          y: { duration: 0.2 },
           opacity: { duration: 0.07 }
         }
       }}

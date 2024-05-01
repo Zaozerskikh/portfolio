@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "default": {
+      "title" : "Serg Zaozerskikh - projects",
+      "description": "Serg Zaozerskikh - projects"
+    },
+    "services": {
+      "title" : "Services — Serg Zaozerskikh",
+      "description": "Services — Serg Zaozerskikh"
+    },
+    "about": {
+      "title": "About — Serg Zaozerskikh",
+      "description": "About — Serg Zaozerskikh"
+    }
+  }
+}

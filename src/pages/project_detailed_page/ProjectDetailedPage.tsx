@@ -13,7 +13,7 @@ import Tag from "../../components/tag/Tag";
 import ExternalLinks from "../../constants/ExternalLinks";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
-import {MockProjectArr} from "../../data/MockProjectArr";
+import {ProjectArr} from "../../data/ProjectArr";
 import {useTranslation} from "react-i18next";
 import {useAppSelector} from "../../redux/Hooks";
 import FullscreenModal from "./fullscreen_modal/FullscreenModal";
@@ -41,8 +41,8 @@ const ProjectDetailedPage: React.FC = () => {
       navigate(RoutePaths.NOT_FOUND)
     }
 
-    if (MockProjectArr && id && MockProjectArr?.length > 0) {
-      const proj = MockProjectArr.find(proj => proj.id === id)
+    if (ProjectArr && id && ProjectArr?.length > 0) {
+      const proj = ProjectArr.find(proj => proj.id === id)
 
       if (proj) {
         setProject(proj)
