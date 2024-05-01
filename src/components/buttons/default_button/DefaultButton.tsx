@@ -4,7 +4,6 @@ import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../constants/MediaQueries";
 import {ColorTheme} from "../../../constants/ColorTheme";
 import useHoverAndClick from "../../../utils/hooks/UseHoverAndClickHook";
-import withLink from "../../../utils/HOCs/WithLinkHOC";
 import {useAppSelector} from "../../../redux/Hooks";
 import {DefaultButtonProps} from "./DefaultButtonProps";
 import {DefaultButtonIcon} from "./DefaultButtonIcon";
@@ -208,6 +207,7 @@ const DefaultButton: React.FC<DefaultButtonProps> = (props) => {
       $colorTheme={currTheme}
       onClick={onClickAction}
       {...eventHandlers}
+      data-testid={'default-btn'}
     >
       <ButtonChildrenWrapper>
         {buttonIcon === DefaultButtonIcon.GOOGLE_PLAY && (
@@ -234,6 +234,3 @@ const DefaultButton: React.FC<DefaultButtonProps> = (props) => {
 }
 
 export default DefaultButton
-
-const ButtonWithLink = withLink(DefaultButton);
-export {ButtonWithLink};

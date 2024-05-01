@@ -4,7 +4,6 @@ import '../../assets/styles/fonts.css'
 import React, {useEffect, useState} from "react";
 import {ColorTheme} from "../../constants/ColorTheme";
 import {Lang} from "../../constants/Lang";
-import {ButtonWithLink} from "../../components/buttons/default_button/DefaultButton";
 import {DefaultButtonColor} from "../../components/buttons/default_button/DefaultButtonColor";
 import {RoutePaths} from "../../constants/RoutePaths";
 import ExternalLinks from "../../constants/ExternalLinks";
@@ -19,6 +18,7 @@ import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../constants/MediaQueries";
 import {useTranslation} from "react-i18next";
 import {useAppSelector} from "../../redux/Hooks";
+import ButtonWithLink from "../../components/buttons/default_button/ButtonWithLink";
 
 const ServicesPage: React.FC = () => {
   const { t, i18n } = useTranslation()

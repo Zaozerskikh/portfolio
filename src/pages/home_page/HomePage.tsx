@@ -1,7 +1,6 @@
 import React from "react";
 import './HomePage.css'
 import '../../assets/styles/animation_durations.css'
-import {ButtonWithLink} from "../../components/buttons/default_button/DefaultButton";
 import {DefaultButtonColor} from "../../components/buttons/default_button/DefaultButtonColor";
 import ExternalLinks from "../../constants/ExternalLinks";
 import {RoutePaths} from "../../constants/RoutePaths";
@@ -12,6 +11,7 @@ import {MediaQueries} from "../../constants/MediaQueries";
 import {ProjectArr} from "../../data/ProjectArr";
 import {useTranslation} from "react-i18next";
 import {useAppSelector} from "../../redux/Hooks";
+import ButtonWithLink from "../../components/buttons/default_button/ButtonWithLink";
 
 const HomePage: React.FC = () => {
   const currTheme = useAppSelector(state => state.colorTheme)

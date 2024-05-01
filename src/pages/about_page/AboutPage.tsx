@@ -2,7 +2,6 @@ import './AboutPage.css'
 import './../../assets/styles/fonts.css'
 import './../../assets/styles/animation_durations.css'
 import React from "react";
-import {ButtonWithLink} from "../../components/buttons/default_button/DefaultButton";
 import {DefaultButtonColor} from "../../components/buttons/default_button/DefaultButtonColor";
 import {RoutePaths} from "../../constants/RoutePaths";
 import ExternalLinks from "../../constants/ExternalLinks";
@@ -13,6 +12,7 @@ import {MediaQueries} from "../../constants/MediaQueries";
 import Avatar from "./avatar/Avatar";
 import {useTranslation} from "react-i18next";
 import {useAppSelector} from "../../redux/Hooks";
+import ButtonWithLink from "../../components/buttons/default_button/ButtonWithLink";
 
 const AboutPage: React.FC = () => {
   const currTheme = useAppSelector(state => state.colorTheme)

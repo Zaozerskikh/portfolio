@@ -5,7 +5,6 @@ import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {RoutePaths} from "../../constants/RoutePaths";
 import {ProjectInfo} from "../../types/ProjectInfo";
-import { ButtonWithLink} from "../../components/buttons/default_button/DefaultButton";
 import {DefaultButtonColor} from "../../components/buttons/default_button/DefaultButtonColor";
 import {Lang} from "../../constants/Lang";
 import {ColorTheme} from "../../constants/ColorTheme";
@@ -19,6 +18,7 @@ import {useAppSelector} from "../../redux/Hooks";
 import FullscreenModal from "./fullscreen_modal/FullscreenModal";
 import ImageGrid from "./image_grid/ImageGrid";
 import {DefaultButtonIcon} from "../../components/buttons/default_button/DefaultButtonIcon";
+import ButtonWithLink from "../../components/buttons/default_button/ButtonWithLink";
 
 const ProjectDetailedPage: React.FC = () => {
   const { t, i18n } = useTranslation()
