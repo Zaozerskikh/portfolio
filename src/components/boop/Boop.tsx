@@ -7,7 +7,7 @@ interface BoopProps {
   rotation: number;
   tension: number;
   friction: number;
-  children: any;
+  children: React.ReactNode;
   externalTrigger ? : boolean;
   boopOnHover ? : boolean;
   boopOnClick ? : boolean;

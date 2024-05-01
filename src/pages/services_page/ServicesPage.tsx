@@ -140,7 +140,4 @@ const ServicesPage: React.FC = () => {
   )
 }
 
-
-//@ts-ignore
 export default ServicesPage
-//@ts-ignore

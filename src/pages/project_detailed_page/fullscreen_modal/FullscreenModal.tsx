@@ -194,7 +194,7 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
     setPage([page + newDirection, newDirection]);
   };
 
-  const handleDragEnd = (_: any, info: { offset: Point, velocity: Point }) => {
+  const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: { offset: Point, velocity: Point }) => {
     const offsetX = info.offset.x
     const swipe = Math.abs(offsetX) * info.velocity.x;
 
