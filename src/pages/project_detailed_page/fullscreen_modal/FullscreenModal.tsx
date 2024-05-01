@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {AnimatePresence, motion, MotionValue, Point, useMotionValueEvent, useTransform, wrap} from "framer-motion";
 import styled from "styled-components";
 import {ColorTheme} from "../../../constants/ColorTheme";
@@ -127,9 +127,16 @@ const currItemVariants = {
   }
 };
 
-const swipeConfidenceThreshold = 3000;
+const SWIPE_CONFIDENCE_THRESHOLD = 3000;
+const PAGINATION_TIMEOUT_MS = 500
 
 const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
+  const {
+    fullscreenState,
+    onClose,
+    images,
+    aspectRatio
+  } = props
   const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE })
   const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP })
   const currTheme = useAppSelector(state => state.colorTheme)
@@ -138,11 +145,12 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
 
   const root = document.getElementById('app')
   const [hasDragged, setHasDragged] = useState(false)
-  const {fullscreenState, onClose, images, aspectRatio} = props
   const resolvedPadding = isDesktop ? 88 : 16
   const resolvedAspectRatio = aspectRatio || 162 / 97
 
   const [isReady, setIsReady] = useState(false)
+  const [readyForNext, setReadyForNext] = useState(true)
+  const countdownTimeout = useRef<NodeJS.Timeout>();
   const [[page, direction], setPage]
     = useState([fullscreenState?.initialIdx, 0]);
   const imageIndex = wrap(0, images.length, page);
@@ -171,7 +179,7 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
 
   useEffect(() => {
     setPage([fullscreenState?.initialIdx, 0])
-  }, [fullscreenState?.initialIdx]);
+  }, [fullscreenState]);
 
   useEffect(() => {
     if (fullscreenState?.isOpened) {
@@ -190,17 +198,29 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (!readyForNext) {
+      clearTimeout(countdownTimeout.current)
+      countdownTimeout.current = setTimeout(() => setReadyForNext(true), PAGINATION_TIMEOUT_MS)
+    }
+
+    return () => clearTimeout(countdownTimeout.current)
+  }, [readyForNext]);
+
   const paginate = (newDirection: number) => {
-    setPage([page + newDirection, newDirection]);
+    if (readyForNext) {
+      setPage([page + newDirection, newDirection]);
+      setReadyForNext(false)
+    }
   };
 
   const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: { offset: Point, velocity: Point }) => {
     const offsetX = info.offset.x
     const swipe = Math.abs(offsetX) * info.velocity.x;
 
-    if (swipe < -swipeConfidenceThreshold || offsetX < -imageWidth / 3) {
+    if (swipe < -SWIPE_CONFIDENCE_THRESHOLD || offsetX < -imageWidth / 3) {
       paginate(-1);
-    } else if (swipe > swipeConfidenceThreshold || offsetX > imageWidth / 3) {
+    } else if (swipe > SWIPE_CONFIDENCE_THRESHOLD || offsetX > imageWidth / 3) {
       paginate(1);
     }
   }
@@ -260,7 +280,7 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
                       opacity: { duration: 0.4 }
                     }}
 
-                    drag="x"
+                    drag={readyForNext ? "x" : undefined}
                     dragConstraints={{ left: 0, right: 0 }}
                     dragElastic={1}
                     onDragEnd={handleDragEnd}
