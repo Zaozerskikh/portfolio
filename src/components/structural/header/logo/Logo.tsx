@@ -1,6 +1,4 @@
-import './Logo.css'
 import '../../../../assets/styles/fonts.css'
-import '../../../../assets/styles/animation_durations.css'
 import React, {useEffect, useState} from "react";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../../constants/MediaQueries";
@@ -8,137 +6,171 @@ import {RoutePaths} from "../../../../constants/RoutePaths";
 import {ColorTheme} from "../../../../constants/ColorTheme";
 import {Link, useLocation} from "react-router-dom";
 import {useAppSelector} from "../../../../redux/Hooks";
+import useLogoAnimation from "./UseLogoAnimation";
+import useHoverAndClick from "../../../../utils/hooks/UseHoverAndClickHook";
+import {motion} from 'framer-motion';
+import styled from "styled-components";
+
+const StyledLogoWrapper = styled(Link)`
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  transition: 0.2s all ease-in-out;
+`
+
+const StyledDigit = styled.div< {
+  $letterShift: number,
+  $letterWidth: number,
+  $letterColor: string,
+  $letterFixed: boolean;
+}>`
+  position: absolute;
+  top: ${props => props?.$letterFixed ? '-100px': undefined};
+  left: ${props => props?.$letterWidth * props?.$letterShift}px;
+  color: ${props => props?.$letterColor};
+`
+
+const LOGO_DESKTOP_LETTER_WIDTH = 9.9
+const LOGO_MOBILE_LETTER_WIDTH = 8.8
+const LOGO_INITIAL_ANIMATION_TIMEOUT = 400
+const LOGO_NORMAL_COMPLETED_ANIMATION_DELAY = 500
+const LOGO_EXTENDED_COMPLETED_ANIMATION_DELAY = 1500
+const LOGO_SEED_THRESHOLD = 0.8
 
 const Logo: React.FC = () => {
   const currTheme = useAppSelector(state => state.colorTheme)
-  const isDesktop = useMediaQuery({ query: MediaQueries.DESKTOP})
+  const isDesktop = useMediaQuery({query: MediaQueries.DESKTOP})
   const isTouchable = useMediaQuery({query: MediaQueries.TOUCHABLE})
   const location = useLocation()
+  const resolvedLetterWidth = isDesktop ? LOGO_DESKTOP_LETTER_WIDTH : LOGO_MOBILE_LETTER_WIDTH
 
-  const [readyToAnimate, setReadyToAnimate] = useState(true)
-  const [isAnimated, setAnimated] = useState(false)
-  const [is1Animated, set1Animated] = useState(false)
-  const [is2Animated, set2Animated] = useState(false)
-  const [is3Animated, set3Animated] = useState(false)
-  const [is4Animated, set4Animated] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const {isHovered, isClicked, ...eventHandlers} = useHoverAndClick()
+  const [isAnimated, setIsAnimated] = useState(false)
+  const [isReadyForIn, setIsReadyForIn] = useState(true)
+  const [isReadyForOut, setIsReadyForOut] = useState(false)
+  const [isReadyForInitialAnimation, setIsReadyForInitialAnimation] = useState(false)
+
+  const scope = useLogoAnimation(isAnimated)
+
+  useEffect(() => {
+    const initialTimeout = setTimeout(
+      () => setIsReadyForInitialAnimation(true),
+      LOGO_INITIAL_ANIMATION_TIMEOUT
+    )
+    return () => clearTimeout(initialTimeout)
+  }, []);
+
+  useEffect(() => {
+    if (isReadyForIn) {
+      if (isHovered) {
+        setIsAnimated(true)
+      }
+    }
+  }, [isReadyForIn, isHovered]);
+
+  useEffect(() => {
+    if (isReadyForOut && !isHovered) {
+      setIsAnimated(false)
+    }
+  }, [isReadyForOut, isHovered]);
+
+  useEffect(() => {
+    let tIn: NodeJS.Timeout | null;
+    let tOut: NodeJS.Timeout | null;
+
+    if (!isAnimated) {
+      tIn = setTimeout(() => setIsReadyForIn(true), LOGO_NORMAL_COMPLETED_ANIMATION_DELAY)
+    } else {
+      setIsReadyForIn(false)
+      setIsReadyForOut(false)
+
+      tOut = setTimeout(() => {
+        setIsReadyForOut(true)
+      }, isTouchable ? LOGO_EXTENDED_COMPLETED_ANIMATION_DELAY : LOGO_NORMAL_COMPLETED_ANIMATION_DELAY)
+    }
+
+    return () => {
+      if (tIn) {
+        clearTimeout(tIn)
+      }
+
+      if (tOut) {
+        clearTimeout(tOut)
+      }
+    }
+  }, [isAnimated]);
+
 
   useEffect(() => {
     const seed = Math.random()
-    if (isTouchable && readyToAnimate && seed > 0.8) {
-      setTimeout(() => {
-        if (readyToAnimate) {
-          setAnimated(true)
-          setTimeout(() => {
-            setAnimated(false)
-          }, 1000)
-        }
-      }, 1000)
+    if (seed > LOGO_SEED_THRESHOLD && isTouchable && isReadyForInitialAnimation && isReadyForIn && !isHovered) {
+      setIsAnimated(true)
     }
   }, [location, isTouchable]);
 
-  useEffect(() => {
-    if (isAnimated) {
-      setReadyToAnimate(false)
-      setTimeout(() => {
-        set1Animated(true)
-      }, 100);
-      setTimeout(() => {
-        set2Animated(true)
-      }, 200);
-      setTimeout(() => {
-        set3Animated(true)
-      }, 300);
-      setTimeout(() => {
-        set4Animated(true)
-      }, 400)
-    } else {
-      setTimeout(() => {
-        setTimeout(() => {
-          set1Animated(false)
-        }, 100);
-        setTimeout(() => {
-          set2Animated(false)
-        }, 200);
-        setTimeout(() => {
-          set3Animated(false)
-        }, 300);
-        setTimeout(() => {
-          set4Animated(false)
-        }, 400)
-        setTimeout(() => {
-          setReadyToAnimate(true)
-        }, 400)
-      }, !isTouchable ? 0 : 3000)
-    }
-  }, [isAnimated, isTouchable]);
-
   return(
-    <Link
-      style={{ textDecoration: "none" }}
+    <StyledLogoWrapper
       to={RoutePaths.HOME}
-      onMouseEnter={() => {
-        if (!isTouchable) {
-          if (readyToAnimate) {
-            setAnimated(true)
-          }
-        }
-      }}
-      onMouseLeave={() => {
-        if (!isTouchable) {
-          setAnimated(false)
-        }
-      }}
-      onTouchStart={() => {
-        if (readyToAnimate) {
-          setAnimated(true)
-        }
-      }}
-      onTouchEnd={() => setAnimated(false)}
-      onTouchCancel={() => setAnimated(false)}
-      className={`logo-wrapper logo mobile-menu-text ${isDesktop && 'desktop'} animation-02s-all ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
+      {...eventHandlers}
+      ref={scope}
+      className={`mobile-menu-text ${isDesktop && 'desktop'} ${currTheme === ColorTheme.DARK ? 'white' : 'dark'}`}
     >
-      <div
-        className={`animated-part ${is1Animated && 'active'} animation-02s-all violet`}
-        style={{left: `${isDesktop ? 9.9 : 8.8}px`}}
+      <StyledDigit
+        className={`digit`}
+        $letterWidth={resolvedLetterWidth}
+        $letterShift={1}
+        $letterColor={'var(--buttons-violet-on-click)'}
+        $letterFixed={!isReadyForInitialAnimation}
       >
         3
-      </div>
-      <div
-        className={`animated-part ${is2Animated && 'active'} animation-02s-all orange`}
-        style={{left: `${isDesktop ? 9.9 * 7 : 8.8 * 7}px`}}
+      </StyledDigit>
+      <StyledDigit
+        className={`digit`}
+        $letterWidth={resolvedLetterWidth}
+        $letterShift={7}
+        $letterColor={'var(--buttons-orange-on-click)'}
+        $letterFixed={!isReadyForInitialAnimation}
       >
         0
-      </div>
-      <div
-        className={`animated-part ${is3Animated && 'active'} animation-02s-all violet`}
-        style={{left: `${isDesktop ? 9.9 * 9 : 8.8 * 9}px`}}
+      </StyledDigit>
+      <StyledDigit
+        className={`digit`}
+        $letterWidth={resolvedLetterWidth}
+        $letterShift={9}
+        $letterColor={'var(--buttons-violet-on-click)'}
+        $letterFixed={!isReadyForInitialAnimation}
       >
         3
-      </div>
-      <div
-        className={`animated-part ${is4Animated && 'active'} animation-02s-all mint`}
-        style={{left: `${isDesktop ? 9.9 * 13 : 8.8 * 13}px`}}
+      </StyledDigit>
+      <StyledDigit
+        className={`digit`}
+        $letterWidth={resolvedLetterWidth}
+        $letterShift={13}
+        $letterColor={'var(--buttons-mint-on-click)'}
+        $letterFixed={!isReadyForInitialAnimation}
       >
         1
-      </div>
+      </StyledDigit>
       S
-      <div className={`animation-02s-opacity ${is1Animated ? 'invisible' : 'visible'}`}>
+      <motion.div className={`digit-letter`}>
         e
-      </div>
+      </motion.div>
       rg Za
-      <div className={`animation-02s-opacity ${is2Animated ? 'invisible' : 'visible'}`}>
+      <motion.div className={`digit-letter`}>
         o
-      </div>
+      </motion.div>
       z
-      <div className={`animation-02s-opacity ${is3Animated ? 'invisible' : 'visible'}`}>
+      <motion.div className={`digit-letter`}>
         e
-      </div>
+      </motion.div>
       rsk
-      <div className={`animation-02s-opacity ${is4Animated ? 'invisible' : 'visible'}`}>
+      <motion.div className={`digit-letter`}>
         i
-      </div>
+      </motion.div>
       kh
-    </Link>
+    </StyledLogoWrapper>
   )
 }
 
