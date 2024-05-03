@@ -1,0 +1,16 @@
+version: '3.8'
+
+networks:
+  portfolio-prod:
+    driver: bridge
+
+services:
+  portfolio:
+    container_name: p-front
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - portfolio-prod
