@@ -132,7 +132,7 @@ describe('DefaultButton', () => {
     expect(button).toHaveStyleRule('border-radius', '4px');
     expect(button).toHaveStyleRule('box-sizing', 'border-box');
     expect(button).toHaveStyleRule('margin', '0');
-    expect(button).toHaveStyleRule('transition', '0.2s ease-in-out');
+    expect(button).toHaveStyleRule('transition', '0.2s all ease-in-out');
   });
 
   it('styles: active', () => {

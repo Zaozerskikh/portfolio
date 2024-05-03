@@ -11,17 +11,17 @@ const colorThemeSlice = createSlice({
   reducers: {
     toggleTheme: (state) => {
       state = state === ColorTheme.WHITE ? ColorTheme.DARK : ColorTheme.WHITE;
-      Cookies.set('color_theme', state)
+      Cookies.set('color_theme', state, { expires: 365 })
       return state;
     },
     setWhiteTheme: (state) => {
       state = ColorTheme.WHITE;
-      Cookies.set('color_theme', state)
+      Cookies.set('color_theme', state, { expires: 365 })
       return state;
     },
     setDarkTheme: (state) => {
       state = ColorTheme.DARK;
-      Cookies.set('color_theme', state)
+      Cookies.set('color_theme', state, { expires: 365 })
       return state;
     }
   }

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
 import reduxStore from "./redux/ReduxStore";
 import {BrowserRouter as Router} from 'react-router-dom';
@@ -11,6 +10,7 @@ import './assets/custom_fonts/CONSOLA.TTF'
 import {HelmetProvider} from "react-helmet-async";
 import {I18nextProvider} from "react-i18next";
 import i18n from "./i18n/config/i18n";
+import {setupGA4} from "./ga4/GA4setup";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -26,7 +26,4 @@ root.render(
   </I18nextProvider>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+setupGA4()

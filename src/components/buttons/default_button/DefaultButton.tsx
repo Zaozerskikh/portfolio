@@ -135,7 +135,7 @@ const ButtonWrapper = styled.button<{
   border-radius: 4px;
   box-sizing: border-box;
   margin: 0;
-  transition: 0.2s ease-in-out;
+  transition: 0.2s all ease-in-out;
   
   // color shared styles
   ${props => props?.$hovered && !props?.$touchable && 'cursor: pointer'};

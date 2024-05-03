@@ -15,6 +15,7 @@ import {AnimatePresence, motion, useMotionValue, useMotionValueEvent, useTransfo
 import useWindowParams from "../../utils/hooks/UseWindowParamsHook";
 import styled from "styled-components";
 import ButtonWithLink from "../buttons/default_button/ButtonWithLink";
+import useBurgerGA4 from "../../ga4/UseBurgerGA4";
 
 const BurgerBackdrop = styled(motion.div)<{ $colorTheme: ColorTheme, $opened: boolean }>`
   position: fixed;
@@ -93,6 +94,7 @@ const BurgerBtnWrapper = styled.button`
 `
 
 const BurgerMenu: React.FC = () => {
+  useBurgerGA4()
   const isBurgerOpened = useAppSelector(state => state.burger.isOpened)
   const currTheme = useAppSelector(state => state.colorTheme)
   const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE})

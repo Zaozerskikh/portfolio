@@ -128,6 +128,8 @@ const DESKTOP_SIDE_PADDING = 88;
 const MOBILE_SIDE_PADDING = 16;
 const DESKTOP_GRID_GAP = 12;
 const MOBILE_GRID_GAP = 4;
+const DEFAULT_ASPECT_RATIO = 162 / 97
+const IMAGE_Y_SHIFT = 50
 
 const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
   const {
@@ -145,11 +147,18 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
   const root = document.getElementById('app')
   const [hasDragged, setHasDragged] = useState(false)
   const resolvedPadding = isDesktop ? DESKTOP_SIDE_PADDING : MOBILE_SIDE_PADDING
-  const resolvedAspectRatio = aspectRatio || 162 / 97
+  const resolvedAspectRatio = aspectRatio || DEFAULT_ASPECT_RATIO
+
+  const [isReady, setIsReady] = useState(false)
+  const [readyForNext, setReadyForNext] = useState(true)
+  const countdownTimeout = useRef<NodeJS.Timeout>();
+  const [[page, direction], setPage]
+    = useState([fullscreenState?.initialIdx, 0]);
+  const imageIndex = wrap(0, images.length, page);
 
   const initialPos = useMemo(() => {
     return calculateInitialPosition(
-      fullscreenState.initialIdx,
+      page,
       width,
       height,
       isDesktop,
@@ -161,16 +170,9 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
       DESKTOP_GRID_GAP,
       MOBILE_GRID_GAP
     )
-  }, [fullscreenState])
+  }, [fullscreenState, page])
 
-  const [isReady, setIsReady] = useState(false)
-  const [readyForNext, setReadyForNext] = useState(true)
-  const countdownTimeout = useRef<NodeJS.Timeout>();
-  const [[page, direction], setPage]
-    = useState([fullscreenState?.initialIdx, 0]);
-  const imageIndex = wrap(0, images.length, page);
-
-  const imageWidth = Math.min(1264, width - resolvedPadding * 2, (height - 50) * resolvedAspectRatio - resolvedPadding * 2)
+  const imageWidth = Math.min(1264, width - resolvedPadding * 2, (height - IMAGE_Y_SHIFT) * resolvedAspectRatio - resolvedPadding * 2)
   const currItemPosition = new MotionValue<number>()
   const nextItemScale = useTransform(currItemPosition, [0, imageWidth], [0.6, 0.9])
   const nextItemOpacity = useTransform(currItemPosition, [0, imageWidth], [0, 1])
@@ -281,7 +283,7 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
                 }}
                 animate={{
                   x: 0,
-                  y: -50,
+                  y: -IMAGE_Y_SHIFT,
                   width: imageWidth,
                   paddingLeft: isDesktop ? DESKTOP_SIDE_PADDING : MOBILE_SIDE_PADDING,
                   paddingRight: isDesktop ? DESKTOP_SIDE_PADDING : MOBILE_SIDE_PADDING

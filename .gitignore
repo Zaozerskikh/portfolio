@@ -47,3 +47,4 @@ lerna-debug.log*
 /src/app/dev.env
 .env
 .firebase
+/src/ga4/FirebaseConfig.ts

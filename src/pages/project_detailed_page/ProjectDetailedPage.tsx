@@ -20,6 +20,7 @@ import ImageGrid from "./image_grid/ImageGrid";
 import {DefaultButtonIcon} from "../../components/buttons/default_button/DefaultButtonIcon";
 import ButtonWithLink from "../../components/buttons/default_button/ButtonWithLink";
 import {FullscreenState} from "./fullscreen_modal/FullscreenModalProps";
+import useFullscreenModalGA4 from "../../ga4/useFullscreenModalGA4";
 
 const ProjectDetailedPage: React.FC = () => {
   const { t, i18n } = useTranslation()
@@ -36,6 +37,7 @@ const ProjectDetailedPage: React.FC = () => {
 
   const [fullscreenState, setFullscreenState]
     = useState<FullscreenState>({ isOpened: false, initialIdx: 0, gridY: 0, gridHeight: 0 })
+  useFullscreenModalGA4(fullscreenState.isOpened)
 
   useEffect(() => {
     if (!id) {
