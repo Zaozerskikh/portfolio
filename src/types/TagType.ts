@@ -5,5 +5,8 @@ export enum TagType {
   DOCKER = 'Docker',
   GIT = 'Git',
   CMS = 'Cms',
-  POSTGRESQL = 'PostgreSQL'
+  POSTGRESQL = 'PostgreSQL',
+  JAVA = "Java",
+  JAVA_FX = 'JavaFX',
+  JUNIT = 'Junit 5'
 }

@@ -43,3 +43,15 @@
 .tag-wrapper.postgresql {
     background-color: var(--tools-tags-postgres-gray, #AFCBE1);
 }
+
+.tag-wrapper.java {
+    background-color: var(--buttons-orange-on-click, #FE8C39);
+}
+
+.tag-wrapper.javafx {
+    background-color: var(--buttons-orange-default, #FFB178);
+}
+
+.tag-wrapper.junit_5 {
+    background-color: var(--tools-tags-git-red, #F98B78);
+}

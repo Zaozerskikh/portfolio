@@ -158,7 +158,7 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
 
   const initialPos = useMemo(() => {
     return calculateInitialPosition(
-      page,
+      imageIndex,
       width,
       height,
       isDesktop,
