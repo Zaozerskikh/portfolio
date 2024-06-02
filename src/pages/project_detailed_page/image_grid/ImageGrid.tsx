@@ -1,8 +1,9 @@
 import {ImageGridProps} from "./ImageGridProps";
 import React, {useRef} from "react";
-import styled from "styled-components";
+import styled, {CSSProp} from "styled-components";
 import {useMediaQuery} from "react-responsive";
 import {MediaQueries} from "../../../constants/MediaQueries";
+import BaseImage from "../../../components/base_image/BaseImage";
 
 const StyledImageGrid = styled.div<{ $isMobile: boolean }>`
   display: grid;
@@ -11,18 +12,21 @@ const StyledImageGrid = styled.div<{ $isMobile: boolean }>`
   max-width: 1264px;
 `
 
-const StyledImage = styled.img<{ $touchable: boolean }>`
-  height: auto;
-  width: 100%;
-  object-fit: cover;
-  aspect-ratio: 162 / 97;
-  border-radius: 4px;
-  &:hover {
-    ${props => !props?.$touchable && 'cursor: pointer'};
-  }
-`
+const imageAdditionalStyle: CSSProp = {
+  width: '100%',
+  height: "auto",
+  objectFit: 'cover',
+  aspectRatio: '162 / 97',
+  borderRadius: 4,
+}
 
-const ImageGrid: React.FC<ImageGridProps> = ({ pictures, onPictureClick}) => {
+const containerAdditionalStyle: CSSProp = {
+  width: '100%',
+  height: "auto",
+  aspectRatio: '162 / 97',
+}
+
+const ImageGrid: React.FC<ImageGridProps> = ({ pictures, onPictureClick }) => {
   const ref = useRef<HTMLDivElement>(null)
   const isMobile = useMediaQuery({ query: MediaQueries.NORMAL_MOBILE })
   const isTouchable = useMediaQuery({ query: MediaQueries.TOUCHABLE });
@@ -33,8 +37,9 @@ const ImageGrid: React.FC<ImageGridProps> = ({ pictures, onPictureClick}) => {
       ref={ref}
     >
       {pictures?.map((p, i) =>
-        <StyledImage
-          $touchable={isTouchable}
+        <BaseImage
+          additionalImageStyles={{...imageAdditionalStyle, cursor: !isTouchable ? 'pointer' : undefined }}
+          additionalWrapperStyles={containerAdditionalStyle}
           src={p}
           key={i}
           alt={'img'}

@@ -401,4 +401,4 @@ const FullscreenModal: React.FC<FullscreenModalProps> = (props) => {
   )
 }
 
-export default FullscreenModal
+export default React.memo(FullscreenModal)

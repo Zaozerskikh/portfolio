@@ -12,6 +12,19 @@ import useHoverAndClick from "../../../utils/hooks/UseHoverAndClickHook";
 import withLink from "../../../utils/HOCs/WithLinkHOC";
 import {useTranslation} from "react-i18next";
 import {useAppSelector} from "../../../redux/Hooks";
+import BaseImage from "../../../components/base_image/BaseImage";
+import {CSSProp} from "styled-components";
+
+const additionalImageStyles: CSSProp = {
+  width: '100%',
+  height: 'auto',
+  borderRadius: 4,
+  aspectRatio: 1,
+}
+
+const additionalWrapperStyles: CSSProp = {
+  aspectRatio: '1'
+}
 
 const ProjectCardWithoutLink: React.FC<ShortProjectInfo> = ({
   previewImage,
@@ -47,13 +60,11 @@ const ProjectCardWithoutLink: React.FC<ShortProjectInfo> = ({
           ${isHovered && (currTheme === ColorTheme.DARK ? 'hovered-gray' : 'hovered-black')}
         `}
       >
-        <img
+        <BaseImage
+          alt={name}
           src={previewImage}
-          alt="img"
-          className={`
-            project-img-preview ${isHovered && 'hovered'} 
-            animation-02s-all
-          `}
+          additionalWrapperStyles={additionalWrapperStyles}
+          additionalImageStyles={additionalImageStyles}
         />
       </div>
       <div className="project-info">
